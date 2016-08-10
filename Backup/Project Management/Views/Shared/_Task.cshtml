@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Project Managent</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Scripts.Render("~/Scripts/jquery-1.7.1.min.js")
+
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @Styles.Render("~/Content/ProjectManagement.css")
+
+    @Scripts.Render("~/Scripts/HighChart/highcharts.js")
+
+</head>
+
+<body style="margin: 0 auto; font-family: Calibri; font-size: 15px;">
+    <form id="ProjectMaster">
+        <header>
+            <div class="content-wrapper" style="background-color: brown; height: 40px; width: 100%;">
+                <div class="mainmenucontent" style="height:55px;">
+                    <div id="imgproject" style="color: white; position: relative; top: 3px; font-size: 20px; margin-left: 10px; float: left;"></div>
+                     <a style="color: white; position: relative; top: 3px; font-size: 20px; margin-left: 10px;">Project Management</a>
+                    <ul id="taskcontent" style="">
+                        <li class="parentmenu">
+                            <a>Task Summary Report</a>
+                        </li>
+                        <li class="parentmenu">
+                            <a>Add Task</a>
+                        </li>
+                        <li class="parentmenu">
+                            <a id="reports">Reports</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </header>
+        <div id="body">
+
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+    </form>
+</body>
+</html>

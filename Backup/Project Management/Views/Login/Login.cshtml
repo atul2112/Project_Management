@@ -1,0 +1,316 @@
+﻿@model Project_Management.UserInfoTbl
+
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    *, *:before, *:after {
+        box-sizing: border-box;
+    }
+
+    @@media only screen and (max-height: 660px) {
+        html {
+            overflow-y: scroll;
+        }
+    }
+
+    body {
+        background: #c1bdba;
+        font-family: 'Titillium Web', sans-serif;
+        max-height: 667px !important;
+    }
+
+    .jumbotron {
+        overflow: hidden !important;
+        margin-bottom: 0px !important;
+    }
+
+    #bigCube {
+        display: block !important;
+    }
+
+    a {
+        text-decoration: none;
+        color: #1ab188;
+        -webkit-transition: .5s ease;
+        transition: .5s ease;
+    }
+
+        a:hover {
+            color: #179b77;
+        }
+
+    .form {
+        background: rgba(19, 35, 47, 0.9);
+        padding: 40px;
+        max-width: 600px;
+        margin: 40px auto;
+        border-radius: 4px;
+        box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+    }
+
+    .tab-group {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 40px 0;
+    }
+
+        .tab-group:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .tab-group li a {
+            display: block;
+            text-decoration: none;
+            padding: 15px;
+            background: rgba(160, 179, 176, 0.25);
+            color: #a0b3b0;
+            font-size: 20px;
+            float: left;
+            width: 50%;
+            text-align: center;
+            cursor: pointer;
+            -webkit-transition: .5s ease;
+            transition: .5s ease;
+        }
+
+            .tab-group li a:hover {
+                background: #179b77;
+                color: #ffffff;
+            }
+
+        .tab-group .active a {
+            background: #1ab188;
+            color: #ffffff;
+        }
+
+    .tab-content > div:last-child { /*div changed to fieldset*/
+        display: none;
+    }
+
+    h2 {
+        text-align: center;
+        color: #ffffff;
+        font-weight: 300;
+        margin: 0 0 40px;
+    }
+
+    label {
+        position: absolute;
+        -webkit-transform: translateY(6px);
+        transform: translateY(6px);
+        left: 50px;
+        color: #006F6F;
+        -webkit-transition: all 0.10s ease;
+        transition: all 0.10s ease;
+        -webkit-backface-visibility: hidden;
+        pointer-events: none;
+        font-size: 22px;
+        font-weight: 100;
+        color: #B5B5B5;
+    }
+
+        label .req {
+            margin: 2px;
+            color: #1ab188;
+        }
+
+        label.active {
+            -webkit-transform: translateY(-25px);
+            transform: translateY(-25px);
+            left: 2px;
+            font-size: 14px;
+            color: #006F6F;
+        }
+
+            label.active .req {
+                opacity: 0;
+            }
+
+        label.highlight {
+            color: #016363;
+        }
+
+    input[type="text"], input[type="password"] {
+        font-size: 22px;
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 5px 10px;
+        background: none;
+        background-image: none;
+        border: 1px solid #a0b3b0;
+        color: #636262;
+        border-radius: 0;
+        -webkit-transition: border-color .25s ease, box-shadow .25s ease;
+        transition: border-color .25s ease, box-shadow .25s ease;
+    }
+
+    option {
+        background: rgba(19, 35, 47, 0.9);
+    }
+
+    input:focus, textarea:focus, select:focus {
+        outline: 0;
+        border-color: #006F6F;
+    }
+
+    .input-error {
+        border-color: coral !important;
+        border-width: 2px !important;
+        color: burlywood !important;
+    }
+
+    textarea {
+        border: 2px solid #a0b3b0;
+        resize: vertical;
+    }
+
+    .field-wrap {
+        position: relative;
+        margin-bottom: 40px;
+    }
+
+    .top-row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .top-row > div {
+        float: left;
+        width: 48%;
+        margin-right: 4%;
+    }
+
+        .top-row > div:last-child {
+            margin: 0;
+        }
+
+    .button {
+        border: 1px solid #006F6F;
+        outline: none;
+        border-radius: 0;
+        padding: 6px 16px;
+        width: 100%;
+        font-size: 2rem;
+        font-weight: 100;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+        background: rgba(0, 111, 111, 0.12);
+        color: #006F6F;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        -webkit-appearance: none;
+        margin-bottom: 10px;
+    }
+
+        .button:hover, .button:focus {
+            background: #006F6F;
+            color: white;
+        }
+
+    .button-block {
+        display: block;
+        width: 100%;
+    }
+
+    .forgot {
+        margin-top: -20px;
+        text-align: right;
+    }
+
+    .panel {
+        border-width: 0px;
+    }
+
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#form_input").find('input').on('keyup blur focus', function (e) {
+            var $this = $(this),
+            label = $this.prev('label');
+
+            if (e.type === 'focus') {
+                label.addClass('active highlight');
+            }
+            else if (e.type === 'blur') {
+                if ($this.val() === '') {
+                    label.removeClass('active highlight');
+                } else {
+                    label.removeClass('highlight');
+                }
+            }
+
+        });
+        $("#Username").focus();
+    });
+</script>
+
+
+
+@using (Html.BeginForm("LoginInfo", "Login", FormMethod.Post))
+{
+    //this is for create form tag
+    @Html.AntiForgeryToken()    // this is to prevent CSFR attack
+    @Html.ValidationSummary(true)
+
+    if (@ViewBag.Message != null)
+    {
+    <div style="border: 1px solid grey">
+        @ViewBag.Message
+    </div>
+    }
+
+    
+    
+    
+    <div class="panel panel-default" style="margin-left: auto; margin-right: auto; width: 500px; box-shadow: 3px 4px 10px gray;">
+        <div class="panel-heading" style="background-color: rgba(0, 111, 111, 0.87); color: floralwhite; height: 41px; overflow: hidden;">
+            <h3 class="panel-title" style="font-variant:small-caps; float: left; font-size:150%;">Login</h3>
+            <i class="fa fa-cubes" aria-hidden="true" style="float: right; zoom: 379%; color: white; margin-top: -3.5px; margin-right: -9.7px; opacity: 0.6;"></i>
+        </div>
+        <div class="panel-body" style="padding-top: 40px">
+            <div>
+                <div id="form_input">
+                    <div class="input-group field-wrap">
+                        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+                        @Html.LabelFor(a => a.Username, new { @Style = "font-variant:small-caps" })
+                        @Html.TextBoxFor(a => a.Username, new { autocomplete = "off", @Style = "font-variant:small-caps" })
+                        <div>@Html.ValidationMessageFor(a => a.Username)</div>
+                    </div>
+                    <div class="input-group field-wrap">
+                        <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-lock"></span></span>
+                        @Html.LabelFor(a => a.Password, new { @Style = "font-variant:small-caps" })
+                        @Html.TextBoxFor(a => a.Password, new { autocomplete = "off", @Style = "-webkit-text-security: disc" })
+                        <div>@Html.ValidationMessageFor(a => a.Password)</div>
+                    </div>
+                </div>
+
+                <div>
+                    <div style="height: 67px">
+                        <input id="submitBtn" type="submit" class="button" value="login" style="margin-bottom: 5px" />
+                        @if (TempData["Message"] != null)
+                        {    
+                            <div style="color: #B8254E"><span class="glyphicon glyphicon-alert"></span>@TempData["Message"]</div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+}
+
+
+@*this line is to create javascript*@
+
+

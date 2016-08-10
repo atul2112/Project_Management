@@ -1,0 +1,212 @@
+﻿body {
+background-color:black;
+color:white;
+}
+.mainmenucontent {
+background-color: #e41e2a;
+height: 37px;
+padding-top: 3px;
+}
+.selectionlevel {
+border-bottom: 1px solid #ffffff;
+min-height: 73px;
+padding-top: 3px;
+}
+.selectionlevel table {
+width: 247px;
+}
+.popup {
+background-color: #e41e2a;
+border: 1px solid #808080;
+box-shadow: 4px 4px 10px grey;
+color: #000000; 
+margin: 0 auto;
+padding-bottom: 20px;
+position: absolute;
+width: 200px;
+z-index: 5000;
+top:37px;
+}
+.popup table td {
+color:white;
+cursor: pointer;
+height: 25px;
+padding-left: 5px;
+width: 173px;
+text-align:left;
+}
+.closepopup {
+background-image: url("/Pics/popup_close2.png");
+background-position: 1px 0;
+background-repeat: no-repeat;
+background-size: 118px 29px;
+cursor: pointer;
+height: 21px;
+width: 22px;
+}
+.createproject table {
+table-layout:fixed;
+border-collapse:collapse;
+margin-left: 20px;
+}
+.createproject table td{
+line-height: 34px;
+padding-right:10px;
+}
+.mainmenucontent ul {  
+display: table-cell;
+float: right;
+height: 34px;
+margin: 0;
+vertical-align: middle;
+left: -58px;
+position: relative;
+}
+.mainmenucontent ul li {   
+color: white;
+cursor: pointer;
+float: left;
+height: 100%;
+list-style: outside none none;
+margin-right: 20px;
+text-align: left;
+width: auto;
+}
+.parentmenu:hover {
+color:silver;
+}
+.popup table td:hover {
+background-color:silver;
+cursor:pointer;
+}
+.parentmenu > a {
+position: relative;
+top: 9px;
+color:white;
+text-decoration:none;
+}
+input[type="button"] {
+background-color: #e41e2a;
+border-style: solid;
+color: white;     
+height: 27px;
+width: 80px;
+cursor:pointer;
+}
+.title {
+color: springgreen;
+font-size:15px;
+}
+.label {
+
+}
+.closepopup {
+background-image: url("/Content/Images/popup_close2.png");
+background-position: 1px 0;
+background-repeat: no-repeat;
+background-size: 118px 29px;
+cursor: pointer;
+height: 21px;
+width: 22px;
+}
+#chartcontainer {
+position:absolute;
+margin: 91px auto auto;left:0;
+right:0;
+bottom:0;
+top:0;
+}
+#editremoveprojects, #createworkitem, #editremoveworkitems, #createtask,#editremovetaskdetails {
+width:510px;
+height:150px;
+overflow:hidden;
+position:absolute;
+margin:auto;
+left:0;
+right:0;
+bottom:0;
+top:0;
+background-color:white;
+vertical-align:central;
+display:inline-block;
+text-align:center;
+padding-left:10px;
+}
+#editremoveprojects table, #createworkitem table, #editremoveworkitems table, #createtask table, #editremovetaskdetails table{
+table-layout:fixed;
+border-collapse:collapse;
+vertical-align:central;
+display:table;
+}
+#editremoveprojects table td, #createworkitem table td, #editremoveworkitems table td, #createtask table td, #editremovetaskdetails table td{
+border:1px solid lightgray;
+}
+.editremovelabels {
+cursor:pointer;
+color:blue;
+text-decoration:underline;
+}
+.tableheader table{
+height:33px;
+float:left;
+}
+.tablebody table{
+height:33px;
+float:left;
+}
+.tableheader table td {
+background-color: #e41e2a;
+border:1px solid lightgray;
+color:white;
+height:30px;
+}
+.tablebody table td {    
+border:1px solid lightgray;
+color:grey;
+}
+.tablebody input[type='text'] {
+background-color: white;
+border-style: none;
+}
+.additem {
+background-image: url("/Content/Images/AddItem.png");
+background-position: center center;
+background-repeat: no-repeat;
+background-size: 20px 20px;
+cursor: pointer;
+height: 14px;
+margin: auto;
+width: 14px;
+}
+.Priority, .Status {
+width:10px;
+height:10px;
+border-radius: 5px;
+position: relative;
+top: 6px; 
+left: 20px;
+float:left;
+}
+#reportselectioncontent select {
+height: 25px;
+width: 150px;
+}
+
+#Projects {
+width:610px;
+height:370px;
+position:absolute;
+margin:auto;
+left:0;
+right:0;
+top:0;
+bottom:0;
+display: inline-block;
+overflow:hidden;
+}
+#Projects .slide {
+cursor:pointer;
+}
+.jR3DCarouselGallery, .jR3DCarouselGallery1 {
+margin: 0 auto;
+}

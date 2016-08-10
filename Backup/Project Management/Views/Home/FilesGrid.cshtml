@@ -1,0 +1,400 @@
+﻿@model Project_Management.Models.FileDashboard
+
+@{
+    ViewBag.Title = "FilesGrid";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .nav-tabs.nav-justified > .active > a, .nav-tabs.nav-justified > .active > a:focus, .nav-tabs.nav-justified > .active > a:hover {
+        background-color: #006F6F !important;
+        color: floralwhite !important;
+    }
+
+    .nav-tabs.nav-justified > a:hover {
+        color: #005A5A;
+    }
+
+    .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: rgba(0, 111, 111, 0.16);
+    }
+
+    hr {
+        border-top: 2px solid gainsboro;
+    }
+
+    .rowActive {
+        background-color: rgba(185, 74, 58, 0.49) !important;
+    }
+
+    .confirm {
+        background-color: rgba(0, 111, 111, 0.86) !important;
+    }
+
+        .confirm:hover {
+            background-color: #006F6F !important;
+        }
+</style>
+
+
+
+<div class="container">
+
+    <h3 style="border-bottom:solid 1px #016363; padding-bottom:5px;">@Session["session_pname"] Project Files <i class="fa fa-file" style="color:#016363"></i></h3>
+    <ul class="nav nav-tabs nav-justified" style="margin-bottom: 70px">
+        <li class="active" onclick="activeTrash(this)"><a id="moduleTrash" data-toggle="tab" href="#Module" style="color: black">Module Files  <span style="cursor: not-allowed; color: #999; position: relative; left: 15px; display: inline-block;" class="glyphicon glyphicon-trash"></span></a></li>
+        <li onclick="activeTrash(this)"><a id="momTrash" data-toggle="tab" href="#Mom" style="color: black">Mom Files <span style="cursor: not-allowed; color: #999; position: relative; left: 15px; display: none;" class="glyphicon glyphicon-trash"></span></a></li>
+        <li onclick="activeTrash(this)"><a id="otherTrash" data-toggle="tab" href="#Project" style="color: black">Other Documents <span style="cursor: not-allowed; color: #999; position: relative; left: 15px; display: none;" class="glyphicon glyphicon-trash"></span></a></li>
+    </ul>
+
+    <div class="tab-content">
+
+        <div id="Project" class="tab-pane fade">
+            @{
+                var i = 1; var j = 1;
+                if (Model.pProject.Count() > 0)
+                {
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color: #006F6F; color: floralwhite;">
+                        <h3 class="panel-title">Rest Project Files</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tbody>
+
+
+
+                                @foreach (var item in Model.pProject)
+                                {
+                                    <tr style="text-align: justify">
+                                        <td class="col-sm-4">@i</td>
+                                        <td class="col-sm-4">@item.pFileName</td>
+                                        <td style="text-align: center" class="col-sm-4">@item.pFilePath</td>
+                                    </tr>
+                                    i = i + 1;
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                }
+                else
+                {
+                @Html.Partial("NoFiles");
+                }
+            }
+
+        </div>
+
+        <div id="Mom" class="tab-pane fade">
+            <div id="Mom_Panel" class="panel-group">
+                @{
+                    if (Model.pMoms.Count() > 0)
+                    {
+                        foreach (var momItem in Model.pMoms)
+                        { 
+                    <div class="panel panel-default">
+                        <div style="background-color: #006F6F; color: floralwhite;" class="panel-heading">
+                            <div data-toggle="collapse" href="#Mom_@j" style="cursor: pointer; display: block;">
+                                <h4 style="background-color: #006F6F" class="panel-title">Mom @momItem.momId</h4>
+                            </div>
+                        </div>
+                        <div id="Mom_@j" data-MomID="Mom_@momItem.momId" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        @{i = 1;}
+                                        @foreach (var item in momItem.momsData)
+                                        { 
+                                            <tr style="text-align: justify">
+                                                <td class="col-sm-2">
+                                                    <input type="checkbox" onclick="" />
+                                                    @i</td>
+                                                <td class="col-sm-6">@item.momFileName</td>
+                                                <td style="text-align: center" class="col-sm-2"><a href="/Home/DownLoadFiles/?filename=@item.momFileName&filepath=@item.momPathName"><span class="glyphicon glyphicon-cloud-download" style="cursor: pointer"></span></a></td>
+                                                <td style="text-align: center" class="col-sm-2"><span style="cursor:pointer" class="glyphicon glyphicon-trash" data-mid="@momItem.momId" data-filepath="@item.momPathName" onclick=""></span></td>
+                                            </tr>
+                                            i = i + 1;
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                                        j = j + 1;
+                        }
+                    }
+                    else
+                    {
+                    @Html.Partial("NoFiles");
+                    }
+                }
+            </div>
+        </div>
+
+        <div id="Module" class="tab-pane fade in active">
+            <div id="Module_Panel" class="panel-group">
+                @{j = 1;}
+                @{
+                    if (Model.pModules.Count() > 0)
+                    {
+                        foreach (var moduleItem in Model.pModules)
+                        { 
+                    <div data-moduleID="@moduleItem.mId" data-moduleName="@moduleItem.mName" class="panel panel-default">
+                        <div style="background-color: #006F6F; color: floralwhite" class="panel-heading">
+                            <div data-toggle="collapse" href="#Module_@j" style="cursor: pointer; display: block;">
+                                <h4 class="panel-title">@moduleItem.mName</h4>
+                            </div>
+                        </div>
+                        <div id="Module_@j" data-ModuleID="Module_@moduleItem.mId" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table table-striped">
+                                    <tbody id="sortable">
+                                        @{i = 1;}
+                                        @foreach (var item in moduleItem.mData)
+                                        { 
+                                            <tr data-trFile="@item.mFileName" style="text-align: justify">
+
+                                                <td class="col-sm-2">
+                                                    <input type="checkbox" onclick="checkNullList(this)" />
+                                                    @i</td>
+                                                <td class="col-sm-6">@item.mFileName</td>
+                                                <td style="text-align: center" class="col-sm-2"><a href="/Home/DownLoadFiles/?filename=@item.mFileName&filepath=@item.mPathName"><span class="glyphicon glyphicon-cloud-download" style="cursor: pointer"></span></a></td>
+                                                <td style="text-align: center" class="col-sm-2"><span style="cursor:pointer" class="glyphicon glyphicon-trash" data-mid="@moduleItem.mId" data-filepath="@item.mPathName" onclick="deleteModuleFile(this)"></span></td>
+                                            </tr>
+                                            i = i + 1;
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                                        j = j + 1;
+                        }
+                    }
+                    else
+                    {
+                    @Html.Partial("NoFiles");
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+    @Scripts.Render("~/Scripts/jquery.nicescroll.js")
+    @Scripts.Render("~/Scripts/jquery.nicescroll.min.js")
+
+    <script type="text/javascript">
+        var moduleListCounter = new Array();
+
+        var moduleSelectedFiles = new Array();
+        
+        $(document).ready(function () {
+            $("#Module_1").addClass("in");
+            $("#Mom_1").addClass("in");
+
+            var uname = "@(((Project_Management.CommonFunctions.Userdetails)Session["UserDetails"]).Username)"
+            $("#opt_user").css("display", "block");
+            $("#opt_user").children('a').text("Welcome- " + uname);
+
+            $("#logout_btn").css("display", "block");
+            $("#back_btn").css("display", "block");
+            $("#back_btn").html("<a style='font-size:15px' class='nav navbar-brand navbar-nav navbar-right' href='/Home/AddView/@Session["session_pid"]'><span class='glyphicon glyphicon-chevron-left'></span>Back</a>");
+            $("html").niceScroll({ touchbehavior: false, cursorcolor: "#006F6F", cursoropacitymax: 0.6, cursorwidth: 8, scrollspeed: 100, horizrailenabled: false, bouncescroll: true });
+            
+            //$("#sortable").sortable();
+            //$("#sortable").disableSelection();
+
+            //....................................................//
+            var ModuleArray = new Array();
+            var data1 = {
+                name: '',
+                files: ''
+            };
+            var data2 = {
+                name: '',
+                files: ''
+            };
+            data1.name = "Module 1";
+            data2.name = "Module 2";
+            data1.files = new Array();
+            data2.files = new Array();
+
+            var filedata1 = {
+                title: '',
+                size: ''
+            };
+            var filedata2 = {
+                title: '',
+                size: ''
+            };
+            var filedata3 = {
+                title: '',
+                size: ''
+            };
+            filedata1.title = "file1";
+            filedata1.size = "65KB";
+            filedata2.title = "file2";
+            filedata2.size = "102KB";
+            filedata3.title = "file3";
+            filedata3.size = "93KB";
+
+            data1.files.push(filedata1);
+            data1.files.push(filedata2);
+            data2.files.push(filedata3);
+
+            ModuleArray.push(data1);
+            ModuleArray.push(data2);
+
+
+
+            for (var i = 0; i < $("#Module_Panel").find('tr').length; i++)
+                moduleListCounter.push("0");
+
+            $("#Module_Panel").find('tr').each(function () {
+                var data = {
+                    selected: '',
+                    mid: '',
+                    filepath: ''
+                };
+                data.selected = "false";
+                data.mid = $(this).children('td').next().next().next().find('span').attr('data-mid');
+                data.filepath = $(this).children('td').next().next().next().find('span').attr('data-filepath');
+                moduleSelectedFiles.push(data);
+                //alert($(this).children('td').next().next().next().find('span').attr('data-mid'));
+            });
+            var ModuleJsonData = JSON.stringify(moduleSelectedFiles);
+            debugger
+            //alert($("tr", $("tr").closest("#Module_Panel")).eq(0).children('td').next().next().next().find('span').attr('data-filepath'));
+            //....................................................//
+
+        });
+
+        function checkNullList(e) {
+            if ($(e).parent().parent().hasClass("rowActive")) {
+                $(e).parent().parent().removeClass("rowActive");
+                $(e).parent().next().next().next().find("span").attr("onclick", "deleteModuleFile(this)");
+                $(e).parent().next().next().next().find("span").css("cursor", "pointer");
+                $(e).parent().next().next().next().find("span").css("color", "black");
+                moduleSelectedFiles[$("tr", $(e).parent().parent().closest("#Module_Panel")).index($(e).parent().parent())].selected = "false";
+            }
+            else {
+                $(e).parent().parent().addClass("rowActive");
+                $(e).parent().next().next().next().find("span").attr("onclick", "");
+                $(e).parent().next().next().next().find("span").css("cursor", "not-allowed");
+                $(e).parent().next().next().next().find("span").css("color", "rgba(0, 0, 0, 0.35)");
+                moduleSelectedFiles[$("tr", $(e).parent().parent().closest("#Module_Panel")).index($(e).parent().parent())].selected = "true";
+            }
+            debugger
+            (moduleListCounter[$("tr", $(e).parent().parent().closest("#Module_Panel")).index($(e).parent().parent())] == "0") ? (moduleListCounter[$("tr", $(e).parent().parent().closest("#Module_Panel")).index($(e).parent().parent())] = "1") : (moduleListCounter[$("tr", $(e).parent().parent().closest("#Module_Panel")).index($(e).parent().parent())] = "0");
+            //alert(moduleListCounter[$("tr", $(e).parent().parent().closest("#Module_Panel")).index($(e).parent().parent())]);
+            //alert($("tr", $(e).parent().parent().closest("#Module_Panel")).index($(e).parent().parent()));
+            checkModuleListCounter();
+        }
+
+        function checkModuleListCounter() {
+            for (var i = 0; i < moduleListCounter.length; i++) {
+                if (moduleListCounter[i] == "1") {
+                    $("#moduleTrash").html("Module Files  <span style='cursor:pointer; color:white; position:relative; left:15px;' class='glyphicon glyphicon-trash' onclick='deleteMultipleModuleFiles()'></span>");
+                    return;
+                }
+            }
+            $("#moduleTrash").html("Module Files  <span style='cursor:not-allowed; color:#999; position:relative; left:15px;' class='glyphicon glyphicon-trash'></span>");
+        }
+
+        function faltu1(e) {
+
+            alert($("tr", $(e).parent().parent().closest("#Mom_Panel")).index($(e).parent().parent()));
+        }
+        function faltuAlert() {
+            alert("qwerty");
+        }
+
+        function activeTrash(e) {
+            $("#moduleTrash").find("span").css("display", "none");
+            $("#momTrash").find("span").css("display", "none");
+            $("#otherTrash").find("span").css("display", "none");
+            $(e).find("span").css("display", "inline-block");
+        }
+
+        function deleteModuleFile(e) {
+            var filePath = $(e).attr("data-filepath");
+            var moduleID = $(e).attr("data-mid");
+            $.ajax({
+                type: "POST",
+                url: "/Home/DeleteFile",
+                async: false,
+                data: "{moduleID:'" + moduleID + "',filepath:'" + filePath + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            })
+            .success(function (data) {
+                $(e).parent().parent().fadeOut(150, function () {
+                    moduleListCounter.splice($("tr", $(e).parent().parent().closest("#Module_Panel")).index($(e).parent().parent()), 1);
+                    moduleSelectedFiles.splice($("tr", $(e).parent().parent().closest("#Module_Panel")).index($(e).parent().parent()), 1);
+                    $(e).parent().parent().remove();
+                    debugger
+                });
+            });
+        }
+
+        function deleteMultipleModuleFiles() {
+            swal({
+                title: "Are you sure ?",
+                text: "You will not be able to recover these files",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "rgba(0, 111, 111, 0.86)",
+                confirmButtonText: "Yes, delete it",
+                cancelButtonText: "No, cancel",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Home/DeleteMultipleFiles",
+                        async: false,
+                        data: "{moduleFilesJSON:'" + JSON.stringify(moduleSelectedFiles) + "'}",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json"
+                    })
+                    .success(function (data) {
+                        
+                        for (var i = 0; i < moduleListCounter.length; i++) {
+                            if (moduleListCounter[i] == "1") {
+                                $("tr", $("tr").closest("#Module_Panel")).eq(i).fadeOut(150, function () {
+                                    $(this).remove();
+                                });
+                            }
+                        }
+                        for (var i = 0; i < moduleListCounter.length; i++) {
+                            if (moduleListCounter[i] == "1") {
+
+                                moduleSelectedFiles.splice(i, 1);
+                                moduleListCounter.splice(i, 1);
+                                i--;
+                            }
+                        }
+                        swal("Deleted !", "Files has been deleted", "success");
+                        var jsonObj = JSON.stringify(moduleSelectedFiles);
+                        checkModuleListCounter();
+                        debugger
+                    }); 
+                }
+                else {
+                    swal("Cancelled !", "Your Files are safe", "error");
+                }
+            });
+        }
+
+
+    </script>
+}

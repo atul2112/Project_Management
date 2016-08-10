@@ -1,0 +1,486 @@
+﻿@model Project_Management.tbl_mom
+
+@{
+    ViewBag.Title = "Add Minutes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- ckEditor Api path -->
+@Scripts.Render("~/ckeditor/ckeditor.js")
+<style>
+    .slimScrollDiv {
+        top: 20px;
+    }
+
+    #btn_submit {
+        transition:background-color 0.5s;
+    }
+
+    #btn_submit:hover {
+        background-color:#019E9E !important;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input[type=datetime]').datepicker({
+            dateFormat: "dd/M/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0"
+        });
+
+        var uname = "@(((Project_Management.CommonFunctions.Userdetails)Session["UserDetails"]).Username)"
+        $("#opt_user").css("display", "block");
+        $("#opt_user").children('a').text("Welcome- " + uname);
+        $("#logout_btn").css("display", "block");
+        $("#back_btn").css("display", "block");
+        $("#back_btn").html("<a style='font-size:15px' class='nav navbar-brand navbar-nav navbar-right' href='/Home/AddView/@Session["session_pid"]'><span class='glyphicon glyphicon-chevron-left'></span>Back</a>");
+
+    });
+</script>
+
+
+@using (Html.BeginForm("AddMom", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="container-fluid">
+        <div  class="row content">
+            <div class="col-sm-6" style="padding-bottom: 10px;">
+            <fieldset class="fieldset col-sm-12">
+                <legend class="legend">Minutes of Meeting</legend>
+                <input id="hiddenarea" name="hiddenarea" type="hidden" />
+                <div class="container" style="height:26px;"><strong style="float:left">Attach File(s) : </strong><div style="width:0px"><span><span class="glyphicon glyphicon-file" style="zoom: 145%"></span><input id="fileupload" style="position: relative;top: -25px;background: transparent;outline: none;cursor: pointer;width: 0;color: #EEEEEE;padding-left: 15px;left: 102px;float:left;" type="file" name="files[]" multiple></span></div></div><br />
+                <div class="form-group">
+                    <textarea id="editArea" name="editArea"></textarea>
+                    <script type="text/javascript">
+                        CKEDITOR.replace('editArea');
+                    </script>
+                </div>
+                <div style="margin-top:-10px">
+                    <div id="btn_submit" class="btn" style="float: right;background: #006F6F;color: floralwhite;border: 1px solid #005A5A;"><strong>submit</strong><span class="glyphicon glyphicon-ok" style="left:3px"></span></div>
+                    <div class="btn" style="margin-right:2px; float: right;background: #006F6F;color: floralwhite;border: 1px solid #005A5A;" onclick="showIframe()"><strong>preview</strong><span class="glyphicon glyphicon-eye-open" style="left:3px"></span></div>
+                </div>
+                
+                @*<div class="btn btn-info" onclick="showIframe()">Show Prev</div>
+                <div id="btn_submit" class="btn btn-info">Submit</div>*@
+                @*<span class="btn btn-success fileinput-button">
+			        <i class="glyphicon glyphicon-plus"></i>
+			        <span>Add files</span>
+			        <input id="fileupload" type="file" name="files[]" multiple>
+		        </span>*@
+            </fieldset>
+            </div>
+       
+            <div class="col-sm-6" style="padding-bottom: 10px;">
+                <fieldset class="fieldset col-sm-12">
+                    <div id="filterTag" style="position:relative; top:-45px; float:right; font-family:inherit; font-weight:bold; color:#006F6F"></div>
+                    <legend id="minuteLegend" class="legend">Stored Minutes</legend>
+                    <div class="container">
+                        <div><strong style="float:left">Start Date : </strong><div style="float:left"><span><span class="glyphicon glyphicon-calendar" style="zoom: 145%"></span><input id="startDate" onchange="changeIcon(this)" type="datetime" style="position: relative; top: 0px; background: transparent; border: none; outline: none; cursor: pointer; width: 0; color: #EEEEEE; padding-left: 15px; left: -17px;"/></span></div></div>
+                        <div><strong style="float:left">End Date : </strong><div style="float:left"><span><span class="glyphicon glyphicon-calendar" style="zoom: 145%"></span><input id="endDate" onchange="changeIcon(this)" type="datetime" style="position: relative; top: 0px; background: transparent; border: none; outline: none; cursor: pointer; width: 0; color: #EEEEEE; padding-left: 15px; left: -17px;"/></span></div></div>
+                        <div><strong style="float:left">Filter :</strong><span class="glyphicon glyphicon-filter" onclick="filterMom()" style="zoom:145%; cursor:pointer"></span></div>
+                    </div>
+                    <div id="prevMoms" style="height: 471px; display:none; padding: 2px; margin-top: 5px; max-height: 471px; overflow: auto; padding-top: 5px; color:#5B5F5B"></div>
+                    
+                </fieldset>
+            </div>
+        </div>
+    </div>
+}
+
+<!-- Modal frame to showing Docs -->
+  <div class="modal fade" id="docsModal" role="dialog">
+    <div class="modal-dialog">
+            
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><i class="fa fa-file"></i>&nbsp;&nbsp;Attached Documents</h4>
+        </div>
+        <div id="docsTable" class="modal-body">
+          <div class="table-responsive">
+              <table class="table table-striped table-hover table-bordered">
+                <thead class="thead-default">
+                  <tr>
+                      <th>Title</th>
+                      <th>Project ID</th>
+                      <th>Mom ID</th>
+                      <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @*Docs List*@
+                </tbody>
+                <tfoot>
+                                   
+                </tfoot>
+              </table>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
+@section Scripts{
+    
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui") 
+    @Styles.Render("~/Content/cssjqryUi")
+    @Scripts.Render("~/Scripts/jquery.slimscroll.js")
+    @Scripts.Render("~/Scripts/jquery.nanoscroller.min.js")
+    @Styles.Render("~/Content/nanoscroller.css")
+
+    <script type="text/javascript">
+        function showIframe() {
+            $("#prevMoms").css({ display: "none" });
+            $("#prevMoms").html('');
+            var framearea = document.getElementsByTagName("iframe");
+            var editarea = (framearea.contentWindow || framearea.contentDocument);
+            document.getElementById("hiddenarea").value = $(framearea).contents().find('body').html();
+            //$("#prevMoms").html('');
+            var div = document.createElement('div');
+            var span = document.createElement('span');
+            var iconspan = document.createElement('span');
+            var hr = document.createElement('hr');
+            hr.style.marginTop = "2px";
+            hr.style.marginBottom = "10px";
+            hr.style.borderTopWidth = "2px";
+            $(iconspan).addClass("glyphicon glyphicon-time");
+            iconspan.style.marginRight = "5px";
+            span.style.top = "0";
+            span.style.right = "0";
+            //span.style.borderTop = "1px solid";
+            var utcSeconds = 1458086400;
+            var d = new Date(0);
+            d.setSeconds(utcSeconds);
+            span.innerHTML = d.toUTCString().replace("GMT","");
+            span.style.fontWeight = "bold";
+            
+            div.style.borderLeft = "7px solid";
+            div.style.borderLeftStyle = "groove";
+            div.style.boxShadow = "5px 5px 5px gray";
+            div.style.backgroundColor = "#DADADA";            
+            div.style.marginBottom = "10px";
+            div.style.paddingTop = "2%";
+            div.style.lineHeight = "15px";
+            div.style.paddingLeft = "8%";
+            div.style.paddingBottom = "1%";
+            div.innerHTML = "<div id='9'>" + $(framearea).contents().find('body').html() + "</div><span class='glyphicon glyphicon-tags' data-toggle='modal' data-target='#docsModal' onclick='showDocs(this)' style='float: right; margin-top: -15px; margin-right: 40px; cursor:pointer;'></span><span class='glyphicon glyphicon-pencil' style='float: right; margin-top: -15px; margin-right: 10px; cursor:pointer;' onclick='getContent(this)'></span>";
+            $(div).prepend(hr);
+            $(div).prepend(span);
+            $(div).prepend(iconspan);
+            debugger
+            document.getElementById('prevMoms').appendChild(div);
+            $("#prevMoms").fadeIn(500, "swing");
+        }
+
+        $('#btn_submit').click(function () {
+            $("#prevMoms").css({ display: "none" });
+            var framearea = document.getElementsByTagName("iframe");
+            var editarea = (framearea.contentWindow || framearea.contentDocument);
+            document.getElementById("hiddenarea").value = $(framearea).contents().find('body').html();
+            var mycomment = $("#hiddenarea").val();
+            debugger
+            $.ajax({
+                type: "POST",
+                url: "../Home/AddMom",
+                async: false,
+                data: "{comment:'" + mycomment + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            })
+
+            .success(function (data) {
+
+                $("#prevMoms").html('');
+
+                $.each(data, function (index, comment) {
+                    var div = document.createElement('div');
+                    var span = document.createElement('span');
+                    var iconspan = document.createElement('span');
+                    var hr = document.createElement('hr');
+                    hr.style.marginTop = "2px";
+                    hr.style.marginBottom = "10px";
+                    hr.style.borderTopWidth = "2px";
+                    $(iconspan).addClass("glyphicon glyphicon-time");
+                    iconspan.style.marginRight = "5px";
+                    span.style.top = "0";
+                    span.style.right = "0";
+                    //span.style.borderTop = "1px solid";
+                    var utcMiliSeconds = comment.TimeStamp;
+                    var d = new Date(0);
+                    d.setMilliseconds(utcMiliSeconds);
+                    span.innerHTML = d.toUTCString().replace("GMT", "");
+                    span.style.fontWeight = "bold";
+
+                    div.style.borderLeft = "7px solid";
+                    div.style.borderLeftStyle = "groove";
+                    div.style.boxShadow = "5px 5px 5px gray";
+                    div.style.backgroundColor = "#DADADA";
+                    div.style.marginBottom = "10px";
+                    div.style.paddingTop = "2%";
+                    div.style.lineHeight = "15px";
+                    div.style.paddingLeft = "8%";
+                    div.style.paddingBottom = "1%";
+                    if (comment.MomFile != null) {
+                        div.innerHTML = "<div id='" + comment.MomID + "'>" + comment.MomContent + "</div><span class='glyphicon glyphicon-tags' data-toggle='modal' data-target='#docsModal' onclick='showDocs(this)' style='float: right; margin-top: -15px; margin-right: 40px; cursor:pointer;'></span><span class='glyphicon glyphicon-pencil' style='float: right; margin-top: -15px; margin-right: 10px; cursor:pointer;' onclick='getContent(this)'></span>";
+                    }
+                    else {
+                        div.innerHTML = "<div id='" + comment.MomID + "'>" + comment.MomContent + "</div><span class='glyphicon glyphicon-pencil' style='float: right; margin-top: -15px; margin-right: 10px; cursor:pointer;' onclick='getContent(this)'></span>";
+                    }
+                    $(div).prepend(hr);
+                    $(div).prepend(span);
+                    $(div).prepend(iconspan);
+
+                    debugger
+                    document.getElementById('prevMoms').appendChild(div);
+                });
+                $("#prevMoms").fadeIn(500, "swing");
+            });
+        })
+
+        function filterMom()
+        {
+            $("#prevMoms").css({ display: "none" });
+            var startDate = $("#startDate").val();
+            var endDate = $("#endDate").val();
+            $("#filterTag").html("<span style='color:black !important; zoom:105%;' class='glyphicon glyphicon-exclamation-sign'></span>" + "  " + startDate + " To " + endDate);
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: "../Home/DateFilter",
+                async: false,
+                data: "{startDate:'" + startDate + "', endDate: '" + endDate + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            })
+            .success(function (data) {
+                $("#prevMoms").html('');
+
+                $.each(data, function (index, comment) {
+                    var div = document.createElement('div');
+                    var span = document.createElement('span');
+                    var iconspan = document.createElement('span');
+                    var hr = document.createElement('hr');
+                    hr.style.marginTop = "2px";
+                    hr.style.marginBottom = "10px";
+                    hr.style.borderTopWidth = "2px";
+                    $(iconspan).addClass("glyphicon glyphicon-time");
+                    iconspan.style.marginRight = "5px";
+                    span.style.top = "0";
+                    span.style.right = "0";
+                    //span.style.borderTop = "1px solid";
+                    var utcMiliSeconds = comment.TimeStamp;
+                    var d = new Date(0);
+                    d.setMilliseconds(utcMiliSeconds);
+                    span.innerHTML = d.toUTCString().replace("GMT", "");
+                    span.style.fontWeight = "bold";
+
+                    div.style.borderLeft = "7px solid";
+                    div.style.borderLeftStyle = "groove";
+                    div.style.boxShadow = "5px 5px 5px gray";
+                    div.style.backgroundColor = "#DADADA";
+                    div.style.marginBottom = "10px";
+                    div.style.paddingTop = "2%";
+                    div.style.lineHeight = "15px";
+                    div.style.paddingLeft = "8%";
+                    div.style.paddingBottom = "1%";
+                    if (comment.MomFile != "") {
+                        div.innerHTML = "<div id='" + comment.MomID + "'>" + comment.MomContent + "</div><span class='glyphicon glyphicon-tags' data-toggle='modal' data-target='#docsModal' onclick='showDocs(this)' style='float: right; margin-top: -15px; margin-right: 40px; cursor:pointer;'></span><span class='glyphicon glyphicon-pencil' style='float: right; margin-top: -15px; margin-right: 10px; cursor:pointer;' onclick='getContent(this)'></span>";
+                    }
+                    else {
+                        div.innerHTML = "<div id='" + comment.MomID + "'>" + comment.MomContent + "</div><span class='glyphicon glyphicon-pencil' style='float: right; margin-top: -15px; margin-right: 10px; cursor:pointer;' onclick='getContent(this)'></span>";
+                    }
+                    $(div).prepend(hr);
+                    $(div).prepend(span);
+                    $(div).prepend(iconspan);
+
+                    debugger
+                    document.getElementById('prevMoms').appendChild(div);
+                });
+                $("#prevMoms").fadeIn(500, "swing");
+                $(".glyphicon-filter").css('color', '#006F6F');
+            });
+        }
+
+        $(document).ready(function () {
+            $(window).resize(function () {
+                var elem = $(this);
+                if (elem.width() <= 750) {
+                    $('#cke_1_contents').css({ height: "260px" });
+                    //$('#prevMoms').css({ height: "280px" });
+                    //$('#prevMoms').css({ 'max-height': "280px" });
+                    //$('.slimScrollDiv').css({ top: "20px" });
+                    $(function () {
+                        $('#prevMoms').slimScroll({
+                            position: 'right',
+                            height: '280px',
+                            color: 'gray',
+                            opacity: '1',
+                            wheelStep: 1,
+                            railVisible: true
+                        });
+                    });
+                }
+                else {
+                    $('#cke_1_contents').css({ height: "350px" });
+                    //$('#prevMoms').css({ height: "422px" });
+                    //$('#prevMoms').css({ 'max-height': "422px" });
+                    //$('.slimScrollDiv').css({ top: "20px" });
+                    $(function () {
+                        $('#prevMoms').slimScroll({
+                            position: 'right',
+                            height: '422px',
+                            color: 'gray',
+                            opacity: '1',
+                            wheelStep: 1,
+                            railVisible: true
+                        });
+                    });
+                }
+            });
+            $(window).resize();
+
+            //......Get All Moms On Load.....//
+            $("#prevMoms").css({ display: "none" });
+            $.ajax({
+                type: "POST",
+                url: "../Home/GetAllMom",
+                async: false,
+                data: "{opt:'All'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            })
+
+            .success(function (data) {
+
+                $("#prevMoms").html('');
+
+                $.each(data, function (index, comment) {
+                    var div = document.createElement('div');
+                    var span = document.createElement('span');
+                    var iconspan = document.createElement('span');
+                    var hr = document.createElement('hr');
+                    hr.style.marginTop = "2px";
+                    hr.style.marginBottom = "10px";
+                    hr.style.borderTopWidth = "2px";
+                    $(iconspan).addClass("glyphicon glyphicon-time");
+                    iconspan.style.marginRight = "5px";
+                    span.style.top = "0";
+                    span.style.right = "0";
+                    //span.style.borderTop = "1px solid";
+                    var utcMiliSeconds = comment.TimeStamp;
+                    var d = new Date(0);
+                    d.setMilliseconds(utcMiliSeconds);
+                    span.innerHTML = d.toUTCString().replace("GMT", "");
+                    span.style.fontWeight = "bold";
+
+                    div.style.borderLeft = "7px solid";
+                    div.style.borderLeftStyle = "groove";
+                    div.style.boxShadow = "5px 5px 5px gray";
+                    div.style.backgroundColor = "#DADADA";
+                    div.style.marginBottom = "10px";
+                    div.style.paddingTop = "2%";
+                    div.style.lineHeight = "15px";
+                    div.style.paddingLeft = "8%";
+                    div.style.paddingBottom = "1%";
+                    if (comment.MomFile != null) {
+                        div.innerHTML = "<div id='" + comment.MomID + "'>" + comment.MomContent + "</div><span class='glyphicon glyphicon-tags' data-toggle='modal' data-target='#docsModal' onclick='showDocs(this)' style='float: right; margin-top: -15px; margin-right: 40px; cursor:pointer;'></span><span class='glyphicon glyphicon-pencil' style='float: right; margin-top: -15px; margin-right: 10px; cursor:pointer;' onclick='getContent(this)'></span>";
+                    }
+                    else {
+                        div.innerHTML = "<div id='" + comment.MomID + "'>" + comment.MomContent + "</div><span class='glyphicon glyphicon-pencil' style='float: right; margin-top: -15px; margin-right: 10px; cursor:pointer;' onclick='getContent(this)'></span>";
+                    }
+                    $(div).prepend(hr);
+                    $(div).prepend(span);
+                    $(div).prepend(iconspan);
+
+                    debugger
+                    document.getElementById('prevMoms').appendChild(div);
+                });
+                $("#prevMoms").fadeIn(500, "swing");
+            });
+
+        });
+
+        function getContent(e)
+        {
+            var framearea = document.getElementsByTagName("iframe");
+            $('.activeMom').removeClass("activeMom");
+            $(e).parent('div').addClass("activeMom");
+            $(framearea).contents().find('body').html($(e).parent('div').children('div').html());
+            //alert($(e).parent('div').children('div').attr('id'));
+        }
+
+        $('#fileupload').on('change', function () {
+            debugger; 
+            if (window.FormData !== undefined) {  
+                debugger
+                var fileUpload = $("#fileupload").get(0);
+                var files = fileUpload.files; 
+                var fileData = new FormData();
+                for (var i = 0; i < files.length; i++) {  
+                    fileData.append(files[i].name, files[i]);  
+                }   
+                $.ajax({  
+                    url: '/Home/UploadFiles',  
+                    type: "POST",  
+                    contentType: false, // Not to set any content header  
+                    processData: false, // Not to process data  
+                    data: fileData,  
+                    success: function (data) {
+                        $(".glyphicon-file").css('color', '#006F6F');
+                    }  
+                });  
+            } else {  
+                alert("FormData is not supported.");  
+            }  
+        });
+
+        function showDocs(e)
+        {
+            var tbl = document.getElementById("docsModal");
+            var tblBody = $(tbl).contents().find('tbody');
+            $(tblBody).html('');
+            var momid = $(e).parent('div').children('div').attr('id');
+            $.ajax({
+                type: "POST",
+                url: "../Home/GetFiles",
+                async: false,
+                data: "{momID:'" + momid + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            })
+            .success(function (data) {                
+                $.each(data, function (index, comment) {
+                    var content = "<tr><td>" + comment.MomContent + "</td><td>" + comment.ProjectInfo + "</td><td>" + comment.MomID + "</td><td><a href='DownLoadFiles/?filename="+comment.MomContent+"&filepath="+comment.MomFile+"'><span class='glyphicon glyphicon-cloud-download' style='cursor:pointer'></span></a></td></tr>";
+                    $(tblBody).append(content);
+                });
+            });
+        }
+
+        function changeIcon(e)
+        {
+            $(e).prev("span").css('color', '#006F6F');
+            //$(e).css('color', 'darkcyan');
+        }
+
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+

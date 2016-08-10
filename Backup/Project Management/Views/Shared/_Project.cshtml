@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Project Managent</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+   @* @Scripts.Render("~/Scripts/jquery-1.7.1.min.js")
+
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @Styles.Render("~/Content/ProjectManagement.css")
+
+    @Scripts.Render("~/Scripts/HighChart/highcharts.js")*@
+
+    @Scripts.Render("~/Bootstrap/js/bootstrap.min.js")
+     @Scripts.Render("~/Scripts/jquery-1.7.1.min.js")
+    @Styles.Render("~/Bootstrap/css/bootstrap.min.css")
+
+</head>
+
+<body style="margin: 0 auto; font-family: Calibri; font-size: 15px;">
+    <form id="ProjectMaster">
+        @*<header>
+            <div class="content-wrapper" style="background-color: brown; height: 40px; width: 100%;">
+                <div class="mainmenucontent">
+                    <a style="color: white; position: relative; top: 3px; font-size: 20px; margin-left: 10px;">Project Management</a>                   
+                    <ul>
+                        <li class="parentmenu">
+                            <a id="projectsummary">Project Summary Report</a>
+                        </li>
+                        <li class="parentmenu">
+                            <a id="addproject">Add Project</a>
+                        </li>
+                        <li class="parentmenu">
+                            <a>Employee Summary Report</a>
+                        </li>
+                        <li class="parentmenu">
+                            <a id="addteammember">Add Employee</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>*@
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">WebSiteName</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Page 1</a></li>
+                    <li><a href="#">Page 2</a></li>
+                    <li><a href="#">Page 3</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="body" style="padding: 10px;">
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+    </form>
+</body>
+</html>
+

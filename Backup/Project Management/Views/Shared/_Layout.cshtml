@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Project Managent</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/jquery.fileupload.css" rel="stylesheet" />
+
+    @Scripts.Render("~/Scripts/jquery-2.2.0.min.js")
+    @Scripts.Render("~/Bootstrap/js/bootstrap.min.js")
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Bootstrap/css/bootstrap.min.css")
+    @Styles.Render("~/font-awesome-4.5.0/css/font-awesome.min.css")
+    @Styles.Render("~/Content/Project.css")
+    @Scripts.Render("~/Content/themes/project.js")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/jquery.nicescroll.js")
+    @Scripts.Render("~/Scripts/jquery.nicescroll.min.js")
+
+    @*<script src="~/Scripts/jquery-2.2.0.min.js"></script>*@
+    <script src="~/Angular/angular-1.2.9.js"></script>
+    <script src="~/Angular/ui-bootstrap-tpls-0.10.0.js"></script>
+    <script src="~/Angular/ui-bootstrap-tpls-0.10.0.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
+
+    <script src="~/Scripts/qTip2.min.js"></script>
+    <script src="~/Scripts/tipped.js"></script>
+    <link href="~/Content/qTip2.min.css" rel="stylesheet" />
+    <link href="~/Content/tipped.css" rel="stylesheet" />
+    @*<script src="http://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" rel="stylesheet" />*@
+
+
+    <style>
+        .navbar-inverse .navbar-nav > li > ul > li > a {
+            color: #000;
+        }
+
+            .navbar-inverse .navbar-nav > li > ul > li > a:hover {
+                background-color: #222;
+                color: #fff;
+            }
+
+        .activeMom {
+            border-left-color: dimgray !important;
+        }
+
+        .jumbotron {
+            background-image: url("http://www.transparenttextures.com/patterns/45-degree-fabric-dark.png");
+        }
+
+        #load {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 999999;
+            opacity: 0.6;
+            display:none;
+            top:0px;
+            left:0px;
+            background: url("/Images/lodingIcn.gif") no-repeat center center rgba(0,0,0,0.25);
+        }
+
+        h2,h3 {
+            font-family:'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;
+            font-variant:small-caps;
+        }
+    </style>
+
+    <script type="text/javascript">
+        document.onreadystatechange = function () {
+            var faltuArray = new Array();
+            $('#load').bind('ajaxStart', function () {
+                $(this).show();
+            }).bind('ajaxStop', function () {
+                $(this).hide();
+            });
+        }
+        window.history.forward();
+        function noBack() { window.history.forward(); }       
+    </script>
+
+</head>
+
+
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload="" class="jumbotron" style="min-height: 667px;">
+    <!-- form id="ProjectMaster"-->
+
+    
+    <!-- loading icon div -->
+    <div id="load"></div>
+
+    <asp:hiddenfield id="hidden_dialog" runat="server" clientidmode="Static" />
+    <nav class="navbar navbar-inverse navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="#" style="font-variant:small-caps">Project Management</a>
+            </div>
+
+            @*<div class="nav navbar-nav topnav">*@
+
+            @*</div>*@
+
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul id="opt_dd" class="nav navbar-nav navbar-right" style="display: none">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" style="cursor: pointer" data-toggle="dropdown">Options
+                            <span class="glyphicon glyphicon-th-list"></span>
+                        </a>
+                        <ul id="dd_menu" class="dropdown-menu">
+                            <li>@Html.ActionLink("Add Project", "AddProject", "Home")</li>
+                            <li>@Html.ActionLink("Logout", "Login", "Login")</li>
+                        </ul>
+                    </li>
+                </ul>                
+                <div id="logout_btn" style="display: none;"><a style="font-size: 15px" class="nav navbar-brand navbar-nav navbar-right" href="/Login/Login">Logout<span class="glyphicon glyphicon-chevron-right"></span></a></div>
+                <div id="AP_btn" style="display: none; position: relative; right: 12px;"><a style="font-size: 15px" class="nav navbar-brand navbar-nav navbar-right" href="../Home/AddProject">Add Project</a></div>
+                <div id="back_btn" style="display: none; position: relative; right: 12px;"><a style="font-size: 15px" class="nav navbar-brand navbar-nav navbar-right" href="#"><span class="glyphicon glyphicon-chevron-left"></span>Back</a></div>
+                <div id="opt_user" style="display: none; position: relative; right: 43px;"><a style="font-size: 15px; border-right:1px solid #999;" class="nav navbar-brand navbar-nav navbar-right" href="/Home/Home">Welcome-User</a></div>
+            </div>
+
+
+
+
+
+        </div>
+    </nav>
+
+    <div id="opt_dialog" class="opt_dialog">
+        <div class="inner_opt_dialog">
+            @RenderSection("dialog_section", required: false)
+        </div>
+        <span onclick="dialog_up()" style="cursor: pointer; margin-top: 0.4%; right: -91%; zoom: 180%; vertical-align: middle" class="glyphicon glyphicon-remove-sign"></span>
+    </div>
+
+    <div id="main_container" class="container" style="padding-top: 45px;">
+        @RenderBody()
+        
+    </div>
+
+    <!--/form-->
+
+    <i id="bigCube" class="fa fa-cubes" aria-hidden="true" style="float: right; zoom: 2000%; margin-right: -5.5px; opacity: 0.4; display:none"></i>
+
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

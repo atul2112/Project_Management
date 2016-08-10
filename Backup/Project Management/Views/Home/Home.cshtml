@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Project_Management.ProjectDetailsTbl>
+
+
+@{
+    ViewBag.Title = "LandingPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Session["LoggedUserFullname"] != null)
+{
+    
+    <div class="control-label">
+        Welcome  @Session["LoggedUserFullname"].ToString()
+    </div>
+    
+}
+
+
+
+<div class="row">
+    <div class="col-lg-12" style="border-bottom:solid 1px floralwhite; margin-bottom:25px;">
+        <h2 class="col-sm-6">My Projects <i style="color:#016363" class="fa fa-cubes"></i></h2>
+        <h5 class="text-uppercase col-sm-6" style="line-height: 15px;padding-top: 28px;text-align: right;color: #712727;font-weight: 600;"><span class="glyphicon glyphicon-info-sign"></span> showing only user specific projects</h5>
+    </div>
+      @Html.Action("ShowProjects", "Home", new { p = @Model })
+    @*@try
+    {
+         @Html.Action("ShowProjects", "Home")
+    }
+    catch (Exception ex)
+    {
+        Response.Redirect("http://www.stackoverflow.com/search?q=" + ex.Message);
+    }*@
+   
+   
+
+   
+
+</div>

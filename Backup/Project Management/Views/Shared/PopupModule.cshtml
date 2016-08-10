@@ -1,0 +1,630 @@
+﻿<!--Cost Estimation Model-->
+
+<style>
+    .modal-footer {
+        border-top: 1px solid #8A8888;
+    }
+
+    .modal-content {
+        border-radius: 0px;
+    }
+
+    .close {
+        opacity: 1;
+    }
+
+    .rowActive {
+        background: rgba(0, 111, 111, 0.32);
+    }
+
+    .popTag {
+        color:rgba(0, 111, 111, 1);
+    }
+
+        .popTag:hover, .popTag:focus {
+            color:rgba(0, 111, 111, 0.80);
+            text-decoration:none !important;
+        }
+
+        input:focus, textarea:focus, select:focus {
+        outline: 0 !important;
+        border-color: #006F6F !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+    }
+        .vlActive {
+        background: wheat;
+        border: solid 1px #A94545 !important;
+    }
+</style>
+
+<script>
+    function hidePop(e) {
+        if ($(e).attr("data-open") == "1")
+            $(e).attr("data-open", "0");
+        else if ($(e).attr("data-open") == "0")
+            $(e).attr("data-open", "1");
+    }
+
+    //function poToggel()
+    //{
+    //    alert(" ");
+    //    alert($(this).prop("tagName"));
+    //}
+
+    //$("#moduleModal").click(function () {
+        
+    //    alert($(this).attr("class"));
+    //    $("#moduleModal .modal-header").click(function () {
+    //        alert(" ");
+    //    });
+    //});
+
+    setTimeout(function () {
+        $("#popUpAddModule").click(function (event) {
+            if ($(event.target).hasClass("ng-scope") || $(event.target).attr("class") == "ng-scope ng-pristine ng-valid " || $(event.target).attr("class") == "popover-content") { return; }
+            $(".ng-scope[data-open*='1']").trigger("click");
+            $(".ng-scope[data-open*='1']").attr("data-open", "0");
+            //alert($(event.target).attr("class"));
+        });        
+    },1000);
+
+</script>
+
+<div class="modal-dialog" id="popUpAddModule" style="width: 95%">
+
+    <!-- Modal content-->
+    <div class="modal-content modal-fullscreen" style="width: 100%; border:solid 1px #015D5D">
+        @*         <div class="modal-header">
+
+        <h4 class="modal-title"><i class="fa fa-dollar"></i>&nbsp;&nbsp;Define Cost</h4>
+    </div>
+    <div id="" class="modal-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+
+                        <th>Tech</th>
+                        <th>Analyst</th>
+                        <th>Lead/Manager</th>
+                        <th>Domain</th>
+                        <th>QC</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+
+                            <input class="form-control" id="Tech_Cost" value="35" /></td>
+                        </td>
+                                <td>
+                                    <input class="form-control" id="Analyst_Cost" value="35" /></td>
+                        </td>
+                                  <td>
+                                      <input class="form-control" id="Lead_Cost" value="85" /></td>
+                        </td>
+                                <td>
+                                    <input class="form-control" id="Domain_Cost" value="85" /></td>
+                        </td>
+                                <td>
+                                    <input class="form-control" id="QC_Cost" value="35" /></td>
+                        </td>                               
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="SaveCostEstimation()">Save</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>*@
+
+
+
+        <div class="modal-header" style="background: rgba(0, 111, 111, 0.83); color: floralwhite; border-bottom:solid 1px #015D5D">
+            <button type="button" style="color: floralwhite" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"><i class="fa fa-cube"></i>&nbsp;&nbsp;Add Modules Here</h4>
+        </div>
+        <div class="modal-body">
+            <div id="head-Table" class="container" style="max-height: 156px; overflow-y: scroll; margin-bottom: 1%;">
+                <div class="col-sm-12 table-responsive">
+                    <table class="table table-hover table-condensed">
+                        <thead class="thead-default">
+                            <tr>
+                                <th>Module Name</th>
+                                <th>Start Date</th>
+                                <th style="display: none">Tech Resource</th>
+                                <th style="display: none">Domain Resource</th>
+                                <th>Tech Duration</th>
+                                <th>Analyst Duration</th>
+                                <th style="display: none">Description</th>
+                                <th style="display: none">Developer Duration</th>
+                                <th style="display: none">BA Duration</th>
+                                <th style="display: none">QC Duration</th>
+                                <th style="display: none">Lead Duration</th>
+                                <th style="display: none">Domain Duration</th>
+                                <th>Project Duration</th>
+                                <th>Module Cost</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tfoot>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <div ng-app="myApp" ng-controller="myCtrl">
+                    <div class="container">
+                        <div class="col-sm-6">
+                            <div>Module Name<input class="form-control" id="ModuleName" /></div>
+                            <div>Start Date<input class="form-control" id="ModuleStartDate" type="datetime" /></div>
+                            <div>
+                                Tech Resource
+                                <select id="TechResource" multiple="multiple" class="js-example-responsive" style="width: 100%">
+                                </select>
+                            </div>
+                            <div>
+                                Analyst Resource
+                                <select id="DomainResource" multiple="multiple" class="js-example-responsive" style="width: 100%">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div>Tech Duration <span style="font-size:84%; color:#712727" class="glyphicon glyphicon-info-sign"></span><tspan style="color:#712727"> In weeks</tspan><input class="form-control" id="TechDuration" data-ng-model="TechDuration" /></div>
+                            <div>Analyst Duration <span style="font-size:84%; color:#712727" class="glyphicon glyphicon-info-sign"></span><tspan style="color:#712727"> In weeks</tspan><input class="form-control" id="BADuration" data-ng-model="AnalystDuration" /></div>
+                            <div>Description<textarea style="height: 92px; resize: vertical" class="form-control" id="moduleDesc"></textarea></div>
+                        </div>
+                    </div>
+                    <div id="moduleTable" class="container">
+                        <div class="col-sm-12 table-responsive">
+                            <table class="table">
+                                <thead class="thead-default">
+                                    <tr>
+                                        <!-- Developer Duration  -->
+                                        <th>
+                                            <div class="popTag" id="pp1" popover-template="dd1"  popover-placement="bottom"  style="-webkit-user-select:none; cursor:pointer" onclick="hidePop(this)" data-open="0">Developer Duration <span class="fa fa-pencil-square-o" style="cursor:default"></span></div>
+                                            <script id="dd1" type="text/ng-template">
+                                                  <input class="form-control" ng-model="developerPercent" data-btnID="pp1" style="width:44px; display: inline-block;"/><strong style="display: inline-block;"> %</strong>
+                                            </script>
+                                        </th>
+                                        <!-- BA Duration  -->
+                                        <th>
+                                            <div class="popTag" id="pp2" popover-template="dd2"  popover-placement="bottom" style="-webkit-user-select:none; cursor:pointer" onclick="hidePop(this)" data-open="0">BA Duration <span class="fa fa-pencil-square-o" style="cursor:default"></span></div>
+                                            <script id="dd2" type="text/ng-template">
+                                                  <input class="form-control" ng-model="baPercent" data-btnID="pp2"style="width:44px; display: inline-block;"/><strong style="display: inline-block;"> %</strong>
+                                            </script>
+                                        </th>
+                                        <!-- QC Duration  -->
+                                        <th>
+                                            <div class="popTag" id="pp3" popover-template="dd3"  popover-placement="bottom" style="-webkit-user-select:none; cursor:pointer" onclick="hidePop(this)" data-open="0">QC Duration <span class="fa fa-pencil-square-o" style="cursor:default"></span></div>
+                                            <script id="dd3" type="text/ng-template">
+                                                  <input class="form-control" ng-model="qcPercent" data-btnID="pp3"style="width:44px; display: inline-block;"/><strong style="display: inline-block;"> %</strong>
+                                            </script>
+                                        </th>
+                                        <!-- Lead Duration  -->
+                                        <th>
+                                            <div class="popTag" id="pp4" popover-template="dd4"  popover-placement="bottom" style="-webkit-user-select:none; cursor:pointer" onclick="hidePop(this)" data-open="0">Lead Duration <span class="fa fa-pencil-square-o" style="cursor:default"></span></div>
+                                            <script id="dd4" type="text/ng-template">
+                                                  <input class="form-control" ng-model="leadPercent" data-btnID="pp4"style="width:44px; display: inline-block;"/><strong style="display: inline-block;"> %</strong>
+                                            </script>
+                                        </th>
+                                        <!-- Domain Duration  -->
+                                        <th>
+                                            <div class="popTag" id="pp5" popover-template="dd5"  popover-placement="bottom" style="-webkit-user-select:none; cursor:pointer" onclick="hidePop(this)" data-open="0">Domain Duration <span class="fa fa-pencil-square-o" style="cursor:default"></span></div>
+                                            <script id="dd5" type="text/ng-template">
+                                                  <input class="form-control" ng-model="domainPercent" data-btnID="pp5"style="width:44px; display: inline-block;"/><strong style="display: inline-block;"> %</strong>
+                                            </script>
+                                        </th>
+                                        <!-- Project Duration  -->
+                                        <th>Project Duration</th>
+                                        <!-- Module Duration  -->
+                                        <th>Module Cost</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <!-- Developer Duration -->
+                                        <td>{{TechDuration * (developerPercent/100)}}</td>
+                                        <!-- BA Duratio -->
+                                        <td>{{AnalystDuration * (baPercent/100)}}</td>
+                                        <!-- QC Duration -->
+                                        <td>{{TechDuration * (qcPercent/100)}}</td>
+                                        <!-- lead Duration -->
+                                        <td>{{TechDuration * (leadPercent/100)}}</td>
+                                        <!-- Domain Duration -->
+                                        <td>{{AnalystDuration * (domainPercent/100)}}</td>
+                                        <!-- Project Duration -->
+                                        <td>{{ parseFloat(TechDuration) + parseFloat(AnalystDuration) }}</td>
+                                        <!-- Module Duration -->
+                                        <td>$ {{(TechDuration * (developerPercent/100) * 40 * TechCost) + (TechDuration * (qcPercent/100) * 40 * QCCost) + (TechDuration * (leadPercent/100) * 40 * LeadCost) + (AnalystDuration * (domainPercent/100) * 40 * DomainCost) + (AnalystDuration * (baPercent/100) * 40 * BACost)}}</td>
+                                        <td><span id="am_qtip" class="glyphicon glyphicon-plus-sign" onclick="AppendModules()" style="cursor: pointer; color:darkcyan"></span></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer" style="background: rgba(81, 82, 82, 0.18);">
+
+            <button type="button" class="btn btn-primary" onclick="SaveCostCalculation('@Model')">Save</button>
+            <button id="btn_Close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    var i = 0;
+    var editFlag = 0;
+    var rowIndex;
+    var fileArray = new Array();
+    var CostArray = new Array();
+
+    function SaveCostEstimation() {
+        var data = {
+            TC: '',
+            BAC: '',
+            LC: '',
+            DC: '',
+            QCC: ''
+        };
+
+        data.TC = $("#Tech_Cost").val();
+        data.BAC = $("#Analyst_Cost").val();
+        data.LC = $("#Lead_Cost").val();
+        data.DC = $("#Domain_Cost").val();
+        data.QCC = $("#QC_Cost").val();
+
+
+
+        $.ajax({
+            type: "POST",
+            url: "../ProjectDetail/StoreProjectCost",
+            async: false,
+            data: "{ProjectCostDetails:'" + JSON.stringify(data) + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        });
+
+    }
+
+    var Flag = '@Model';
+    var ModuleArray = new Array();
+    debugger
+    var app = angular.module('myApp', ['ui.bootstrap']);
+    app.controller('myCtrl', function ($scope) {
+        $scope.TechDuration = 0;
+        $scope.AnalystDuration = 0;
+        $scope.developerPercent = 50;
+        $scope.baPercent = 50;
+        $scope.qcPercent = 30;
+        $scope.leadPercent = 20;
+        $scope.domainPercent = 50;
+        $scope.parseFloat = parseFloat;
+
+        if (Flag == "AP") {
+            $scope.TechCost = $("#Tech_Cost").val();
+            $scope.BACost = $("#Analyst_Cost").val();
+            $scope.LeadCost = $("#Lead_Cost").val();
+            $scope.DomainCost = $("#Domain_Cost").val();
+            $scope.QCCost = $("#QC_Cost").val();
+        }
+        else {
+            $scope.TechCost = 35;
+            $scope.BACost = 35;
+            $scope.LeadCost = 85;
+            $scope.DomainCost = 85;
+            $scope.QCCost = 35;
+        }
+    });
+
+
+    //................File Upload Test.................//
+    $('#fileupload').on('change', function () {
+        //debugger;
+        //if (window.FormData !== undefined) {
+        //    debugger
+        //    var fileUpload = $("#fileupload").get(0);
+        //    var files = fileUpload.files;
+        //    var fileData = new FormData();
+        //    for (var i = 0; i < files.length; i++) {
+        //        fileData.append(files[i].name, files[i]);
+        //    }
+        //    fileArray.push(fileData);
+        //}
+        //else {
+        //    alert("FormData is not supported.");
+        //}
+    });
+    function AppendModules() {
+        var data = {
+            ModuleName: '',
+            StartDate: '',
+            TechResource: '',
+            AnalystResource: '',
+            TechDuration: '',
+            AnalystDuration: '',
+            DeveloperDuration: '',
+            BADuration: '',
+            QCDuration: '',
+            LeadDuration: '',
+            DomainDuration: '',
+            ProjectDuration: '',
+            ModuleCost: '',
+            Description: ''
+        };
+
+        //debugger
+        //if (window.FormData !== undefined) {            
+        //    var fileUpload = $("#fileupload").get(0);
+        //    var files = fileUpload.files;
+        //    var fileData = new FormData();
+        //    for (var i = 0; i < files.length; i++) {
+        //        fileData.append(files[i].name, files[i]);
+        //    }
+        //    fileArray.push(fileData);
+        //}
+        //else {
+        //    alert("FormData is not supported.");
+        //}
+        if ($("#ModuleName").val() != "" && $("#ModuleStartDate").val() != "") {
+            if (editFlag == 0) {
+                data.ModuleName = $("#ModuleName").val();
+                data.StartDate = $("#ModuleStartDate").val();
+                data.TechResource = ($("#TechResource").val() == null) ? "" : $("#TechResource").val().toString();
+                data.AnalystResource = ($("#DomainResource").val() == null) ? "" : $("#DomainResource").val().toString();
+                data.TechDuration = $("#TechDuration").val();
+                data.AnalystDuration = $("#BADuration").val();
+                data.DeveloperDuration = $("#moduleTable tfoot tr").children('td').eq(0).html();
+                data.BADuration = $("#moduleTable tfoot tr").children('td').eq(1).html();
+                data.QCDuration = $("#moduleTable tfoot tr").children('td').eq(2).html();
+                data.LeadDuration = $("#moduleTable tfoot tr").children('td').eq(3).html();
+                data.DomainDuration = $("#moduleTable tfoot tr").children('td').eq(4).html();
+                data.ProjectDuration = $("#moduleTable tfoot tr").children('td').eq(5).html();
+                data.ModuleCost = $("#moduleTable tfoot tr").children('td').eq(6).html();
+                data.Description = $("#moduleDesc").val();
+
+                var tbl = document.getElementById("head-Table");
+                var tblBody = $(tbl).contents().find('tbody');
+                var title = $("#ModuleName").val();
+                var startDt = $("#ModuleStartDate").val();
+                var techResource = $("#TechResource").val();
+                var analystResource = $("#DomainResource").val();
+                var techDuration = $("#TechDuration").val();
+                var analystDuration = $("#BADuration").val();
+                var desc = $("#moduleDesc").val();
+                var content = "<tr onclick='editModuleRow(this)' style='cursor:pointer'><td>" + title + "</td><td>" + startDt + "</td><td style='display:none'>" + techResource + "</td><td style='display:none'>" + analystResource + "</td><td>" + techDuration + "</td><td>" + analystDuration + "</td><td style='display:none'>" + desc + "</td>";
+                content += "<td style='display:none'>" + $("#moduleTable tfoot tr").children('td').eq(0).html() + "</td>";
+                content += "<td style='display:none'>" + $("#moduleTable tfoot tr").children('td').eq(1).html() + "</td>";
+                content += "<td style='display:none'>" + $("#moduleTable tfoot tr").children('td').eq(2).html() + "</td>";
+                content += "<td style='display:none'>" + $("#moduleTable tfoot tr").children('td').eq(3).html() + "</td>";
+                content += "<td style='display:none'>" + $("#moduleTable tfoot tr").children('td').eq(4).html() + "</td>";
+                content += "<td>" + $("#moduleTable tfoot tr").children('td').eq(5).html() + "</td>";
+                content += "<td>" + $("#moduleTable tfoot tr").children('td').eq(6).html() + "</td>";
+                content += "<td><span class='glyphicon glyphicon-remove' style='cursor:not-allowed' onclick=''></span></td></tr>"; //.....*****.....
+                $(tblBody).append(content);
+                debugger
+                ModuleArray.push(data);
+            }
+            else {
+                //...Edit Existing ModuleArray Row...//
+                //debugger
+                ModuleArray[rowIndex - 1].ModuleName = $("#ModuleName").val();
+                ModuleArray[rowIndex - 1].StartDate = $("#ModuleStartDate").val();
+                ModuleArray[rowIndex - 1].TechResource = ($("#TechResource").val() == null) ? "" : $("#TechResource").val().toString();
+                ModuleArray[rowIndex - 1].AnalystResource = ($("#DomainResource").val() == null) ? "" : $("#DomainResource").val().toString();
+                ModuleArray[rowIndex - 1].TechDuration = $("#TechDuration").val();
+                ModuleArray[rowIndex - 1].AnalystDuration = $("#BADuration").val();
+                ModuleArray[rowIndex - 1].DeveloperDuration = $("#moduleTable tfoot tr").children('td').eq(0).html();
+                ModuleArray[rowIndex - 1].BADuration = $("#moduleTable tfoot tr").children('td').eq(1).html();
+                ModuleArray[rowIndex - 1].QCDuration = $("#moduleTable tfoot tr").children('td').eq(2).html();
+                ModuleArray[rowIndex - 1].LeadDuration = $("#moduleTable tfoot tr").children('td').eq(3).html();
+                ModuleArray[rowIndex - 1].DomainDuration = $("#moduleTable tfoot tr").children('td').eq(4).html();
+                ModuleArray[rowIndex - 1].ProjectDuration = $("#moduleTable tfoot tr").children('td').eq(5).html();
+                ModuleArray[rowIndex - 1].ModuleCost = $("#moduleTable tfoot tr").children('td').eq(6).html();
+                ModuleArray[rowIndex - 1].Description = $("#moduleDesc").val();
+
+                var elem = $("#head-Table tbody").children('tr').eq(rowIndex - 1).children('td');
+                $(elem).eq(0).html($("#ModuleName").val());
+                $(elem).eq(1).html($("#ModuleStartDate").val());
+                $(elem).eq(2).html(($("#TechResource").val() == null) ? "" : $("#TechResource").val().toString());
+                $(elem).eq(3).html(($("#DomainResource").val() == null) ? "" : $("#DomainResource").val().toString());
+                $(elem).eq(4).html($("#TechDuration").val());
+                $(elem).eq(5).html($("#BADuration").val());
+                $(elem).eq(6).html($("#moduleDesc").val());
+                $(elem).eq(7).html(ModuleArray[rowIndex - 1].DeveloperDuration);
+                $(elem).eq(8).html($("#moduleTable tfoot tr").children('td').eq(1).html());
+                $(elem).eq(9).html(ModuleArray[rowIndex - 1].QCDuration);
+                $(elem).eq(10).html(ModuleArray[rowIndex - 1].LeadDuration);
+                $(elem).eq(11).html(ModuleArray[rowIndex - 1].DomainDuration);
+                $(elem).eq(12).html(ModuleArray[rowIndex - 1].ProjectDuration);
+                $(elem).eq(13).html(ModuleArray[rowIndex - 1].ModuleCost);
+
+                rowIndex = -1;
+                editFlag = 0;
+                $('.rowActive').removeClass('rowActive');
+                //debugger
+            }
+            resetPopUp();
+        }
+        else {
+            if ($("#ModuleName").val() == "")
+                $("#ModuleName").addClass("vlActive");
+            if ($("#ModuleStartDate").val() == "")
+                $("#ModuleStartDate").addClass("vlActive");
+        }
+    }
+
+    function editModuleRow(e) {
+        //alert($(e).children('td').eq(0).html());        
+        $('.rowActive').removeClass('rowActive');
+        $(e).addClass('rowActive');
+
+        var p = $(e);
+        //alert($("tr").index(p));
+        editFlag = 1;
+        rowIndex = $("tr").index(p);
+        $("#ModuleName").val($(e).children('td').eq(0).html());
+        $("#ModuleStartDate").val($(e).children('td').eq(1).html());
+
+        var TechStr = $(e).children('td').eq(2).html();
+        var DomainStr = $(e).children('td').eq(3).html();
+        var techarray = TechStr.split(",");
+        var domainarray = DomainStr.split(",");
+        $("#TechResource").val(techarray);
+        $("#DomainResource").val(domainarray);
+        $("#TechResource").select2({
+            placeholder: "Select Tech Resource",
+            allowClear: true
+        });
+        $("#DomainResource").select2({
+            placeholder: "Select Analyst Resource",
+            allowClear: true
+        });
+        //$("#TechResource").multiselect("refresh");
+        //$("#DomainResource").multiselect("refresh");
+
+        $("#TechDuration").val($(e).children('td').eq(4).html());
+        $("#BADuration").val($(e).children('td').eq(5).html());
+        $("#moduleDesc").val($(e).children('td').eq(6).html());
+        $("#moduleTable tfoot tr").children('td').eq(0).html($(e).children('td').eq(7).html());
+        $("#moduleTable tfoot tr").children('td').eq(1).html($(e).children('td').eq(8).html());
+        $("#moduleTable tfoot tr").children('td').eq(2).html($(e).children('td').eq(9).html());
+        $("#moduleTable tfoot tr").children('td').eq(3).html($(e).children('td').eq(10).html());
+        $("#moduleTable tfoot tr").children('td').eq(4).html($(e).children('td').eq(11).html());
+        $("#moduleTable tfoot tr").children('td').eq(5).html($(e).children('td').eq(12).html());
+        $("#moduleTable tfoot tr").children('td').eq(6).html($(e).children('td').eq(13).html());
+    }
+
+    //.................................................//
+
+
+
+    function resetPopUp() {
+        $("#ModuleName").val("");
+        $("#ModuleStartDate").val("");
+        var TechStr = "";
+        var DomainStr = "";
+        var techarray = TechStr.split(",");
+        var domainarray = DomainStr.split(",");
+        $("#TechResource").val(techarray);
+        $("#DomainResource").val(domainarray);
+        $("#TechResource").select2({
+            placeholder: "Select Tech Resource",
+            allowClear: true
+        });
+        $("#DomainResource").select2({
+            placeholder: "Select Analyst Resource",
+            allowClear: true
+        });
+        //$("#TechResource").multiselect("refresh");
+        //$("#DomainResource").multiselect("refresh");
+        $("#TechDuration").val("0");
+        $("#BADuration").val("0");
+        $("#moduleDesc").val("");
+        $("#moduleTable tfoot tr").children('td').eq(0).html("0");
+        $("#moduleTable tfoot tr").children('td').eq(1).html("0");
+        $("#moduleTable tfoot tr").children('td').eq(2).html("0");
+        $("#moduleTable tfoot tr").children('td').eq(3).html("0");
+        $("#moduleTable tfoot tr").children('td').eq(4).html("0");
+        $("#moduleTable tfoot tr").children('td').eq(5).html("0");
+        $("#moduleTable tfoot tr").children('td').eq(6).html("$ 0");
+
+    }
+
+    function deleteModule(e) {
+        resetPopUp();
+        var p = $(e).parent().parent();
+        var i = $("tr").index(p);
+        ModuleArray.splice(i - 1, 1);
+        $(p).remove();
+        editFlag = 0;
+    }
+
+    function SaveCostCalculation(flag) {
+        if (ModuleArray.length > 0 && editFlag == 0) {
+            try {
+                $("#load").show();
+                setTimeout(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/ProjectDetail/StoreModuleDetail",
+                        async: false,
+                        data: "{ModuleCostDetails:'" + JSON.stringify(ModuleArray) + "', Flag:'" + flag + "'}",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (content) {
+                            swal({
+                                title: "<strong>Successfully Added</strong>",
+                                text: "<a href='/Home/generateExcel' style='font-size: 22px;font-weight: 700;color: rgba(0, 111, 111, 0.85);'><i class='fa fa-file-excel-o' aria-hidden='true' style='zoom: 135%;color: #006F6F;margin-right: 1%;'></i>Export To Excel</a>",
+                                type: "success",
+                                showCancelButton: false,
+                                confirmButtonClass: "btn-primary",
+                                confirmButtonText: "Go Back",
+                                closeOnConfirm: true,
+                                html: true
+                            },
+                                function () {
+                                    if (flag == "MD") {
+                                        var i =@Session["session_pid"].ToString()
+                                    window.location.href = "/Home/ModuleDashboard/" + i;
+                                    }
+                                });
+                        }
+
+                    });
+                }, 100);
+
+                //debugger
+                //$.ajax({
+                //    url: '/Home/UploadFiles',
+                //    type: "POST",
+                //    contentType: false, // Not to set any content header  
+                //    processData: false, // Not to process data  
+                //    data: fileArray[1],
+                //    success: function (data) {
+                //        $(".glyphicon-file").css('color', '#006F6F');
+                //    }
+                //});
+                }
+
+                catch (ex) {
+
+                }
+            }
+            else {
+                if (editFlag == 1) {
+                    swal("Something Wrong", "One of your module has not yet committed!", "warning");                    
+                }
+                else {
+                    //swal("Error", "Your module list can't be empty!", "warning");
+                    swal({
+                        title: "Error",
+                        text: "Your module list can't be empty!</br>Click <span class='glyphicon glyphicon-plus-sign' style='color:darkcyan'></span> to append module list",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonClass: "btn-primary",
+                        confirmButtonText: "Ok",
+                        closeOnConfirm: true,
+                        html: true
+                    });
+                }
+            }
+
+        }
+
+</script>
