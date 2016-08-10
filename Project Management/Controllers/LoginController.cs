@@ -52,7 +52,7 @@ namespace Project_Management.Controllers
                         UD.TeamID = user.TeamID.ToString();
                         UD.Team = dc.TeamTbls.Where(a => a.TeamID.Equals(user.TeamID)).Select(a => a.TeamName).FirstOrDefault();
                         UD.EmailID = user.EmailID.ToString();
-                        // Add a temp
+                        
 
                         Session["UserDetails"] = UD;
                       
@@ -69,6 +69,11 @@ namespace Project_Management.Controllers
                 }
             }
             return View(u);
+        }
+
+        public void blankFunction()
+        {
+
         }
 
         public ActionResult LandingPage()
