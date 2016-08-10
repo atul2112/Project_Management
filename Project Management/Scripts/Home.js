@@ -5,7 +5,8 @@ var ProjectName = "";
 var Image_Path = "";
 
 $(document).ready(function () {
-    GetProjects(); 
+    GetProjects();
+    Sample();
     $("#Projects .slide").live("click", function () {
          ProjectId = $(this).children(".projectname").attr("projectid");
          ProjectName = $(this).children(".projectname").attr("projectname");
@@ -14,6 +15,7 @@ $(document).ready(function () {
         StoreProjectDetails();        
     });  
 });
+function Sample() { };
 function StoreProjectDetails() {
     postBackData = "{ProjectId: " + ProjectId + "";
     postBackData += ",ProjectName: '" + ProjectName + "'";
