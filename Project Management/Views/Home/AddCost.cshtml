@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Project_Management.tbl_Cost>
+
+
+<div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"><i class="fa fa-dollar"></i>&nbsp;&nbsp;Define Cost</h4>
+        </div>
+        <div id="" class="modal-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+
+                            <th>Tech</th>
+                            <th>Analyst</th>
+                            <th>Lead/Manager</th>
+                            <th>Domain</th>
+                            <th>QC</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+
+                                <input class="form-control" id="Tech_Cost" value="35" /></td>
+                            </td>
+                                <td>
+                                    <input class="form-control" id="Analyst_Cost" value="35" /></td>
+                            </td>
+                                  <td>
+                                      <input class="form-control" id="Lead_Cost" value="85" /></td>
+                            </td>
+                                <td>
+                                    <input class="form-control" id="Domain_Cost" value="85" /></td>
+                            </td>
+                                <td>
+                                    <input class="form-control" id="QC_Cost" value="35" /></td>
+                            </td>                               
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="SaveCostEstimation()">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+
+</div>
+
+@Scripts.Render("~/Angular/angular.min.js")
+
+<script>
+    var CostArray = new Array();
+    function SaveCostEstimation() {
+        var data = {
+            TC: '',
+            BAC: '',
+            LC: '',
+            DC: '',
+            QCC:''
+        };
+
+        data.TC = $("#Tech_Cost").val();
+        data.BAC = $("#Analyst_Cost").val();
+        data.LC = $("#Lead_Cost").val();
+        data.DC = $("#Domain_Cost").val();
+        data.QCC = $("#QC_Cost").val();
+
+
+
+        $.ajax({
+            type: "POST",
+            url: "../ProjectDetail/StoreProjectCost",
+            async: false,
+            data: "{ProjectCostDetails:'" + JSON.stringify(data) + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        });
+
+    }
+
+</script>

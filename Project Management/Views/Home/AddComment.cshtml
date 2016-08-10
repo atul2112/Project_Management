@@ -1,0 +1,291 @@
+﻿@{
+    ViewBag.Title = "AddComment";
+}
+@Scripts.Render("~/commentEditor/ckeditor.js")
+
+<style type="text/css">
+    @@media screen and (min-width: 768px) {
+        .jumbotron {
+            padding-top: 48px;
+            padding-bottom: 0px;
+            margin-bottom: 0px;
+        }
+    }
+
+    .jumbotron p {
+        margin-bottom: 0px;
+        font-size: 14px;
+        font-weight: 100;
+    }
+
+    #cke_1_contents {
+        height: 80px !important;
+    }
+
+    .cke_top {
+        background-image: none !important;
+        background: rgba(0, 111, 111, 0.77);
+        border: 1px solid #006F6F;
+    }
+
+    .panel-default {
+        border-color: #006F6F;
+    }
+
+    .panel {
+        border-radius: 0px;
+    }
+
+    .panel-default > .panel-heading {
+        color: floralwhite;
+        background-color: rgba(0, 111, 111, 0.76);
+    }
+
+    .panel-heading {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+
+    .btn-default {
+        color: #333;
+        background-color: rgba(0, 111, 111, 0.24);
+        border-color: #006F6F;
+    }
+
+    input[type="text"], input[type="password"] {
+        /*font-size: 22px;*/
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 6px 10px;
+        background: none;
+        background-image: none;
+        border: 1px solid #ccc;
+        color: #636262;
+        border-radius: 0;
+        -webkit-transition: border-color .25s ease, box-shadow .25s ease;
+        transition: border-color .25s ease, box-shadow .25s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+        outline: 0;
+        border-color: #006F6F;
+    }
+</style>
+<input id="hiddenarea" name="hiddenarea" type="hidden" />
+<div class="container">
+    <div id="subContainer" class="col-sm-8">
+        <div id="prevComments" class="col-sm-12" style="height: 425px; overflow: hidden">
+            <div class="col-sm-10 row" style="float: left; margin-bottom: 10px">
+                <span class="fa-stack fa-2x col-xs-2">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                </span>
+                <div class="col-xs-10" style="text-align: justify">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</div>
+            </div>
+            <hr class="col-sm-12" />
+            <div class="col-sm-10 row" style="float: right; margin-bottom: 10px">
+                <span class="fa-stack fa-2x col-xs-2" style="float: inherit">
+                    <i class="fa fa-circle fa-stack-2x text-info"></i>
+                    <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                </span>
+                <div class="col-xs-10" style="float: inherit; text-align: justify">when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</div>
+            </div>
+            <hr class="col-sm-12" />
+            <div class="col-sm-10 row" style="float: left; margin-bottom: 10px">
+                <span class="fa-stack fa-2x col-xs-2">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                </span>
+                <div class="col-xs-10" style="text-align: justify">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College.</div>
+            </div>
+            <hr class="col-sm-12" />
+            <div class="col-sm-10 row" style="float: right; margin-bottom: 10px">
+                <span class="fa-stack fa-2x col-xs-2" style="float: inherit">
+                    <i class="fa fa-circle fa-stack-2x text-info"></i>
+                    <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                </span>
+                <div class="col-xs-10" style="float: inherit; text-align: justify">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum.</div>
+            </div>
+            <hr class="col-sm-12" />
+            <div class="col-sm-10 row" style="float: left; margin-bottom: 10px">
+                <span class="fa-stack fa-2x col-xs-2">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                </span>
+                <div class="col-xs-10" style="text-align: justify">you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.</div>
+            </div>
+            <hr class="col-sm-12" />
+            <div class="col-sm-10 row" style="float: right; margin-bottom: 10px">
+                <span class="fa-stack fa-2x col-xs-2" style="float: inherit">
+                    <i class="fa fa-circle fa-stack-2x text-info"></i>
+                    <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                </span>
+                <div class="col-xs-10" style="float: inherit; text-align: justify">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</div>
+            </div>
+            <hr class="col-sm-12" />
+            <div class="col-sm-10 row" style="float: left; margin-bottom: 10px">
+                <span class="fa-stack fa-2x col-xs-2">
+                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                </span>
+                <div class="col-xs-10" style="text-align: justify">A simple and stylish bootstrap chat box template to integrate a stunning chat system to your website.  This free chat box template is very easy to customize and integrate. You can make this template work with any php, ASP or other backed script to make the chat system live.</div>
+            </div>
+        </div>
+        <div class="col-sm-12" style="margin-top: 2%">
+            <textarea id="editArea" name="editArea"></textarea>
+            <script type="text/javascript">
+                var editor = CKEDITOR.replace('editArea');
+                editor.on('key', function (event) {
+                    var keyStroke = event.data.keyCode;
+                    if (keyStroke == 13) {
+                        event.cancel();
+                        var framearea = document.getElementsByTagName("iframe");
+                        var elem = $(framearea).contents().find('body');
+                        var img = $(elem).contents().find('img');
+                        $(img).remove();
+                        var div = "<hr class='col-sm-12' /><div class='col-sm-10 row' style='float: right; margin-bottom: 10px'><span class='fa-stack fa-2x col-xs-2' style='float: inherit'><i class='fa fa-circle fa-stack-2x text-info'></i><i class='fa fa-user fa-stack-1x fa-inverse'></i></span><div class='col-xs-10' style='float: inherit; text-align: justify; text-align-last: right'>" + $(elem).html() + "</div></div>";
+                        $("#prevComments").append(div);
+                        document.getElementById('prevComments').scrollTop = 9999999;
+                        $(elem).empty();
+                    }
+                });
+            </script>
+        </div>
+    </div>
+
+    <!-- Notification Panel -->
+    <div class="col-sm-4">
+        <div class="panel panel-default" style="height: 563px;">
+            <div class="panel-heading">
+                <i class="fa fa-bell fa-fw"></i>Notifications Panel
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="form-group input-group field-wrap">
+                    <span class="input-group-addon" id="basic-addon1" style="background: rgba(0, 111, 111, 0.65);border: 1px solid rgba(0, 111, 111, 0.34);"><span class="glyphicon glyphicon-search" style="color:floralwhite"></span></span>
+                    <input type="text" id="filter" aria-label="..." onchange="showalert()"/>
+                </div>
+                 
+                <div id="rct_cmnt" class="list-group" style="height: 330px; overflow:hidden;">
+                    <a href="#" class="list-group-item">
+                        <span class="fa-stack fa-1x" style="display: inline-block;">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                        </span><span class="text-muted small"><em>2 minutes ago</em></span>
+                        <span><em style="display: inline-block; font-size: 12px;">A simple and stylish bootstrap chat box template to integrate a stunning chat system ....</em></span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <span class="fa-stack fa-1x" style="display: inline-block;">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                        </span><span class="text-muted small"><em>4 minutes ago</em></span>
+                        <span><em style="display: inline-block; font-size: 12px;">A simple and stylish bootstrap chat box template to integrate a stunning chat system ....</em></span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <span class="fa-stack fa-1x" style="display: inline-block;">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                        </span><span class="text-muted small"><em>8 minutes ago</em></span>
+                        <span><em style="display: inline-block; font-size: 12px;">A simple and stylish bootstrap chat box template to integrate a stunning chat system ....</em></span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <span class="fa-stack fa-1x" style="display: inline-block;">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                        </span><span class="text-muted small"><em>12 minutes ago</em></span>
+                        <span><em style="display: inline-block; font-size: 12px;">A simple and stylish bootstrap chat box template to integrate a stunning chat system ....</em></span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <span class="fa-stack fa-1x" style="display: inline-block;">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                        </span><span class="text-muted small"><em>4 minutes ago</em></span>
+                        <span><em style="display: inline-block; font-size: 12px;">A simple and stylish bootstrap chat box template to integrate a stunning chat system ....</em></span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <span class="fa-stack fa-1x" style="display: inline-block;">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                        </span><span class="text-muted small"><em>8 minutes ago</em></span>
+                        <span><em style="display: inline-block; font-size: 12px;">A simple and stylish bootstrap chat box template to integrate a stunning chat system ....</em></span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <span class="fa-stack fa-1x" style="display: inline-block;">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                        </span><span class="text-muted small"><em>12 minutes ago</em></span>
+                        <span><em style="display: inline-block; font-size: 12px;">A simple and stylish bootstrap chat box template to integrate a stunning chat system ....</em></span>
+                    </a>
+                </div>
+                <!-- /.list-group -->
+                <a href="#" class="btn btn-default btn-block" style="margin-top: 79px">View All Comments</a>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    var framearea, elem;
+    $(document).ready(function () {
+        var uname = "@(((Project_Management.CommonFunctions.Userdetails)Session["UserDetails"]).Username)"
+        $("#opt_user").css("display", "block");
+        $("#opt_user").children('a').text("Welcome- " + uname);
+
+        $("#logout_btn").css("display", "block");
+
+        $("#back_btn").css("display", "block");
+        $("#back_btn").html("<a style='font-size:15px' class='nav navbar-brand navbar-nav navbar-right' href='/Home/AddView/@Session["session_pid"]'><span class='glyphicon glyphicon-chevron-left'></span>Back</a>");
+        //$("html").css("overflow", "hidden");
+        $("html").niceScroll({ touchbehavior: false, cursorcolor: "#006F6F", cursoropacitymax: 0.6, cursorwidth: 8, scrollspeed: 300, horizrailenabled: false, bouncescroll: true });
+        $("#prevComments").niceScroll({ touchbehavior: true, cursorcolor: "#006F6F", cursoropacitymax: 0.6, cursorwidth: 8, scrollspeed: 400, horizrailenabled: false, bouncescroll: true });
+        $("#rct_cmnt").niceScroll({ touchbehavior: false, cursorcolor: "#006F6F", cursoropacitymax: 0.6, cursorwidth: 8, scrollspeed: 300, horizrailenabled: false, bouncescroll: true });
+        document.getElementById('prevComments').scrollTop = 9999999;
+        document.getElementById('html').scrollTop = 10;
+    });
+
+
+    function showComment() {
+        framearea = document.getElementsByTagName("iframe");
+        //var editarea = (framearea.contentWindow || framearea.contentDocument);
+        //document.getElementById("hiddenarea").value = $(framearea).contents().find('body').html();
+        //$("#prevComments").html($("#hiddenarea").val());
+        debugger
+        var elem = $(framearea).contents().find('p').css("background", "yellow");
+
+    }
+
+    function showalert()
+    {
+        alert("erty");
+    }
+</script>
+
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+    @*@Scripts.Render("~/Scripts/jquery.nicescroll.js")
+    @Scripts.Render("~/Scripts/jquery.nicescroll.min.js")*@
+
+    @*<script type="text/javascript">
+        $(document).ready(function () {
+            (function ($) {
+                $('#filter').keyup(function () {
+                    var rex = new RegExp($(this).val(), 'i');
+                    $('#prevComments div').hide();
+                    $('#prevComments div').filter(function () {
+                        return rex.test($(this).text());
+                    }).show();
+                    //$("#rct_cmnt").niceScroll({ touchbehavior: false, cursorcolor: "#006F6F", cursoropacitymax: 0.6, cursorwidth: 8, scrollspeed: 300, horizrailenabled: false, bouncescroll: true });
+                })
+            }(jQuery));
+        });
+    </script>*@
+
+}

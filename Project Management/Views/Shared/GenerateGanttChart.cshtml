@@ -1,0 +1,243 @@
+﻿
+<div id="container"></div>
+
+
+<style>
+    #container {
+    /*min-width: 300px;
+    max-width: 800px;*/
+    height:301px;
+   /*margin: 1em auto;*/
+}
+</style>
+
+<script>
+    var jsonDataArray = new Array();
+    var moduleList = new Array();
+    var moduleCount = 0;
+    debugger
+    $(document).ready(function ()
+    {
+        $.ajax({
+            type: "POST",
+            url: "/Home/GetChartData",
+            async: false,
+            data: "{}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                debugger
+                $.each(data, function (index, item) {
+                    var jsonData = {
+                        x: '',
+                        x2: '',
+                        y: ''
+                    };
+                    jsonData.x = parseInt(item.StartDate); //......As UTCMilliseconds....//
+
+                    //............Calculation For End Date..............//
+                    var utcSeconds = parseInt(item.StartDate); //......Start Date......//
+                    var d = new Date(0);
+                    d.setUTCMilliseconds(utcSeconds);
+                    var total_days = parseInt(item.TotalDays);
+                    var rem_days;
+                    var res;
+                    var rem;
+                    var temp; // total num of days to be appended
+                    var weekday = d.getDay();
+                    var round_days;
+                    if (weekday == 1)
+                        round_days = 0;
+                    else if (weekday == 2)
+                        round_days = 4;
+                    else if (weekday == 3)
+                        round_days = 3;
+                    else if (weekday == 4)
+                        round_days = 2;
+                    else if (weekday == 5)
+                        round_days = 1;
+                    if ((total_days - round_days) > 0) {
+                        rem_days = total_days - round_days;
+                        res = parseInt(rem_days / 5);
+                        rem = rem_days % 5;
+
+                        if (res == 0)
+                            temp = rem_days;
+                        else if (res > 0 && rem == 0)
+                            temp = rem_days + (res - 1) * 2;
+                        else if (res > 0 && rem > 0)
+                            temp = rem_days + res * 2;
+
+                        if (round_days > 0)
+                            temp = temp + round_days + 2;
+                    }
+                    else
+                        temp = total_days;
+
+                    if (temp > 0)
+                        temp = temp - 1;
+                    utcSeconds = utcSeconds + temp * 86400000; //......End Date....//
+
+                    jsonData.x2 = parseInt(utcSeconds);
+                    jsonData.y = parseInt(moduleCount);
+                    jsonDataArray.push(jsonData);
+                    moduleList.push(item.ModuleTitle);
+                    moduleCount = (parseInt(moduleCount) + 1);
+                });
+                moduleCount = (parseInt(moduleCount) - 1);
+            }
+        });
+    });
+
+    $(function () {
+
+        /**
+         * Highcharts X-range series plugin
+         */
+        (function (H) {
+            var defaultPlotOptions = H.getOptions().plotOptions,
+                columnType = H.seriesTypes.column,
+                each = H.each,
+                extendClass = H.extendClass,
+                pick = H.pick,
+                Point = H.Point;
+
+            defaultPlotOptions.xrange = H.merge(defaultPlotOptions.column, {
+                tooltip: {
+                    pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.yCategory}</b><br/>'
+                }
+            });
+            H.seriesTypes.xrange = H.extendClass(columnType, {
+                pointClass: extendClass(Point, {
+                    // Add x2 and yCategory to the available properties for tooltip formats
+                    getLabelConfig: function () {
+                        var cfg = Point.prototype.getLabelConfig.call(this);
+
+                        cfg.x2 = this.x2;
+                        cfg.yCategory = this.yCategory = this.series.yAxis.categories && this.series.yAxis.categories[this.y];
+                        return cfg;
+                    }
+                }),
+                type: 'xrange',
+                forceDL: true,
+                parallelArrays: ['x', 'x2', 'y'],
+                requireSorting: false,
+                animate: H.seriesTypes.line.prototype.animate,
+
+                /**
+                 * Borrow the column series metrics, but with swapped axes. This gives free access
+                 * to features like groupPadding, grouping, pointWidth etc.
+                 */
+                getColumnMetrics: function () {
+                    var metrics,
+                        chart = this.chart;
+
+                    function swapAxes() {
+                        each(chart.series, function (s) {
+                            var xAxis = s.xAxis;
+                            s.xAxis = s.yAxis;
+                            s.yAxis = xAxis;
+                        });
+                    }
+
+                    swapAxes();
+
+                    this.yAxis.closestPointRange = 1;
+                    metrics = columnType.prototype.getColumnMetrics.call(this);
+
+                    swapAxes();
+
+                    return metrics;
+                },
+                translate: function () {
+                    columnType.prototype.translate.apply(this, arguments);
+                    var series = this,
+                        xAxis = series.xAxis,
+                        metrics = series.columnMetrics;
+
+                    H.each(series.points, function (point) {
+                        var barWidth = Math.min(
+                            xAxis.translate(H.pick(point.x2, point.x + (point.len || 0))) - point.plotX,
+                            xAxis.len
+                        );
+                        point.shapeArgs = {
+                            x: Math.max(0, point.plotX),
+                            y: point.plotY + metrics.offset,
+                            width: barWidth,
+                            height: metrics.width
+                        };
+                        point.tooltipPos[0] += barWidth / 2;
+                        point.tooltipPos[1] -= metrics.width / 2;
+                    });
+                }
+            });
+
+            /**
+             * Max x2 should be considered in xAxis extremes
+             */
+            H.wrap(H.Axis.prototype, 'getSeriesExtremes', function (proceed) {
+                var axis = this,
+                    dataMax,
+                    modMax;
+
+                proceed.call(this);
+                if (this.isXAxis) {
+                    dataMax = pick(axis.dataMax, Number.MIN_VALUE);
+                    each(this.series, function (series) {
+                        each(series.x2Data || [], function (val) {
+                            if (val > dataMax) {
+                                dataMax = val;
+                                modMax = true;
+                            }
+                        });
+                    });
+                    if (modMax) {
+                        axis.dataMax = dataMax;
+                    }
+                }
+            });
+        }(Highcharts));
+
+
+        // THE CHART
+        $('#container').highcharts({
+            chart: {
+                plotBackgroundImage: 'url("http://www.transparenttextures.com/patterns/45-degree-fabric-dark.png")',
+                type: 'xrange'
+            },
+            title: {
+                text: 'Modules TimeLine'
+            },
+            credits: {
+                enabled: false
+            },
+            exporting: {
+                enabled: false
+            },
+            xAxis: {
+                type: 'datetime'
+            },
+            yAxis: {
+                title: '',
+                categories: moduleList,
+                
+                min: 0,
+                max: moduleCount
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>From: </b>' + Highcharts.dateFormat('%d-%b-%Y', this.point.options.x) + '<b>, To: </b>' + Highcharts.dateFormat('%d-%b-%Y', this.point.options.x2) + '<br/><br/><span style="color:' + this.point.color + '">\u25CF </span>' + this.series.name + ':  <b>' + this.point.yCategory + '</b>';
+                }
+            },
+            series: [{
+                name: "@Session["session_pname"]",
+                // pointPadding: 0,
+                // groupPadding: 0,
+                borderRadius: 5,
+                pointWidth: 10,
+                data: jsonDataArray
+            }]
+
+        });
+    });
+</script>

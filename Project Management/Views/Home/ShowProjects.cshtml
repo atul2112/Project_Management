@@ -1,0 +1,401 @@
+﻿@model IEnumerable<Project_Management.snapModels.snap_projectDetails>
+
+
+@{
+    ViewBag.Title = "ShowProjects";
+}
+
+@{
+    var UD = (Project_Management.CommonFunctions.Userdetails)Session["UserDetails"];
+}
+<input id="hidden_val" type="hidden" data-role="@UD.RoleID" data-uname="@UD.Username"/>
+
+<script type="text/javascript">
+    var projectID, imgFrame;
+
+    function deleteProject(e) {
+        //alert("confirm to delete project with id: " + $(e).attr("data-pid"));
+        //$(e).parent().parent().parent().fadeOut();
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this project",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "rgba(0, 111, 111, 0.86)",
+            confirmButtonText: "Yes, delete it",
+            cancelButtonText: "No, cancel",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        }, function (isConfirm) {
+            if (isConfirm) {
+                var pid = $(e).attr("data-pid");
+                $.ajax({
+                    type: "POST",
+                    url: "../Home/DeleteProject", //give here action name
+                    async: false,
+                    data: "{id:'" + pid + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json"
+                })
+                .success(function (data) {
+
+                    $.each(data, function (index, comment) {
+                        if (comment.ProjectName == "success")
+                            $(e).parent().parent().parent().fadeOut();
+                        swal("Deleted!", "Your project has been deleted.", "success");
+                    });
+                });
+
+            }
+            else {
+                swal("Cancelled", "Your project is safe", "error");
+            }
+        });
+
+
+    }
+
+    function updateProfile(e) {
+        projectID = $(e).attr("data-projectID");
+        imgFrame = "#imgFrame_" + $(e).attr("data-projectID");
+        $("#profile_Btn").trigger("click");
+    }
+
+    function changeProfile(input) {
+        debugger;
+        if (window.FormData !== undefined) {
+            debugger
+            var fileUpload = $("#profile_Btn").get(0);
+            var files = fileUpload.files;
+            var fileData = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+            $.ajax({
+                url: '/Home/SaveProjectProfile',
+                type: "POST",
+                contentType: false, // Not to set any content header  
+                processData: false, // Not to process data  
+                data: fileData,
+                success: function (data) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Home/UpdateProjectProfile", //give here action name
+                        async: false,
+                        data: "{id:'" + projectID + "'}",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            //update picture frame here
+                            if (input.files && input.files[0]) {
+                                var filerdr = new FileReader();
+                                filerdr.onload = function (e) {
+                                    $(imgFrame).attr('src', e.target.result);
+                                }
+                                filerdr.readAsDataURL(input.files[0]);
+                            }
+                        }
+                    });
+                }
+            });
+        } else {
+            alert("FormData is not supported.");
+        }
+    }
+
+
+
+    $(document).ready(function () {
+        var uname = "@(((Project_Management.CommonFunctions.Userdetails)Session["UserDetails"]).Username)"
+        $("#opt_user").css("display", "block");
+        $("#opt_user").children('a').text("Welcome- " + uname);
+
+        $("#logout_btn").css("display", "block");
+        var ch = $("#hidden_val").attr("data-role");
+        $("#AP_btn").css("display", "block");
+        $("#back_btn").css("display", "none");
+        $("html").niceScroll({ touchbehavior: false, cursorcolor: "#006F6F", cursoropacitymax: 0.6, cursorwidth: 8, scrollspeed: 100, horizrailenabled: false, bouncescroll: true });
+
+        Tipped.create('.tippedBox', {
+            showOn: 'click', hideOn: false, radius: false, size: 'large', skin: 'gray', close: 'true', maxWidth: 400, fadeIn: 100, hideOnClickOutside: true, position: {
+                target: 'bottom',
+                tooltip: 'topleft'
+            }
+        });
+
+        $(".fb_qtip").qtip({
+            content: {
+                text: 'Flip To Back Side'
+            },
+            position: {
+                my: 'bottom left',  // Position my top left...
+                at: 'top right', // at the bottom right of...
+                target: 'mouse',
+                adjust: {
+                    mouse: true  // Can be omitted (e.g. default behaviour)
+                }
+
+            },
+            show: {
+                delay: 10
+            }
+        });
+
+        $(".ff_qtip").qtip({
+            content: {
+                text: 'Flip To Front Side'
+            },
+            position: {
+                my: 'bottom left',  // Position my top left...
+                at: 'top right', // at the bottom right of...
+                target: 'mouse',
+                adjust: {
+                    mouse: true  // Can be omitted (e.g. default behaviour)
+                }
+
+            },
+            show: {
+                delay: 10
+            }
+        });
+
+        $(".dp_qtip").qtip({
+            content: {
+                text: 'Click To Delete This Project'
+            },
+            position: {
+                my: 'bottom left',  // Position my top left...
+                at: 'top right', // at the bottom right of...
+                target: 'mouse',
+                adjust: {
+                    mouse: true  // Can be omitted (e.g. default behaviour)
+                }
+
+            },
+            show: {
+                delay: 10
+            }
+        });
+        $(".img-responsive").qtip({
+            content: {
+                text: 'Click To Open This Project'
+            },
+            position: {
+                my: 'bottom left',  // Position my top left...
+                at: 'top right', // at the bottom right of...
+                target: 'mouse',
+                adjust: {
+                    mouse: true  // Can be omitted (e.g. default behaviour)
+                }
+
+            },
+            show: {
+                delay: 10
+            }
+        });
+    });
+
+
+        function flip(e) {
+            $("#front_" + e).toggleClass('flipped');
+            $("#back_" + e).toggleClass('flipped');
+        }
+</script>
+
+<style>
+    /*.pBlock {
+            transition: color border-width border-color border-style 2s;
+        }
+
+        .pBlock:hover {
+            border-width: 1.5px;
+            border-color: cadetblue;
+            border-style: solid;
+            /*color: cadetblue;
+        } 
+    **/
+
+    .confirm {
+        background-color: rgba(0, 111, 111, 0.86) !important;
+    }
+
+        .confirm:hover {
+            background-color: #006F6F !important;
+        }
+
+
+    .div_flip {
+        -webkit-user-select: none;
+        /*position:relative;*/
+        width:280px !important;
+    }
+
+    .div_front {
+        /*position:absolute;*/
+        /*width:280px;*/
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -o-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transition: -webkit-transform 1s;
+        -moz-transition: -moz-transform 1s;
+        -o-transition: -o-transform 1s;
+        transition: transform 1s;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transform-origin: 50% 50%;
+    }
+
+    .div_back {
+        position: absolute;
+        width: 250px;
+        margin-top: -283px;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -o-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transform: rotateY( 180deg );
+        -moz-transform: rotateY( 180deg );
+        -o-transform: rotateY( 180deg );
+        transform: rotateY( 180deg );
+        -webkit-transition: -webkit-transform 1s;
+        -moz-transition: -moz-transform 1s;
+        -o-transition: -o-transform 1s;
+        transition: transform 1s;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transform-origin: 50% 50%;
+    }
+
+        .div_back.flipped {
+            -webkit-transform: rotateY( 0deg );
+            -moz-transform: rotateY( 0deg );
+            -o-transform: rotateY( 0deg );
+            transform: rotateY( 0deg );
+        }
+
+    .div_front.flipped {
+        -webkit-transform: rotateY( 180deg );
+        -moz-transform: rotateY( 180deg );
+        -o-transform: rotateY( 180deg );
+        transform: rotateY( 180deg );
+    }
+
+
+    hr {
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+
+    img {
+        transition: all 1s;
+    }
+
+        img:hover {
+            -webkit-filter: blur(1px);
+        }
+</style>
+
+@{
+    if (Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+    
+    <section>
+        <div class="col-xs-3 div_flip">
+            <div id="front_@item.ProjectID" class="thumb div_front">@*Front Side*@
+                <div style="height: 262px; padding-top: 5px; box-shadow: 5px 5px 5px gray; border-top-right-radius: 23px; border: 1px saddlebrown; background-color: rgba(0, 84, 77, 0.93); background-image: url(&quot;http://www.transparenttextures.com/patterns/debut-light.png&quot;);" class="thumbnail pBlock">
+                    <!-- style="background-color: floralwhite; height:270px; padding-top: 5px; box-shadow: 5px 5px 5px gray; border-top-right-radius: 23px;" class="thumbnail pBlock" -->
+                    <strong style="color: #f5f5f5; text-transform: uppercase;">@item.Title</strong>
+                    @{                    
+            if (UD.RoleID == "6" || UD.UserID == item.CreatedBy) //Admin or Owner
+            {
+                        <span data-pid="@item.ProjectID" style="color: #F8D486; float: right; padding: 3px; zoom: 110%; cursor: pointer;" class="glyphicon glyphicon-remove-sign dp_qtip" onclick="deleteProject(this)"></span>
+            }
+            else
+            {
+                        <span data-pid="@item.ProjectID" style="color: #B5B5B5; float: right; padding: 3px; zoom: 110%; cursor: not-allowed;" class="glyphicon glyphicon-remove-sign"></span>
+            }
+                    }
+
+                    <a style="position:relative; top:7px;" onclick="location.href='@Url.Action("AddView", "Home", new { ID = item.ProjectID })'">
+                        <img id="imgFrame_@item.ProjectID" class="img-responsive thumbnail" style="border:1px solid #ccc; cursor:pointer; width: 95%; height: 120px" src="@item.ProjectLogo" />
+                    </a>
+                    <div class="container" style="margin-top: 8%; margin-bottom: 10%;">
+                        <div><strong style="color: #f5f5f5" class="start_dt_@item.ProjectID">Start Date: </strong></div>
+                        @*<div><strong style="color: #f5f5f5">Project Type : @item.ProjectType</strong></div>*@
+                        <div><strong class="tippedBox" title="@item.Description" style="color: #f5f5f5; cursor:pointer"><i class="fa fa-info-circle"></i> Show Description</strong></div>
+
+
+                        @*<span style="cursor:pointer" data-projectID="@item.ProjectID" class="fa-stack" onclick="updateProfile(this)">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-paint-brush fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <input id="profile_Btn" type="file" name="file" style="display: none" onchange="changeProfile(this)" />*@
+                    </div>
+                    <div class="container">
+                        <i class="fa fa-share fb_qtip" aria-hidden="true" style="color:#f5f5f5; margin-left: 95%; cursor: pointer;"onclick="flip(@item.ProjectID)"></i>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="back_@item.ProjectID" class="thumb div_back">
+                @*Back Side*@
+                <div style="height: 197px; color: #006F6F; background-color: white; height: 262px; box-shadow: -5px 5px 5px gray; border-top-left-radius: 23px;" class="thumbnail pBlock">
+                    <div style="padding: 22px; font-variant:small-caps">
+                        <div class="start_dt_@item.ProjectID">Start Date: </div>
+                        <hr />
+                        <div><strong>Project Type : </strong>@item.ProjectType</div>
+                        <hr />
+                        <div><strong>Client: </strong>@item.ClientName</div>
+                        <hr />
+                        <div><strong>Tech Lead : </strong>@item.TechLeadName</div>
+                        <hr />
+                        <div><strong>Domain Lead : </strong>@item.DomainLeadName</div>
+                        <hr />
+                        <div><strong>QC Lead : </strong>@item.QCLeadName</div>
+                    </div>
+                    <div class="container">
+                        <i class="fa fa-reply ff_qtip" aria-hidden="true" style="color:black; margin-top:0%; margin-left: 93%; cursor: pointer;"onclick="flip(@item.ProjectID)"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            var utcSeconds = parseInt(@(item.StartDate))
+            var newd = new Date(0);
+            newd.setUTCMilliseconds(utcSeconds);
+            $(".start_dt_@item.ProjectID").html("<strong>Start Date: </strong>" + (newd.toUTCString().replace("GMT", "")).replace("00:00:00", ""));
+        </script>
+    </section>
+        }
+
+        //.........Flip Demo.......//
+
+
+        //.........Flip Demo.......//
+
+    }
+    else
+    {
+    @Html.Partial("NoProject");
+    }
+}
+
+
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+}

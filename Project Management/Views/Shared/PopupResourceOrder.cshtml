@@ -1,0 +1,79 @@
+﻿
+<!--Edit Module Popup-->
+
+<style>
+    .modal-footer {
+        border-top: 1px solid #8A8888;
+    }
+
+    .modal-content {
+        border-radius: 0px;
+    }
+
+    .close {
+        opacity: 1;
+    }
+
+
+    input:focus, textarea:focus, select:focus {
+    outline: 0 !important;
+    border-color: #006F6F !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    }
+
+    #chartContainer{
+        height:400px;
+    }
+</style>
+
+<script>
+
+</script>
+
+<div class="modal-dialog" id="" style="width: 90%; margin:70px auto;">
+
+    <!-- Modal content-->
+    <div class="modal-content modal-fullscreen" style="width: 100%; border:solid 1px #015D5D;">
+
+        <div class="modal-header" style="background: rgba(0, 111, 111, 0.83); border-bottom:solid 1px #015D5D; color: floralwhite;">
+            <button type="button" style="color: floralwhite" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" id=""><i class="fa fa-exchange" style="transform:rotate(90deg)"></i> Module Resource Order</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-5" style="">
+                    <div style="text-align: center;color: #333333;fill: #333333;font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif; font-size: 18px;margin: 6px auto;">Current Ordering <i style="color:#015D5D" class="fa fa-info-circle dragger-info"></i></div>
+                    <hr style="border-color:#D8D8D8; margin-top:23px; margin-bottom:27px;" />
+                    <div id="sortable">
+                        <div data-id="1" style="cursor: move; box-shadow:0px -3px #006F6F inset; margin-bottom:5px; border: solid 1px floralwhite; color: floralwhite; background: rgba(0, 111, 111, 0.67); border:solid 1px #006F6F; text-align: center; font-variant:small-caps; font-size: 25px; line-height:40px">analyst</div>
+                        <div data-id="2" style="cursor: move; box-shadow:0px -3px #006F6F inset; margin-bottom:5px; border: solid 1px floralwhite; color: floralwhite; background: rgba(0, 111, 111, 0.67); border:solid 1px #006F6F; text-align: center; font-variant: small-caps; font-size: 25px; line-height:40px">domain</div>
+                        <div data-id="3" style="cursor: move; box-shadow:0px -3px #006F6F inset; margin-bottom:5px; border: solid 1px floralwhite; color: floralwhite; background: rgba(0, 111, 111, 0.67); border:solid 1px #006F6F; text-align: center; font-variant: small-caps; font-size: 25px; line-height:40px">lead</div>
+                        <div data-id="4" style="cursor: move; box-shadow:0px -3px #006F6F inset; margin-bottom:5px; border: solid 1px floralwhite; color: floralwhite; background: rgba(0, 111, 111, 0.67); border:solid 1px #006F6F; text-align: center; font-variant: small-caps; font-size: 25px; line-height:40px">tech</div>
+                        <div data-id="5" style="cursor: move; box-shadow:0px -3px #006F6F inset; margin-bottom:5px; border: solid 1px floralwhite; color: floralwhite; background: rgba(0, 111, 111, 0.67); border:solid 1px #006F6F; text-align: center; font-variant: small-caps; font-size: 25px; line-height:40px">qa</div>
+                    </div>
+                                        
+                    <div style="text-align:center; margin-top:44px;"><i style="color:#015D5D" class="fa fa-refresh"></i><tspan style="font-family: 'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;"> Reset Ordering</tspan></div>
+                </div>
+                <div class="col-sm-7" id="chartContainer">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer" style="background: rgba(81, 82, 82, 0.18);">
+            <button id="" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(function () {
+        $("#sortable").sortable({
+            update: function (event, ui) { alert($(ui.item).attr("data-id")); }
+        });
+        $("#sortable").disableSelection();
+    });
+
+</script>
+

@@ -1,0 +1,202 @@
+﻿
+<!--Edit Module Popup-->
+
+<style>
+    .modal-footer {
+        border-top: 1px solid #8A8888;
+    }
+
+    .modal-content {
+        border-radius: 0px;
+    }
+
+    .close {
+        opacity: 1;
+    }
+
+    .rowActive {
+        background: rgba(0, 111, 111, 0.32);
+    }
+
+    .popTag {
+        color:rgba(0, 111, 111, 1);
+    }
+
+        .popTag:hover, .popTag:focus {
+            color:rgba(0, 111, 111, 0.80);
+            text-decoration:none !important;
+        }
+
+        input:focus, textarea:focus, select:focus {
+        outline: 0 !important;
+        border-color: #006F6F !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+    }
+        .vlActive {
+        background: wheat;
+        border: solid 1px #A94545 !important;
+    }
+</style>
+
+<script>
+    function hideEditPop(e) {
+        if ($(e).attr("data-open") == "1")
+            $(e).attr("data-open", "0");
+        else if ($(e).attr("data-open") == "0")
+            $(e).attr("data-open", "1");
+    }
+
+
+    setTimeout(function () {
+        $("#popUpEditModule").click(function (event) {
+            if ($(event.target).hasClass("ng-scope") || $(event.target).attr("class") == "ng-scope ng-pristine ng-valid " || $(event.target).attr("class") == "popover-content") { return; }
+            $(".ng-scope[data-open*='1']").trigger("click");
+            $(".ng-scope[data-open*='1']").attr("data-open", "0");
+            //alert($(event.target).attr("class"));
+        });        
+    },1000);
+
+</script>
+
+<div class="modal-dialog" id="popUpEditModule" style="width: 90%; margin:70px auto;">
+
+    <!-- Modal content-->
+    <div class="modal-content modal-fullscreen" style="width: 100%; border:solid 1px rgb(132, 51, 67);">
+
+        <div class="modal-header" style="background: rgba(177, 56, 79, 0.76); border-bottom:solid 1px #821026; color: floralwhite;">
+            <button type="button" style="color: floralwhite" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" id="modalTitle"></h4>
+        </div>
+        <div class="modal-body">
+
+            <div class="table-responsive">
+                <div id="editApp2" ng-app="editApp" ng-controller="editCtrl">
+                    <div class="container">
+                        <div class="col-sm-6">
+                            <div>Module Name<input class="form-control" id="editModuleName" /></div>
+                            <div>Start Date<input class="form-control" id="editModuleStartDate" type="datetime" /></div>
+                            <div>
+                                Tech Resource
+                                <select id="editTechResource" multiple="multiple" class="js-example-responsive" style="width: 100%">
+                                </select>
+                            </div>
+                            <div>
+                                Analyst Resource
+                                <select id="editDomainResource" multiple="multiple" class="js-example-responsive" style="width: 100%">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div>Tech Duration<input class="form-control" id="editTechDuration" data-ng-model="editTechDuration" /></div>
+                            <div>Analyst Duration<input class="form-control" id="editBADuration" data-ng-model="editAnalystDuration" /></div>
+                            <div>Description<textarea style="height: 96px; resize: vertical" class="form-control" id="editmoduleDesc"></textarea></div>
+                        </div>
+                    </div>
+                    <div id="editmoduleTable" class="container">
+                        <div class="col-sm-12 table-responsive">
+                            <table class="table">
+                                <thead class="thead-default">
+                                    <tr>
+                                        <!-- Developer Duration  -->
+                                        <th>
+                                            <div class="popTag" id="editpp1" popover-template="editdd1"  popover-placement="bottom"  style="-webkit-user-select:none; cursor:pointer" onclick="hideEditPop(this)" data-open="0">Developer Duration <span class="fa fa-pencil-square-o" style="cursor:default"></span></div>
+                                            <script id="editdd1" type="text/ng-template">
+                                                  <input class="form-control" ng-model="editdeveloperPercent" data-btnID="editpp1" style="width:44px; display: inline-block;"/><strong style="display: inline-block;"> %</strong>
+                                            </script>
+                                        </th>
+                                        <!-- BA Duration  -->
+                                        <th>
+                                            <div class="popTag" id="editpp2" popover-template="editdd2"  popover-placement="bottom" style="-webkit-user-select:none; cursor:pointer" onclick="hideEditPop(this)" data-open="0">BA Duration <span class="fa fa-pencil-square-o" style="cursor:default"></span></div>
+                                            <script id="editdd2" type="text/ng-template">
+                                                  <input class="form-control" ng-model="editbaPercent" data-btnID="editpp2"style="width:44px; display: inline-block;"/><strong style="display: inline-block;"> %</strong>
+                                            </script>
+                                        </th>
+                                        <!-- QC Duration  -->
+                                        <th>
+                                            <div class="popTag" id="editpp3" popover-template="editdd3"  popover-placement="bottom" style="-webkit-user-select:none; cursor:pointer" onclick="hideEditPop(this)" data-open="0">QC Duration <span class="fa fa-pencil-square-o" style="cursor:default"></span></div>
+                                            <script id="editdd3" type="text/ng-template">
+                                                  <input class="form-control" ng-model="editqcPercent" data-btnID="editpp3"style="width:44px; display: inline-block;"/><strong style="display: inline-block;"> %</strong>
+                                            </script>
+                                        </th>
+                                        <!-- Lead Duration  -->
+                                        <th>
+                                            <div class="popTag" id="editpp4" popover-template="editdd4"  popover-placement="bottom" style="-webkit-user-select:none; cursor:pointer" onclick="hideEditPop(this)" data-open="0">Lead Duration <span class="fa fa-pencil-square-o" style="cursor:default"></span></div>
+                                            <script id="editdd4" type="text/ng-template">
+                                                  <input class="form-control" ng-model="editleadPercent" data-btnID="editpp4"style="width:44px; display: inline-block;"/><strong style="display: inline-block;"> %</strong>
+                                            </script>
+                                        </th>
+                                        <!-- Domain Duration  -->
+                                        <th>
+                                            <div class="popTag" id="editpp5" popover-template="editdd5"  popover-placement="bottom" style="-webkit-user-select:none; cursor:pointer" onclick="hideEditPop(this)" data-open="0">Domain Duration <span class="fa fa-pencil-square-o" style="cursor:default"></span></div>
+                                            <script id="editdd5" type="text/ng-template">
+                                                  <input class="form-control" ng-model="editdomainPercent" data-btnID="editpp5"style="width:44px; display: inline-block;"/><strong style="display: inline-block;"> %</strong>
+                                            </script>
+                                        </th>
+                                        <!-- Project Duration  -->
+                                        <th>Project Duration</th>
+                                        <!-- Module Duration  -->
+                                        <th>Module Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <!-- Developer Duration -->
+                                        <td>{{editTechDuration * (editdeveloperPercent/100)}}</td>
+                                        <!-- BA Duratio -->
+                                        <td>{{editAnalystDuration * (editbaPercent/100)}}</td>
+                                        <!-- QC Duration -->
+                                        <td>{{editTechDuration * (editqcPercent/100)}}</td>
+                                        <!-- lead Duration -->
+                                        <td>{{editTechDuration * (editleadPercent/100)}}</td>
+                                        <!-- Domain Duration -->
+                                        <td>{{editAnalystDuration * (editdomainPercent/100)}}</td>
+                                        <!-- Project Duration -->
+                                        <td>{{ editparseFloat(editTechDuration) + editparseFloat(editAnalystDuration) }}</td>
+                                        <!-- Module Duration -->
+                                        <td>$ {{(editTechDuration * (editdeveloperPercent/100) * 40 * editTechCost) + (editTechDuration * (editqcPercent/100) * 40 * editQCCost) + (editTechDuration * (editleadPercent/100) * 40 * editLeadCost) + (editAnalystDuration * (editdomainPercent/100) * 40 * editDomainCost) + (editAnalystDuration * (editbaPercent/100) * 40 * editBACost)}}</td>
+                                        
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer" style="background: rgba(81, 82, 82, 0.18);">
+
+            <button type="button" class="btn btn-primary" onclick="">Update</button>
+            <button id="editbtn_Close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+    var editapp = angular.module('editApp', ['ui.bootstrap']);
+    editapp.controller('editCtrl', function ($scope) {
+        $scope.editTechDuration = 0;
+        $scope.editAnalystDuration = 0;
+        $scope.editdeveloperPercent = 50;
+        $scope.editbaPercent = 50;
+        $scope.editqcPercent = 30;
+        $scope.editleadPercent = 20;
+        $scope.editdomainPercent = 50;
+        $scope.editparseFloat = parseFloat;
+
+        $scope.editTechCost = 35;
+        $scope.editBACost = 35;
+        $scope.editLeadCost = 85;
+        $scope.editDomainCost = 85;
+        $scope.editQCCost = 35;
+    });
+    angular.bootstrap(document.getElementById("editApp2"), ['editApp']);
+
+</script>

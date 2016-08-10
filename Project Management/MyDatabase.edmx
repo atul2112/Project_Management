@@ -1,0 +1,1311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="test_pmModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="test_pmModelStoreContainer">
+          <EntitySet Name="DesignationTbl" EntityType="test_pmModel.Store.DesignationTbl" store:Type="Tables" store:Schema="dbo" store:Name="DesignationTbl">
+            <DefiningQuery>SELECT 
+      [DesignationTbl].[DesID] AS [DesID], 
+      [DesignationTbl].[DesName] AS [DesName]
+      FROM [dbo].[DesignationTbl] AS [DesignationTbl]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProjectDetailsTbl" EntityType="test_pmModel.Store.ProjectDetailsTbl" store:Type="Tables" store:Schema="dbo" store:Name="ProjectDetailsTbl">
+            <DefiningQuery>SELECT 
+      [ProjectDetailsTbl].[ProjectID] AS [ProjectID], 
+      [ProjectDetailsTbl].[ProjectName] AS [ProjectName], 
+      [ProjectDetailsTbl].[ProjectImagePath] AS [ProjectImagePath]
+      FROM [dbo].[ProjectDetailsTbl] AS [ProjectDetailsTbl]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ProjectInfoTbl" EntityType="test_pmModel.Store.ProjectInfoTbl" store:Type="Tables" store:Schema="dbo" store:Name="ProjectInfoTbl">
+            <DefiningQuery>SELECT 
+      [ProjectInfoTbl].[ProjectID] AS [ProjectID], 
+      [ProjectInfoTbl].[StartDate] AS [StartDate], 
+      [ProjectInfoTbl].[ProposalDate] AS [ProposalDate], 
+      [ProjectInfoTbl].[Client] AS [Client], 
+      [ProjectInfoTbl].[DomainName] AS [DomainName], 
+      [ProjectInfoTbl].[TeamID] AS [TeamID], 
+      [ProjectInfoTbl].[ResourceIDs] AS [ResourceIDs]
+      FROM [dbo].[ProjectInfoTbl] AS [ProjectInfoTbl]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RoleTbl" EntityType="test_pmModel.Store.RoleTbl" store:Type="Tables" store:Schema="dbo" store:Name="RoleTbl">
+            <DefiningQuery>SELECT 
+      [RoleTbl].[RoleID] AS [RoleID], 
+      [RoleTbl].[RoleName] AS [RoleName]
+      FROM [dbo].[RoleTbl] AS [RoleTbl]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_comment" EntityType="test_pmModel.Store.tbl_comment" store:Type="Tables" store:Schema="dbo" store:Name="tbl_comment">
+            <DefiningQuery>SELECT 
+      [tbl_comment].[projectID] AS [projectID], 
+      [tbl_comment].[commentID] AS [commentID], 
+      [tbl_comment].[commentDate] AS [commentDate], 
+      [tbl_comment].[userID] AS [userID], 
+      [tbl_comment].[userName] AS [userName], 
+      [tbl_comment].[comment] AS [comment]
+      FROM [dbo].[tbl_comment] AS [tbl_comment]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_Cost" EntityType="test_pmModel.Store.tbl_Cost" store:Type="Tables" store:Schema="dbo" store:Name="tbl_Cost">
+            <DefiningQuery>SELECT 
+      [tbl_Cost].[ProjectID] AS [ProjectID], 
+      [tbl_Cost].[TechEstimate] AS [TechEstimate], 
+      [tbl_Cost].[DomainEstimate] AS [DomainEstimate], 
+      [tbl_Cost].[BAEstimate] AS [BAEstimate], 
+      [tbl_Cost].[QCEstimate] AS [QCEstimate], 
+      [tbl_Cost].[TechLeadEstimate] AS [TechLeadEstimate]
+      FROM [dbo].[tbl_Cost] AS [tbl_Cost]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_detail" EntityType="test_pmModel.Store.tbl_detail" store:Type="Tables" store:Schema="dbo" store:Name="tbl_detail">
+            <DefiningQuery>SELECT 
+      [tbl_detail].[DetailID] AS [DetailID], 
+      [tbl_detail].[Detail] AS [Detail]
+      FROM [dbo].[tbl_detail] AS [tbl_detail]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_module" EntityType="test_pmModel.Store.tbl_module" store:Type="Tables" store:Schema="dbo" store:Name="tbl_module">
+            <DefiningQuery>SELECT 
+      [tbl_module].[ModuleID] AS [ModuleID], 
+      [tbl_module].[ModuleTitle] AS [ModuleTitle], 
+      [tbl_module].[ModuleWeight] AS [ModuleWeight], 
+      [tbl_module].[PercentComplete] AS [PercentComplete], 
+      [tbl_module].[ModuleTeamInfo] AS [ModuleTeamInfo], 
+      [tbl_module].[ProjectInfo] AS [ProjectInfo], 
+      [tbl_module].[StartDate] AS [StartDate], 
+      [tbl_module].[EndDate] AS [EndDate], 
+      [tbl_module].[ModuleDescription] AS [ModuleDescription], 
+      [tbl_module].[ModuleFiles] AS [ModuleFiles]
+      FROM [dbo].[tbl_module] AS [tbl_module]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_moduleteam" EntityType="test_pmModel.Store.tbl_moduleteam" store:Type="Tables" store:Schema="dbo" store:Name="tbl_moduleteam">
+            <DefiningQuery>SELECT 
+      [tbl_moduleteam].[ModuleTeamID] AS [ModuleTeamID], 
+      [tbl_moduleteam].[MemberInfo] AS [MemberInfo], 
+      [tbl_moduleteam].[ProjectInfo] AS [ProjectInfo]
+      FROM [dbo].[tbl_moduleteam] AS [tbl_moduleteam]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_mom" EntityType="test_pmModel.Store.tbl_mom" store:Type="Tables" store:Schema="dbo" store:Name="tbl_mom">
+            <DefiningQuery>SELECT 
+      [tbl_mom].[MomID] AS [MomID], 
+      [tbl_mom].[ProjectInfo] AS [ProjectInfo], 
+      [tbl_mom].[TimeStamp] AS [TimeStamp], 
+      [tbl_mom].[MomContent] AS [MomContent], 
+      [tbl_mom].[MomFile] AS [MomFile]
+      FROM [dbo].[tbl_mom] AS [tbl_mom]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_projectdetails" EntityType="test_pmModel.Store.tbl_projectdetails" store:Type="Tables" store:Schema="dbo" store:Name="tbl_projectdetails">
+            <DefiningQuery>SELECT 
+      [tbl_projectdetails].[ProjectID] AS [ProjectID], 
+      [tbl_projectdetails].[Title] AS [Title], 
+      [tbl_projectdetails].[Description] AS [Description], 
+      [tbl_projectdetails].[DomainTeam] AS [DomainTeam], 
+      [tbl_projectdetails].[DomainLead] AS [DomainLead], 
+      [tbl_projectdetails].[TechLead] AS [TechLead], 
+      [tbl_projectdetails].[QCLead] AS [QCLead], 
+      [tbl_projectdetails].[DomainResource] AS [DomainResource], 
+      [tbl_projectdetails].[TechResource] AS [TechResource], 
+      [tbl_projectdetails].[Modules] AS [Modules], 
+      [tbl_projectdetails].[EstimatedCost] AS [EstimatedCost], 
+      [tbl_projectdetails].[ProjectLogo] AS [ProjectLogo], 
+      [tbl_projectdetails].[ProjectDetails] AS [ProjectDetails], 
+      [tbl_projectdetails].[StartDate] AS [StartDate], 
+      [tbl_projectdetails].[Duration] AS [Duration], 
+      [tbl_projectdetails].[TechTeam] AS [TechTeam], 
+      [tbl_projectdetails].[CreatedDate] AS [CreatedDate], 
+      [tbl_projectdetails].[CreatedBy] AS [CreatedBy], 
+      [tbl_projectdetails].[ProjectType] AS [ProjectType], 
+      [tbl_projectdetails].[ClientName] AS [ClientName], 
+      [tbl_projectdetails].[TotalCost] AS [TotalCost], 
+      [tbl_projectdetails].[CurrencyType] AS [CurrencyType]
+      FROM [dbo].[tbl_projectdetails] AS [tbl_projectdetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_ProjectEstimate" EntityType="test_pmModel.Store.tbl_ProjectEstimate" store:Type="Tables" store:Schema="dbo" store:Name="tbl_ProjectEstimate">
+            <DefiningQuery>SELECT 
+      [tbl_ProjectEstimate].[ProjectID] AS [ProjectID], 
+      [tbl_ProjectEstimate].[ModuleID] AS [ModuleID], 
+      [tbl_ProjectEstimate].[TechDuration] AS [TechDuration], 
+      [tbl_ProjectEstimate].[AnalystDuration] AS [AnalystDuration], 
+      [tbl_ProjectEstimate].[TechResource] AS [TechResource], 
+      [tbl_ProjectEstimate].[AnalystResource] AS [AnalystResource], 
+      [tbl_ProjectEstimate].[DeveloperDuration] AS [DeveloperDuration], 
+      [tbl_ProjectEstimate].[BADuration] AS [BADuration], 
+      [tbl_ProjectEstimate].[QCDuration] AS [QCDuration], 
+      [tbl_ProjectEstimate].[LeadDuration] AS [LeadDuration], 
+      [tbl_ProjectEstimate].[DomainDuration] AS [DomainDuration], 
+      [tbl_ProjectEstimate].[ModuleCost] AS [ModuleCost]
+      FROM [dbo].[tbl_ProjectEstimate] AS [tbl_ProjectEstimate]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_team" EntityType="test_pmModel.Store.tbl_team" store:Type="Tables" store:Schema="dbo" store:Name="tbl_team">
+            <DefiningQuery>SELECT 
+      [tbl_team].[TeamID] AS [TeamID], 
+      [tbl_team].[MemberInfo] AS [MemberInfo]
+      FROM [dbo].[tbl_team] AS [tbl_team]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TeamTbl" EntityType="test_pmModel.Store.TeamTbl" store:Type="Tables" store:Schema="dbo" store:Name="TeamTbl">
+            <DefiningQuery>SELECT 
+      [TeamTbl].[TeamID] AS [TeamID], 
+      [TeamTbl].[TeamName] AS [TeamName]
+      FROM [dbo].[TeamTbl] AS [TeamTbl]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserInfoTbl" EntityType="test_pmModel.Store.UserInfoTbl" store:Type="Tables" store:Schema="dbo" store:Name="UserInfoTbl">
+            <DefiningQuery>SELECT 
+      [UserInfoTbl].[UserID] AS [UserID], 
+      [UserInfoTbl].[Username] AS [Username], 
+      [UserInfoTbl].[Password] AS [Password], 
+      [UserInfoTbl].[RoleID] AS [RoleID], 
+      [UserInfoTbl].[DesignationID] AS [DesignationID], 
+      [UserInfoTbl].[TeamID] AS [TeamID], 
+      [UserInfoTbl].[FirstName] AS [FirstName], 
+      [UserInfoTbl].[LastName] AS [LastName], 
+      [UserInfoTbl].[EmailID] AS [EmailID]
+      FROM [dbo].[UserInfoTbl] AS [UserInfoTbl]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserProjectTbl" EntityType="test_pmModel.Store.UserProjectTbl" store:Type="Tables" store:Schema="dbo" store:Name="UserProjectTbl">
+            <DefiningQuery>SELECT 
+      [UserProjectTbl].[ProjectID] AS [ProjectID], 
+      [UserProjectTbl].[UserID] AS [UserID]
+      FROM [dbo].[UserProjectTbl] AS [UserProjectTbl]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.DesignationTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="DesignationTbl">
+          <Key>
+            <PropertyRef Name="DesID" />
+            <PropertyRef Name="DesName" />
+          </Key>
+          <Property Name="DesID" Type="int" Nullable="false" />
+          <Property Name="DesName" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.ProjectDetailsTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ProjectDetailsTbl">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+            <PropertyRef Name="ProjectName" />
+            <PropertyRef Name="ProjectImagePath" />
+          </Key>
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="ProjectName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ProjectImagePath" Type="varchar" Nullable="false" MaxLength="300" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.ProjectInfoTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ProjectInfoTbl">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="ProposalDate" />
+            <PropertyRef Name="Client" />
+            <PropertyRef Name="DomainName" />
+            <PropertyRef Name="TeamID" />
+            <PropertyRef Name="ResourceIDs" />
+          </Key>
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ProposalDate" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Client" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="DomainName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="TeamID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ResourceIDs" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.RoleTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="RoleTbl">
+          <Key>
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="RoleName" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.tbl_comment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tbl_comment">
+          <Key>
+            <PropertyRef Name="projectID" />
+            <PropertyRef Name="commentID" />
+          </Key>
+          <Property Name="projectID" Type="int" Nullable="false" />
+          <Property Name="commentID" Type="int" Nullable="false" />
+          <Property Name="commentDate" Type="varchar" MaxLength="50" />
+          <Property Name="userID" Type="int" />
+          <Property Name="userName" Type="varchar" MaxLength="50" />
+          <Property Name="comment" Type="varchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.tbl_Cost' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tbl_Cost">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="TechEstimate" Type="int" />
+          <Property Name="DomainEstimate" Type="int" />
+          <Property Name="BAEstimate" Type="int" />
+          <Property Name="QCEstimate" Type="int" />
+          <Property Name="TechLeadEstimate" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.tbl_detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tbl_detail">
+          <Key>
+            <PropertyRef Name="DetailID" />
+          </Key>
+          <Property Name="DetailID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Detail" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.tbl_module' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tbl_module">
+          <Key>
+            <PropertyRef Name="ModuleID" />
+            <PropertyRef Name="ModuleTitle" />
+            <PropertyRef Name="ModuleWeight" />
+            <PropertyRef Name="PercentComplete" />
+            <PropertyRef Name="ModuleDescription" />
+          </Key>
+          <Property Name="ModuleID" Type="int" Nullable="false" />
+          <Property Name="ModuleTitle" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ModuleWeight" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="PercentComplete" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="ModuleTeamInfo" Type="varchar" MaxLength="400" />
+          <Property Name="ProjectInfo" Type="int" />
+          <Property Name="StartDate" Type="varchar" MaxLength="50" />
+          <Property Name="EndDate" Type="varchar" MaxLength="50" />
+          <Property Name="ModuleDescription" Type="varchar(max)" Nullable="false" />
+          <Property Name="ModuleFiles" Type="varchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.tbl_moduleteam' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tbl_moduleteam">
+          <Key>
+            <PropertyRef Name="ModuleTeamID" />
+            <PropertyRef Name="MemberInfo" />
+            <PropertyRef Name="ProjectInfo" />
+          </Key>
+          <Property Name="ModuleTeamID" Type="int" Nullable="false" />
+          <Property Name="MemberInfo" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="ProjectInfo" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.tbl_mom' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tbl_mom">
+          <Key>
+            <PropertyRef Name="MomID" />
+            <PropertyRef Name="ProjectInfo" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="MomContent" />
+          </Key>
+          <Property Name="MomID" Type="int" Nullable="false" />
+          <Property Name="ProjectInfo" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="TimeStamp" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="MomContent" Type="varchar(max)" Nullable="false" />
+          <Property Name="MomFile" Type="varchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.tbl_projectdetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tbl_projectdetails">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="Description" />
+          </Key>
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar(max)" Nullable="false" />
+          <Property Name="DomainTeam" Type="int" />
+          <Property Name="DomainLead" Type="int" />
+          <Property Name="TechLead" Type="int" />
+          <Property Name="QCLead" Type="int" />
+          <Property Name="DomainResource" Type="varchar(max)" />
+          <Property Name="TechResource" Type="varchar(max)" />
+          <Property Name="Modules" Type="varchar(max)" />
+          <Property Name="EstimatedCost" Type="varchar" MaxLength="50" />
+          <Property Name="ProjectLogo" Type="varchar(max)" />
+          <Property Name="ProjectDetails" Type="varchar(max)" />
+          <Property Name="StartDate" Type="varchar" MaxLength="50" />
+          <Property Name="Duration" Type="varchar" MaxLength="50" />
+          <Property Name="TechTeam" Type="int" />
+          <Property Name="CreatedDate" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ProjectType" Type="varchar" MaxLength="10" />
+          <Property Name="ClientName" Type="varchar" MaxLength="100" />
+          <Property Name="TotalCost" Type="varchar" MaxLength="50" />
+          <Property Name="CurrencyType" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.tbl_ProjectEstimate' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tbl_ProjectEstimate">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+            <PropertyRef Name="ModuleID" />
+          </Key>
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="ModuleID" Type="int" Nullable="false" />
+          <Property Name="TechDuration" Type="int" />
+          <Property Name="AnalystDuration" Type="int" />
+          <Property Name="TechResource" Type="varchar(max)" />
+          <Property Name="AnalystResource" Type="varchar(max)" />
+          <Property Name="DeveloperDuration" Type="varchar" MaxLength="50" />
+          <Property Name="BADuration" Type="varchar" MaxLength="50" />
+          <Property Name="QCDuration" Type="varchar" MaxLength="50" />
+          <Property Name="LeadDuration" Type="varchar" MaxLength="50" />
+          <Property Name="DomainDuration" Type="varchar" MaxLength="50" />
+          <Property Name="ModuleCost" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.tbl_team' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tbl_team">
+          <Key>
+            <PropertyRef Name="TeamID" />
+          </Key>
+          <Property Name="TeamID" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="MemberInfo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.TeamTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="TeamTbl">
+          <Key>
+            <PropertyRef Name="TeamID" />
+            <PropertyRef Name="TeamName" />
+          </Key>
+          <Property Name="TeamID" Type="int" Nullable="false" />
+          <Property Name="TeamName" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.UserInfoTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="UserInfoTbl">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="DesignationID" />
+            <PropertyRef Name="TeamID" />
+            <PropertyRef Name="FirstName" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Username" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="DesignationID" Type="int" Nullable="false" />
+          <Property Name="TeamID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" />
+          <Property Name="EmailID" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.UserProjectTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="UserProjectTbl">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <Function Name="tbl_comment_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="projectID" Type="int" Mode="In" />
+          <Parameter Name="commentID" Type="int" Mode="In" />
+          <Parameter Name="commentDate" Type="varchar" Mode="In" />
+          <Parameter Name="userID" Type="int" Mode="In" />
+          <Parameter Name="userName" Type="varchar" Mode="In" />
+          <Parameter Name="comment" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="tbl_Cost_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tbl_Cost_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+          <Parameter Name="TechEstimate" Type="int" Mode="In" />
+          <Parameter Name="DomainEstimate" Type="int" Mode="In" />
+          <Parameter Name="BAEstimate" Type="int" Mode="In" />
+          <Parameter Name="QCEstimate" Type="int" Mode="In" />
+          <Parameter Name="TechLeadEstimate" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tbl_module_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tbl_module_Delete_ModuleID_" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" StoreFunctionName="tbl_module_Delete(ModuleID)" Schema="dbo">
+          <Parameter Name="ModuleID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tbl_module_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ModuleID" Type="int" Mode="In" />
+          <Parameter Name="ModuleTitle" Type="varchar" Mode="In" />
+          <Parameter Name="ModuleWeight" Type="varchar" Mode="In" />
+          <Parameter Name="PercentComplete" Type="varchar" Mode="In" />
+          <Parameter Name="ModuleTeamInfo" Type="varchar" Mode="In" />
+          <Parameter Name="ProjectInfo" Type="int" Mode="In" />
+          <Parameter Name="StartDate" Type="varchar" Mode="In" />
+          <Parameter Name="EndDate" Type="varchar" Mode="In" />
+          <Parameter Name="ModuleDescription" Type="varchar(max)" Mode="In" />
+          <Parameter Name="ModuleFiles" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="tbl_module_UpdateFile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ModuleID" Type="int" Mode="In" />
+          <Parameter Name="ModuleFiles" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="tbl_mom_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="tbl_mom_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MomID" Type="int" Mode="In" />
+          <Parameter Name="ProjectInfo" Type="varchar" Mode="In" />
+          <Parameter Name="TimeStamp" Type="varchar" Mode="In" />
+          <Parameter Name="MomContent" Type="varchar(max)" Mode="In" />
+          <Parameter Name="MomFile" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="tbl_projectdetail_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="varchar" Mode="In" />
+          <Parameter Name="Title" Type="varchar" Mode="In" />
+          <Parameter Name="Description" Type="varchar(max)" Mode="In" />
+          <Parameter Name="DomainInfo" Type="varchar" Mode="In" />
+          <Parameter Name="TechTeamInfo" Type="varchar" Mode="In" />
+          <Parameter Name="ManagerInfo" Type="varchar" Mode="In" />
+          <Parameter Name="DetailInfo" Type="varchar" Mode="In" />
+          <Parameter Name="ClientInfo" Type="varchar" Mode="In" />
+          <Parameter Name="TeamMemberInfo" Type="varchar" Mode="In" />
+          <Parameter Name="CurrentReleaseName" Type="varchar" Mode="In" />
+          <Parameter Name="EstimatedCost" Type="varchar" Mode="In" />
+          <Parameter Name="ProjectHealthStatus" Type="varchar" Mode="In" />
+          <Parameter Name="CommentInfo" Type="varchar" Mode="In" />
+          <Parameter Name="ImgPath" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="tbl_projectdetails_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tbl_projectdetails_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+          <Parameter Name="Title" Type="varchar" Mode="In" />
+          <Parameter Name="Description" Type="varchar(max)" Mode="In" />
+          <Parameter Name="DomainTeam" Type="int" Mode="In" />
+          <Parameter Name="DomainLead" Type="int" Mode="In" />
+          <Parameter Name="TechLead" Type="int" Mode="In" />
+          <Parameter Name="QCLead" Type="int" Mode="In" />
+          <Parameter Name="DomainResource" Type="varchar(max)" Mode="In" />
+          <Parameter Name="TechResource" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Modules" Type="varchar(max)" Mode="In" />
+          <Parameter Name="EstimatedCost" Type="varchar" Mode="In" />
+          <Parameter Name="ProjectLogo" Type="varchar(max)" Mode="In" />
+          <Parameter Name="ProjectDetails" Type="varchar(max)" Mode="In" />
+          <Parameter Name="StartDate" Type="varchar" Mode="In" />
+          <Parameter Name="Duration" Type="varchar" Mode="In" />
+          <Parameter Name="TechTeam" Type="int" Mode="In" />
+          <Parameter Name="CreatedDate" Type="varchar" Mode="In" />
+          <Parameter Name="CreatedBy" Type="varchar" Mode="In" />
+          <Parameter Name="ProjectType" Type="varchar" Mode="In" />
+          <Parameter Name="ClientName" Type="varchar" Mode="In" />
+          <Parameter Name="TotalCost" Type="varchar" Mode="In" />
+          <Parameter Name="CurrencyType" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="tbl_projectdetails_UpdateTechDomainResource" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+          <Parameter Name="TechResource" Type="varchar(max)" Mode="In" />
+          <Parameter Name="AnalystResource" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="tbl_ProjectEstimate_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tbl_ProjectEstimate_Delete_ModuleID_" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" StoreFunctionName="tbl_ProjectEstimate_Delete(ModuleID)" Schema="dbo">
+          <Parameter Name="ModuleID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tbl_ProjectEstimate_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+          <Parameter Name="ModuleID" Type="int" Mode="In" />
+          <Parameter Name="TechDuration" Type="int" Mode="In" />
+          <Parameter Name="AnalystDuration" Type="int" Mode="In" />
+          <Parameter Name="TechResource" Type="varchar(max)" Mode="In" />
+          <Parameter Name="AnalystResource" Type="varchar(max)" Mode="In" />
+          <Parameter Name="DeveloperDuration" Type="varchar" Mode="In" />
+          <Parameter Name="BADuration" Type="varchar" Mode="In" />
+          <Parameter Name="QCDuration" Type="varchar" Mode="In" />
+          <Parameter Name="LeadDuration" Type="varchar" Mode="In" />
+          <Parameter Name="DomainDuration" Type="varchar" Mode="In" />
+          <Parameter Name="ModuleCost" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="tbl_WeekEstimate_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProjectID" Type="int" Mode="In" />
+          <Parameter Name="ModuleID" Type="int" Mode="In" />
+          <Parameter Name="TechDuration" Type="int" Mode="In" />
+          <Parameter Name="BADuration" Type="int" Mode="In" />
+          <Parameter Name="QCDuration" Type="int" Mode="In" />
+          <Parameter Name="LeadDuration" Type="int" Mode="In" />
+          <Parameter Name="DomainDuration" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="test_pmModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="test_pmEntities2" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="DesignationTbls" EntityType="test_pmModel.DesignationTbl" />
+          <EntitySet Name="ProjectDetailsTbls" EntityType="test_pmModel.ProjectDetailsTbl" />
+          <EntitySet Name="ProjectInfoTbls" EntityType="test_pmModel.ProjectInfoTbl" />
+          <EntitySet Name="RoleTbls" EntityType="test_pmModel.RoleTbl" />
+          <EntitySet Name="tbl_Cost" EntityType="test_pmModel.tbl_Cost" />
+          <EntitySet Name="tbl_detail" EntityType="test_pmModel.tbl_detail" />
+          <EntitySet Name="tbl_module" EntityType="test_pmModel.tbl_module" />
+          <EntitySet Name="tbl_moduleteam" EntityType="test_pmModel.tbl_moduleteam" />
+          <EntitySet Name="tbl_mom" EntityType="test_pmModel.tbl_mom" />
+          <EntitySet Name="tbl_team" EntityType="test_pmModel.tbl_team" />
+          <EntitySet Name="TeamTbls" EntityType="test_pmModel.TeamTbl" />
+          <EntitySet Name="UserInfoTbls" EntityType="test_pmModel.UserInfoTbl" />
+          <EntitySet Name="UserProjectTbls" EntityType="test_pmModel.UserProjectTbl" />
+          <FunctionImport Name="tbl_Cost_Insert">
+            <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+            <Parameter Name="TechEstimate" Mode="In" Type="Int32" />
+            <Parameter Name="DomainEstimate" Mode="In" Type="Int32" />
+            <Parameter Name="BAEstimate" Mode="In" Type="Int32" />
+            <Parameter Name="QCEstimate" Mode="In" Type="Int32" />
+            <Parameter Name="TechLeadEstimate" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tbl_module_Insert">
+            <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+            <Parameter Name="ModuleTitle" Mode="In" Type="String" />
+            <Parameter Name="ModuleWeight" Mode="In" Type="String" />
+            <Parameter Name="PercentComplete" Mode="In" Type="String" />
+            <Parameter Name="ModuleTeamInfo" Mode="In" Type="String" />
+            <Parameter Name="ProjectInfo" Mode="In" Type="Int32" />
+            <Parameter Name="StartDate" Mode="In" Type="String" />
+            <Parameter Name="EndDate" Mode="In" Type="String" />
+            <Parameter Name="ModuleDescription" Mode="In" Type="String" />
+            <Parameter Name="ModuleFiles" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="tbl_mom_Insert">
+            <Parameter Name="MomID" Mode="In" Type="Int32" />
+            <Parameter Name="ProjectInfo" Mode="In" Type="String" />
+            <Parameter Name="TimeStamp" Mode="In" Type="String" />
+            <Parameter Name="MomContent" Mode="In" Type="String" />
+            <Parameter Name="MomFile" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="tbl_projectdetail_Insert">
+            <Parameter Name="ProjectID" Mode="In" Type="String" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="DomainInfo" Mode="In" Type="String" />
+            <Parameter Name="TechTeamInfo" Mode="In" Type="String" />
+            <Parameter Name="ManagerInfo" Mode="In" Type="String" />
+            <Parameter Name="DetailInfo" Mode="In" Type="String" />
+            <Parameter Name="ClientInfo" Mode="In" Type="String" />
+            <Parameter Name="TeamMemberInfo" Mode="In" Type="String" />
+            <Parameter Name="CurrentReleaseName" Mode="In" Type="String" />
+            <Parameter Name="EstimatedCost" Mode="In" Type="String" />
+            <Parameter Name="ProjectHealthStatus" Mode="In" Type="String" />
+            <Parameter Name="CommentInfo" Mode="In" Type="String" />
+            <Parameter Name="ImgPath" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="tbl_projectdetails_Insert">
+            <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+            <Parameter Name="Title" Mode="In" Type="String" />
+            <Parameter Name="Description" Mode="In" Type="String" />
+            <Parameter Name="DomainTeam" Mode="In" Type="Int32" />
+            <Parameter Name="DomainLead" Mode="In" Type="Int32" />
+            <Parameter Name="TechLead" Mode="In" Type="Int32" />
+            <Parameter Name="QCLead" Mode="In" Type="Int32" />
+            <Parameter Name="DomainResource" Mode="In" Type="String" />
+            <Parameter Name="TechResource" Mode="In" Type="String" />
+            <Parameter Name="Modules" Mode="In" Type="String" />
+            <Parameter Name="EstimatedCost" Mode="In" Type="String" />
+            <Parameter Name="ProjectLogo" Mode="In" Type="String" />
+            <Parameter Name="ProjectDetails" Mode="In" Type="String" />
+            <Parameter Name="StartDate" Mode="In" Type="String" />
+            <Parameter Name="Duration" Mode="In" Type="String" />
+            <Parameter Name="TechTeam" Mode="In" Type="Int32" />
+            <Parameter Name="CreatedDate" Mode="In" Type="String" />
+            <Parameter Name="CreatedBy" Mode="In" Type="String" />
+            <Parameter Name="ProjectType" Mode="In" Type="String" />
+            <Parameter Name="ClientName" Mode="In" Type="String" />
+            <Parameter Name="TotalCost" Mode="In" Type="String" />
+            <Parameter Name="CurrencyType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="tbl_ProjectEstimate_Insert">
+            <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+            <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+            <Parameter Name="TechDuration" Mode="In" Type="Int32" />
+            <Parameter Name="AnalystDuration" Mode="In" Type="Int32" />
+            <Parameter Name="TechResource" Mode="In" Type="String" />
+            <Parameter Name="AnalystResource" Mode="In" Type="String" />
+            <Parameter Name="DeveloperDuration" Mode="In" Type="String" />
+            <Parameter Name="BADuration" Mode="In" Type="String" />
+            <Parameter Name="QCDuration" Mode="In" Type="String" />
+            <Parameter Name="LeadDuration" Mode="In" Type="String" />
+            <Parameter Name="DomainDuration" Mode="In" Type="String" />
+            <Parameter Name="ModuleCost" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="tbl_WeekEstimate_Insert">
+            <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+            <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+            <Parameter Name="TechDuration" Mode="In" Type="Int32" />
+            <Parameter Name="BADuration" Mode="In" Type="Int32" />
+            <Parameter Name="QCDuration" Mode="In" Type="Int32" />
+            <Parameter Name="LeadDuration" Mode="In" Type="Int32" />
+            <Parameter Name="DomainDuration" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tbl_projectdetails_Delete">
+          <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteProject">
+          <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tbl_Cost_Delete">
+          <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tbl_module_Delete">
+          <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tbl_mom_Delete">
+          <Parameter Name="ProjectID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="tbl_ProjectEstimate_Delete">
+          <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteMom">
+          <Parameter Name="ProjectID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteModule">
+          <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteCost">
+          <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteProjectEstimate">
+          <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tbl_module_Delete_ModuleID_">
+          <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tbl_ProjectEstimate_Delete_ModuleID_">
+          <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteModuleByModuleID">
+          <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteProjectEstimateByModuleID">
+          <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tbl_module_UpdateFile">
+            <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+            <Parameter Name="ModuleFiles" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UploadModuleFiles" EntitySet="tbl_module" ReturnType="Collection(test_pmModel.tbl_module)">
+            <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+            <Parameter Name="ModuleFiles" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateModuleFiles">
+            <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+            <Parameter Name="ModuleFiles" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateModuleFile">
+            <Parameter Name="ModuleID" Mode="In" Type="Int32" />
+            <Parameter Name="ModuleFiles" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="tbl_comment" EntityType="test_pmModel.tbl_comment" />
+          <FunctionImport Name="tbl_comment_Insert">
+            <Parameter Name="projectID" Mode="In" Type="Int32" />
+            <Parameter Name="commentID" Mode="In" Type="Int32" />
+            <Parameter Name="commentDate" Mode="In" Type="String" />
+            <Parameter Name="userID" Mode="In" Type="Int32" />
+            <Parameter Name="userName" Mode="In" Type="String" />
+            <Parameter Name="comment" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertComment" EntitySet="tbl_comment" ReturnType="Collection(test_pmModel.tbl_comment)">
+            <Parameter Name="projectID" Mode="In" Type="Int32" />
+            <Parameter Name="commentID" Mode="In" Type="Int32" />
+            <Parameter Name="commentDate" Mode="In" Type="String" />
+            <Parameter Name="userID" Mode="In" Type="Int32" />
+            <Parameter Name="userName" Mode="In" Type="String" />
+            <Parameter Name="comment" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="tbl_projectdetails" EntityType="test_pmModel.tbl_projectdetails" />
+          <EntitySet Name="tbl_ProjectEstimate" EntityType="test_pmModel.tbl_ProjectEstimate" />
+          <FunctionImport Name="tbl_projectdetails_UpdateTechDomainResource">
+            <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+            <Parameter Name="TechResource" Mode="In" Type="String" />
+            <Parameter Name="AnalystResource" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateTechDomainResource">
+            <Parameter Name="ProjectID" Mode="In" Type="Int32" />
+            <Parameter Name="TechResource" Mode="In" Type="String" />
+            <Parameter Name="AnalystResource" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="DesignationTbl">
+          <Key>
+            <PropertyRef Name="DesID" />
+            <PropertyRef Name="DesName" />
+          </Key>
+          <Property Name="DesID" Type="Int32" Nullable="false" />
+          <Property Name="DesName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ProjectDetailsTbl">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+            <PropertyRef Name="ProjectName" />
+            <PropertyRef Name="ProjectImagePath" />
+          </Key>
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ProjectImagePath" Type="String" Nullable="false" MaxLength="300" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ProjectInfoTbl">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="ProposalDate" />
+            <PropertyRef Name="Client" />
+            <PropertyRef Name="DomainName" />
+            <PropertyRef Name="TeamID" />
+            <PropertyRef Name="ResourceIDs" />
+          </Key>
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ProposalDate" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Client" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DomainName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TeamID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ResourceIDs" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="RoleTbl">
+          <Key>
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="RoleName" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbl_Cost">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="TechEstimate" Type="Int32" />
+          <Property Name="DomainEstimate" Type="Int32" />
+          <Property Name="BAEstimate" Type="Int32" />
+          <Property Name="QCEstimate" Type="Int32" />
+          <Property Name="TechLeadEstimate" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_detail">
+          <Key>
+            <PropertyRef Name="DetailID" />
+          </Key>
+          <Property Name="DetailID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Detail" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbl_module">
+          <Key>
+            <PropertyRef Name="ModuleID" />
+            <PropertyRef Name="ModuleTitle" />
+            <PropertyRef Name="ModuleWeight" />
+            <PropertyRef Name="PercentComplete" />
+            <PropertyRef Name="ModuleDescription" />
+          </Key>
+          <Property Name="ModuleID" Type="Int32" Nullable="false" />
+          <Property Name="ModuleTitle" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ModuleWeight" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PercentComplete" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ModuleTeamInfo" Type="String" MaxLength="400" Unicode="false" FixedLength="false" />
+          <Property Name="ProjectInfo" Type="Int32" />
+          <Property Name="StartDate" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="EndDate" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ModuleDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="ModuleFiles" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_moduleteam">
+          <Key>
+            <PropertyRef Name="ModuleTeamID" />
+            <PropertyRef Name="MemberInfo" />
+            <PropertyRef Name="ProjectInfo" />
+          </Key>
+          <Property Name="ModuleTeamID" Type="Int32" Nullable="false" />
+          <Property Name="MemberInfo" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="ProjectInfo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_mom">
+          <Key>
+            <PropertyRef Name="MomID" />
+            <PropertyRef Name="ProjectInfo" />
+            <PropertyRef Name="TimeStamp" />
+            <PropertyRef Name="MomContent" />
+          </Key>
+          <Property Name="MomID" Type="Int32" Nullable="false" />
+          <Property Name="ProjectInfo" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TimeStamp" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="MomContent" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="MomFile" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbl_team">
+          <Key>
+            <PropertyRef Name="TeamID" />
+          </Key>
+          <Property Name="TeamID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="MemberInfo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TeamTbl">
+          <Key>
+            <PropertyRef Name="TeamID" />
+            <PropertyRef Name="TeamName" />
+          </Key>
+          <Property Name="TeamID" Type="Int32" Nullable="false" />
+          <Property Name="TeamName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserInfoTbl">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Password" />
+            <PropertyRef Name="RoleID" />
+            <PropertyRef Name="DesignationID" />
+            <PropertyRef Name="TeamID" />
+            <PropertyRef Name="FirstName" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="DesignationID" Type="Int32" Nullable="false" />
+          <Property Name="TeamID" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="EmailID" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserProjectTbl">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_comment">
+          <Key>
+            <PropertyRef Name="projectID" />
+            <PropertyRef Name="commentID" />
+          </Key>
+          <Property Type="Int32" Name="projectID" Nullable="false" />
+          <Property Type="Int32" Name="commentID" Nullable="false" />
+          <Property Type="String" Name="commentDate" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="userID" />
+          <Property Type="String" Name="userName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="comment" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_projectdetails">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="Description" />
+          </Key>
+          <Property Type="Int32" Name="ProjectID" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="DomainTeam" />
+          <Property Type="Int32" Name="DomainLead" />
+          <Property Type="Int32" Name="TechLead" />
+          <Property Type="Int32" Name="QCLead" />
+          <Property Type="String" Name="DomainResource" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TechResource" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Modules" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EstimatedCost" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ProjectLogo" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ProjectDetails" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="StartDate" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Duration" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="TechTeam" />
+          <Property Type="String" Name="CreatedDate" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ProjectType" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ClientName" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TotalCost" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CurrencyType" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_ProjectEstimate">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+            <PropertyRef Name="ModuleID" />
+          </Key>
+          <Property Type="Int32" Name="ProjectID" Nullable="false" />
+          <Property Type="Int32" Name="ModuleID" Nullable="false" />
+          <Property Type="Int32" Name="TechDuration" />
+          <Property Type="Int32" Name="AnalystDuration" />
+          <Property Type="String" Name="TechResource" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AnalystResource" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DeveloperDuration" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BADuration" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="QCDuration" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LeadDuration" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DomainDuration" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ModuleCost" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="test_pmModelStoreContainer" CdmEntityContainer="test_pmEntities2">
+          <EntitySetMapping Name="DesignationTbls">
+            <EntityTypeMapping TypeName="test_pmModel.DesignationTbl">
+              <MappingFragment StoreEntitySet="DesignationTbl">
+                <ScalarProperty Name="DesID" ColumnName="DesID" />
+                <ScalarProperty Name="DesName" ColumnName="DesName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectDetailsTbls">
+            <EntityTypeMapping TypeName="test_pmModel.ProjectDetailsTbl">
+              <MappingFragment StoreEntitySet="ProjectDetailsTbl">
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectImagePath" ColumnName="ProjectImagePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectInfoTbls">
+            <EntityTypeMapping TypeName="test_pmModel.ProjectInfoTbl">
+              <MappingFragment StoreEntitySet="ProjectInfoTbl">
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ProposalDate" ColumnName="ProposalDate" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="DomainName" ColumnName="DomainName" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="ResourceIDs" ColumnName="ResourceIDs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleTbls">
+            <EntityTypeMapping TypeName="test_pmModel.RoleTbl">
+              <MappingFragment StoreEntitySet="RoleTbl">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Cost">
+            <EntityTypeMapping TypeName="test_pmModel.tbl_Cost">
+              <MappingFragment StoreEntitySet="tbl_Cost">
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="TechEstimate" ColumnName="TechEstimate" />
+                <ScalarProperty Name="DomainEstimate" ColumnName="DomainEstimate" />
+                <ScalarProperty Name="BAEstimate" ColumnName="BAEstimate" />
+                <ScalarProperty Name="QCEstimate" ColumnName="QCEstimate" />
+                <ScalarProperty Name="TechLeadEstimate" ColumnName="TechLeadEstimate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="test_pmModel.tbl_Cost">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="test_pmModel.Store.tbl_Cost_Insert">
+                  <ScalarProperty Name="TechLeadEstimate" ParameterName="TechLeadEstimate" />
+                  <ScalarProperty Name="QCEstimate" ParameterName="QCEstimate" />
+                  <ScalarProperty Name="BAEstimate" ParameterName="BAEstimate" />
+                  <ScalarProperty Name="DomainEstimate" ParameterName="DomainEstimate" />
+                  <ScalarProperty Name="TechEstimate" ParameterName="TechEstimate" />
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" />
+                </InsertFunction>
+                <DeleteFunction FunctionName="test_pmModel.Store.tbl_Cost_Delete">
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_detail">
+            <EntityTypeMapping TypeName="test_pmModel.tbl_detail">
+              <MappingFragment StoreEntitySet="tbl_detail">
+                <ScalarProperty Name="DetailID" ColumnName="DetailID" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_module">
+            <EntityTypeMapping TypeName="test_pmModel.tbl_module">
+              <MappingFragment StoreEntitySet="tbl_module">
+                <ScalarProperty Name="ModuleFiles" ColumnName="ModuleFiles" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="ModuleTitle" ColumnName="ModuleTitle" />
+                <ScalarProperty Name="ModuleWeight" ColumnName="ModuleWeight" />
+                <ScalarProperty Name="PercentComplete" ColumnName="PercentComplete" />
+                <ScalarProperty Name="ModuleTeamInfo" ColumnName="ModuleTeamInfo" />
+                <ScalarProperty Name="ProjectInfo" ColumnName="ProjectInfo" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="ModuleDescription" ColumnName="ModuleDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="test_pmModel.tbl_module">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="test_pmModel.Store.tbl_module_Insert">
+                  <ScalarProperty Name="ModuleFiles" ParameterName="ModuleFiles" />
+                  <ScalarProperty Name="ModuleDescription" ParameterName="ModuleDescription" />
+                  <ScalarProperty Name="EndDate" ParameterName="EndDate" />
+                  <ScalarProperty Name="StartDate" ParameterName="StartDate" />
+                  <ScalarProperty Name="ProjectInfo" ParameterName="ProjectInfo" />
+                  <ScalarProperty Name="ModuleTeamInfo" ParameterName="ModuleTeamInfo" />
+                  <ScalarProperty Name="PercentComplete" ParameterName="PercentComplete" />
+                  <ScalarProperty Name="ModuleWeight" ParameterName="ModuleWeight" />
+                  <ScalarProperty Name="ModuleTitle" ParameterName="ModuleTitle" />
+                  <ScalarProperty Name="ModuleID" ParameterName="ModuleID" />
+                </InsertFunction>
+                <DeleteFunction FunctionName="test_pmModel.Store.tbl_module_Delete" >
+                  <ScalarProperty Name="ProjectInfo" ParameterName="ProjectID" />
+                </DeleteFunction>
+                <UpdateFunction FunctionName="test_pmModel.Store.tbl_module_UpdateFile">
+                  <ScalarProperty Name="ModuleFiles" ParameterName="ModuleFiles" Version="Current" />
+                  <ScalarProperty Name="ModuleID" ParameterName="ModuleID" Version="Current" />
+                </UpdateFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_moduleteam">
+            <EntityTypeMapping TypeName="test_pmModel.tbl_moduleteam">
+              <MappingFragment StoreEntitySet="tbl_moduleteam">
+                <ScalarProperty Name="ModuleTeamID" ColumnName="ModuleTeamID" />
+                <ScalarProperty Name="MemberInfo" ColumnName="MemberInfo" />
+                <ScalarProperty Name="ProjectInfo" ColumnName="ProjectInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_mom">
+            <EntityTypeMapping TypeName="test_pmModel.tbl_mom">
+              <MappingFragment StoreEntitySet="tbl_mom">
+                <ScalarProperty Name="MomID" ColumnName="MomID" />
+                <ScalarProperty Name="ProjectInfo" ColumnName="ProjectInfo" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="MomContent" ColumnName="MomContent" />
+                <ScalarProperty Name="MomFile" ColumnName="MomFile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="test_pmModel.tbl_mom">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="test_pmModel.Store.tbl_mom_Insert">
+                  <ScalarProperty Name="MomFile" ParameterName="MomFile" />
+                  <ScalarProperty Name="MomContent" ParameterName="MomContent" />
+                  <ScalarProperty Name="TimeStamp" ParameterName="TimeStamp" />
+                  <ScalarProperty Name="ProjectInfo" ParameterName="ProjectInfo" />
+                  <ScalarProperty Name="MomID" ParameterName="MomID" />
+                </InsertFunction>
+                <DeleteFunction FunctionName="test_pmModel.Store.tbl_mom_Delete" >
+                  <ScalarProperty Name="ProjectInfo" ParameterName="ProjectID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_team">
+            <EntityTypeMapping TypeName="test_pmModel.tbl_team">
+              <MappingFragment StoreEntitySet="tbl_team">
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="MemberInfo" ColumnName="MemberInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamTbls">
+            <EntityTypeMapping TypeName="test_pmModel.TeamTbl">
+              <MappingFragment StoreEntitySet="TeamTbl">
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInfoTbls">
+            <EntityTypeMapping TypeName="test_pmModel.UserInfoTbl">
+              <MappingFragment StoreEntitySet="UserInfoTbl">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="DesignationID" ColumnName="DesignationID" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProjectTbls">
+            <EntityTypeMapping TypeName="test_pmModel.UserProjectTbl">
+              <MappingFragment StoreEntitySet="UserProjectTbl">
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="tbl_Cost_Insert" FunctionName="test_pmModel.Store.tbl_Cost_Insert" />
+          <FunctionImportMapping FunctionImportName="tbl_module_Insert" FunctionName="test_pmModel.Store.tbl_module_Insert" />
+          <FunctionImportMapping FunctionImportName="tbl_mom_Insert" FunctionName="test_pmModel.Store.tbl_mom_Insert" />
+          <FunctionImportMapping FunctionImportName="tbl_projectdetail_Insert" FunctionName="test_pmModel.Store.tbl_projectdetail_Insert" />
+          <FunctionImportMapping FunctionImportName="tbl_projectdetails_Insert" FunctionName="test_pmModel.Store.tbl_projectdetails_Insert" />
+          <FunctionImportMapping FunctionImportName="tbl_ProjectEstimate_Insert" FunctionName="test_pmModel.Store.tbl_ProjectEstimate_Insert" />
+          <FunctionImportMapping FunctionImportName="tbl_WeekEstimate_Insert" FunctionName="test_pmModel.Store.tbl_WeekEstimate_Insert" />
+          <FunctionImportMapping FunctionImportName="tbl_projectdetails_Delete" FunctionName="test_pmModel.Store.tbl_projectdetails_Delete" />
+          <FunctionImportMapping FunctionImportName="DeleteProject" FunctionName="test_pmModel.Store.tbl_projectdetails_Delete" />
+          <FunctionImportMapping FunctionImportName="tbl_Cost_Delete" FunctionName="test_pmModel.Store.tbl_Cost_Delete" />
+          <FunctionImportMapping FunctionImportName="tbl_module_Delete" FunctionName="test_pmModel.Store.tbl_module_Delete" />
+          <FunctionImportMapping FunctionImportName="tbl_mom_Delete" FunctionName="test_pmModel.Store.tbl_mom_Delete" />
+          <FunctionImportMapping FunctionImportName="tbl_ProjectEstimate_Delete" FunctionName="test_pmModel.Store.tbl_ProjectEstimate_Delete" />
+          <FunctionImportMapping FunctionImportName="DeleteMom" FunctionName="test_pmModel.Store.tbl_mom_Delete" />
+          <FunctionImportMapping FunctionImportName="DeleteModule" FunctionName="test_pmModel.Store.tbl_module_Delete" />
+          <FunctionImportMapping FunctionImportName="DeleteCost" FunctionName="test_pmModel.Store.tbl_Cost_Delete" />
+          <FunctionImportMapping FunctionImportName="DeleteProjectEstimate" FunctionName="test_pmModel.Store.tbl_ProjectEstimate_Delete" />
+          <FunctionImportMapping FunctionImportName="tbl_module_Delete_ModuleID_" FunctionName="test_pmModel.Store.tbl_module_Delete_ModuleID_" />
+          <FunctionImportMapping FunctionImportName="tbl_ProjectEstimate_Delete_ModuleID_" FunctionName="test_pmModel.Store.tbl_ProjectEstimate_Delete_ModuleID_" />
+          <FunctionImportMapping FunctionImportName="DeleteModuleByModuleID" FunctionName="test_pmModel.Store.tbl_module_Delete_ModuleID_" />
+          <FunctionImportMapping FunctionImportName="DeleteProjectEstimateByModuleID" FunctionName="test_pmModel.Store.tbl_ProjectEstimate_Delete_ModuleID_" />
+          <FunctionImportMapping FunctionImportName="tbl_module_UpdateFile" FunctionName="test_pmModel.Store.tbl_module_UpdateFile" />
+          <FunctionImportMapping FunctionImportName="UploadModuleFiles" FunctionName="test_pmModel.Store.tbl_module_UpdateFile" />
+          <FunctionImportMapping FunctionImportName="UpdateModuleFiles" FunctionName="test_pmModel.Store.tbl_module_UpdateFile" />
+          <FunctionImportMapping FunctionImportName="UpdateModuleFile" FunctionName="test_pmModel.Store.tbl_module_UpdateFile" />
+          <EntitySetMapping Name="tbl_comment">
+            <EntityTypeMapping TypeName="test_pmModel.tbl_comment">
+              <MappingFragment StoreEntitySet="tbl_comment">
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="commentDate" ColumnName="commentDate" />
+                <ScalarProperty Name="commentID" ColumnName="commentID" />
+                <ScalarProperty Name="projectID" ColumnName="projectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="test_pmModel.tbl_comment">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="test_pmModel.Store.tbl_comment_Insert">
+                  <ScalarProperty Name="comment" ParameterName="comment" />
+                  <ScalarProperty Name="userName" ParameterName="userName" />
+                  <ScalarProperty Name="userID" ParameterName="userID" />
+                  <ScalarProperty Name="commentDate" ParameterName="commentDate" />
+                  <ScalarProperty Name="commentID" ParameterName="commentID" />
+                  <ScalarProperty Name="projectID" ParameterName="projectID" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="tbl_comment_Insert" FunctionName="test_pmModel.Store.tbl_comment_Insert" />
+          <FunctionImportMapping FunctionImportName="InsertComment" FunctionName="test_pmModel.Store.tbl_comment_Insert" />
+          <EntitySetMapping Name="tbl_projectdetails">
+            <EntityTypeMapping TypeName="test_pmModel.tbl_projectdetails">
+              <MappingFragment StoreEntitySet="tbl_projectdetails">
+                <ScalarProperty Name="CurrencyType" ColumnName="CurrencyType" />
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ProjectType" ColumnName="ProjectType" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="TechTeam" ColumnName="TechTeam" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ProjectDetails" ColumnName="ProjectDetails" />
+                <ScalarProperty Name="ProjectLogo" ColumnName="ProjectLogo" />
+                <ScalarProperty Name="EstimatedCost" ColumnName="EstimatedCost" />
+                <ScalarProperty Name="Modules" ColumnName="Modules" />
+                <ScalarProperty Name="TechResource" ColumnName="TechResource" />
+                <ScalarProperty Name="DomainResource" ColumnName="DomainResource" />
+                <ScalarProperty Name="QCLead" ColumnName="QCLead" />
+                <ScalarProperty Name="TechLead" ColumnName="TechLead" />
+                <ScalarProperty Name="DomainLead" ColumnName="DomainLead" />
+                <ScalarProperty Name="DomainTeam" ColumnName="DomainTeam" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="test_pmModel.tbl_projectdetails">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="test_pmModel.Store.tbl_projectdetails_Insert">
+                  <ScalarProperty Name="CurrencyType" ParameterName="CurrencyType" />
+                  <ScalarProperty Name="TotalCost" ParameterName="TotalCost" />
+                  <ScalarProperty Name="ClientName" ParameterName="ClientName" />
+                  <ScalarProperty Name="ProjectType" ParameterName="ProjectType" />
+                  <ScalarProperty Name="CreatedBy" ParameterName="CreatedBy" />
+                  <ScalarProperty Name="CreatedDate" ParameterName="CreatedDate" />
+                  <ScalarProperty Name="TechTeam" ParameterName="TechTeam" />
+                  <ScalarProperty Name="Duration" ParameterName="Duration" />
+                  <ScalarProperty Name="StartDate" ParameterName="StartDate" />
+                  <ScalarProperty Name="ProjectDetails" ParameterName="ProjectDetails" />
+                  <ScalarProperty Name="ProjectLogo" ParameterName="ProjectLogo" />
+                  <ScalarProperty Name="EstimatedCost" ParameterName="EstimatedCost" />
+                  <ScalarProperty Name="Modules" ParameterName="Modules" />
+                  <ScalarProperty Name="TechResource" ParameterName="TechResource" />
+                  <ScalarProperty Name="DomainResource" ParameterName="DomainResource" />
+                  <ScalarProperty Name="QCLead" ParameterName="QCLead" />
+                  <ScalarProperty Name="TechLead" ParameterName="TechLead" />
+                  <ScalarProperty Name="DomainLead" ParameterName="DomainLead" />
+                  <ScalarProperty Name="DomainTeam" ParameterName="DomainTeam" />
+                  <ScalarProperty Name="Description" ParameterName="Description" />
+                  <ScalarProperty Name="Title" ParameterName="Title" />
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ProjectEstimate">
+            <EntityTypeMapping TypeName="test_pmModel.tbl_ProjectEstimate">
+              <MappingFragment StoreEntitySet="tbl_ProjectEstimate">
+                <ScalarProperty Name="ModuleCost" ColumnName="ModuleCost" />
+                <ScalarProperty Name="DomainDuration" ColumnName="DomainDuration" />
+                <ScalarProperty Name="LeadDuration" ColumnName="LeadDuration" />
+                <ScalarProperty Name="QCDuration" ColumnName="QCDuration" />
+                <ScalarProperty Name="BADuration" ColumnName="BADuration" />
+                <ScalarProperty Name="DeveloperDuration" ColumnName="DeveloperDuration" />
+                <ScalarProperty Name="AnalystResource" ColumnName="AnalystResource" />
+                <ScalarProperty Name="TechResource" ColumnName="TechResource" />
+                <ScalarProperty Name="AnalystDuration" ColumnName="AnalystDuration" />
+                <ScalarProperty Name="TechDuration" ColumnName="TechDuration" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="test_pmModel.tbl_ProjectEstimate">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="test_pmModel.Store.tbl_ProjectEstimate_Insert">
+                  <ScalarProperty Name="ModuleCost" ParameterName="ModuleCost" />
+                  <ScalarProperty Name="DomainDuration" ParameterName="DomainDuration" />
+                  <ScalarProperty Name="LeadDuration" ParameterName="LeadDuration" />
+                  <ScalarProperty Name="QCDuration" ParameterName="QCDuration" />
+                  <ScalarProperty Name="BADuration" ParameterName="BADuration" />
+                  <ScalarProperty Name="DeveloperDuration" ParameterName="DeveloperDuration" />
+                  <ScalarProperty Name="AnalystResource" ParameterName="AnalystResource" />
+                  <ScalarProperty Name="TechResource" ParameterName="TechResource" />
+                  <ScalarProperty Name="AnalystDuration" ParameterName="AnalystDuration" />
+                  <ScalarProperty Name="TechDuration" ParameterName="TechDuration" />
+                  <ScalarProperty Name="ModuleID" ParameterName="ModuleID" />
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" />
+                </InsertFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="tbl_projectdetails_UpdateTechDomainResource" FunctionName="test_pmModel.Store.tbl_projectdetails_UpdateTechDomainResource" />
+          <FunctionImportMapping FunctionImportName="UpdateTechDomainResource" FunctionName="test_pmModel.Store.tbl_projectdetails_UpdateTechDomainResource" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

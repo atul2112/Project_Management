@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="test_pmModelStoreContainer" CdmEntityContainer="test_pmEntities1">
+    <EntitySetMapping Name="DesignationTbls">
+      <EntityTypeMapping TypeName="test_pmModel.DesignationTbl">
+        <MappingFragment StoreEntitySet="DesignationTbl">
+          <ScalarProperty Name="DesID" ColumnName="DesID" />
+          <ScalarProperty Name="DesName" ColumnName="DesName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleTbls">
+      <EntityTypeMapping TypeName="test_pmModel.RoleTbl">
+        <MappingFragment StoreEntitySet="RoleTbl">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamTbls">
+      <EntityTypeMapping TypeName="test_pmModel.TeamTbl">
+        <MappingFragment StoreEntitySet="TeamTbl">
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfoTbls">
+      <EntityTypeMapping TypeName="test_pmModel.UserInfoTbl">
+        <MappingFragment StoreEntitySet="UserInfoTbl">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="DesignationID" ColumnName="DesignationID" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserProjectTbls">
+      <EntityTypeMapping TypeName="test_pmModel.UserProjectTbl">
+        <MappingFragment StoreEntitySet="UserProjectTbl">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectDetailsTbls">
+      <EntityTypeMapping TypeName="test_pmModel.ProjectDetailsTbl">
+        <MappingFragment StoreEntitySet="ProjectDetailsTbl">
+          <ScalarProperty Name="ProjectImagePath" ColumnName="ProjectImagePath" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectInfoTbls">
+      <EntityTypeMapping TypeName="test_pmModel.ProjectInfoTbl">
+        <MappingFragment StoreEntitySet="ProjectInfoTbl">
+          <ScalarProperty Name="ResourceIDs" ColumnName="ResourceIDs" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="DomainName" ColumnName="DomainName" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="ProposalDate" ColumnName="ProposalDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_comment">
+      <EntityTypeMapping TypeName="test_pmModel.tbl_comment">
+        <MappingFragment StoreEntitySet="tbl_comment">
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_detail">
+      <EntityTypeMapping TypeName="test_pmModel.tbl_detail">
+        <MappingFragment StoreEntitySet="tbl_detail">
+          <ScalarProperty Name="Detail" ColumnName="Detail" />
+          <ScalarProperty Name="DetailID" ColumnName="DetailID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_projectdetail">
+      <EntityTypeMapping TypeName="test_pmModel.tbl_projectdetail">
+        <MappingFragment StoreEntitySet="tbl_projectdetail">
+          <ScalarProperty Name="ImgPath" ColumnName="ImgPath" />
+          <ScalarProperty Name="CommentInfo" ColumnName="CommentInfo" />
+          <ScalarProperty Name="ProjectHealthStatus" ColumnName="ProjectHealthStatus" />
+          <ScalarProperty Name="EstimatedCost" ColumnName="EstimatedCost" />
+          <ScalarProperty Name="CurrentReleaseName" ColumnName="CurrentReleaseName" />
+          <ScalarProperty Name="TeamMemberInfo" ColumnName="TeamMemberInfo" />
+          <ScalarProperty Name="ClientInfo" ColumnName="ClientInfo" />
+          <ScalarProperty Name="DetailInfo" ColumnName="DetailInfo" />
+          <ScalarProperty Name="ManagerInfo" ColumnName="ManagerInfo" />
+          <ScalarProperty Name="TechTeamInfo" ColumnName="TechTeamInfo" />
+          <ScalarProperty Name="DomainInfo" ColumnName="DomainInfo" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="test_pmModel.tbl_projectdetail">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="test_pmModel.Store.tbl_projectdetail_Insert">
+            <ScalarProperty Name="ImgPath" ParameterName="ImgPath" />
+            <ScalarProperty Name="CommentInfo" ParameterName="CommentInfo" />
+            <ScalarProperty Name="ProjectHealthStatus" ParameterName="ProjectHealthStatus" />
+            <ScalarProperty Name="EstimatedCost" ParameterName="EstimatedCost" />
+            <ScalarProperty Name="CurrentReleaseName" ParameterName="CurrentReleaseName" />
+            <ScalarProperty Name="TeamMemberInfo" ParameterName="TeamMemberInfo" />
+            <ScalarProperty Name="ClientInfo" ParameterName="ClientInfo" />
+            <ScalarProperty Name="DetailInfo" ParameterName="DetailInfo" />
+            <ScalarProperty Name="ManagerInfo" ParameterName="ManagerInfo" />
+            <ScalarProperty Name="TechTeamInfo" ParameterName="TechTeamInfo" />
+            <ScalarProperty Name="DomainInfo" ParameterName="DomainInfo" />
+            <ScalarProperty Name="Description" ParameterName="Description" />
+            <ScalarProperty Name="Title" ParameterName="Title" />
+            <ScalarProperty Name="ProjectID" ParameterName="ProjectID" />
+          </InsertFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_team">
+      <EntityTypeMapping TypeName="test_pmModel.tbl_team">
+        <MappingFragment StoreEntitySet="tbl_team">
+          <ScalarProperty Name="MemberInfo" ColumnName="MemberInfo" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="tbl_projectdetail_Insert" FunctionName="test_pmModel.Store.tbl_projectdetail_Insert" />
+    <EntitySetMapping Name="tbl_moduleteam">
+      <EntityTypeMapping TypeName="test_pmModel.tbl_moduleteam">
+        <MappingFragment StoreEntitySet="tbl_moduleteam">
+          <ScalarProperty Name="ProjectInfo" ColumnName="ProjectInfo" />
+          <ScalarProperty Name="MemberInfo" ColumnName="MemberInfo" />
+          <ScalarProperty Name="ModuleTeamID" ColumnName="ModuleTeamID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_module">
+      <EntityTypeMapping TypeName="test_pmModel.tbl_module">
+        <MappingFragment StoreEntitySet="tbl_module">
+          <ScalarProperty Name="ModuleDescription" ColumnName="ModuleDescription" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="ProjectInfo" ColumnName="ProjectInfo" />
+          <ScalarProperty Name="ModuleTeamInfo" ColumnName="ModuleTeamInfo" />
+          <ScalarProperty Name="PercentComplete" ColumnName="PercentComplete" />
+          <ScalarProperty Name="ModuleWeight" ColumnName="ModuleWeight" />
+          <ScalarProperty Name="ModuleTitle" ColumnName="ModuleTitle" />
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_mom">
+      <EntityTypeMapping TypeName="test_pmModel.tbl_mom">
+        <MappingFragment StoreEntitySet="tbl_mom">
+          <ScalarProperty Name="MomContent" ColumnName="MomContent" />
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+          <ScalarProperty Name="ProjectInfo" ColumnName="ProjectInfo" />
+          <ScalarProperty Name="MomID" ColumnName="MomID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="test_pmModel.tbl_mom">
+        <ModificationFunctionMapping>
+          <InsertFunction FunctionName="test_pmModel.Store.tbl_mom_Insert">
+            <ScalarProperty Name="MomContent" ParameterName="MomContent" />
+            <ScalarProperty Name="TimeStamp" ParameterName="TimeStamp" />
+            <ScalarProperty Name="ProjectInfo" ParameterName="ProjectInfo" />
+            <ScalarProperty Name="MomID" ParameterName="MomID" />
+          </InsertFunction>
+          <UpdateFunction FunctionName="test_pmModel.Store.tbl_mom_Insert">
+            <ScalarProperty Name="MomContent" ParameterName="MomContent" Version="Current" />
+            <ScalarProperty Name="TimeStamp" ParameterName="TimeStamp" Version="Current" />
+            <ScalarProperty Name="ProjectInfo" ParameterName="ProjectInfo" Version="Current" />
+            <ScalarProperty Name="MomID" ParameterName="MomID" Version="Current" />
+          </UpdateFunction>
+        </ModificationFunctionMapping>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

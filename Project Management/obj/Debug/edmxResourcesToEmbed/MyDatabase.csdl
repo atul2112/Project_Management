@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="test_pmModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="test_pmEntities1" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="DesignationTbls" EntityType="test_pmModel.DesignationTbl" />
+    <EntitySet Name="RoleTbls" EntityType="test_pmModel.RoleTbl" />
+    <EntitySet Name="TeamTbls" EntityType="test_pmModel.TeamTbl" />
+    <EntitySet Name="UserInfoTbls" EntityType="test_pmModel.UserInfoTbl" />
+    <EntitySet Name="UserProjectTbls" EntityType="test_pmModel.UserProjectTbl" />
+    <EntitySet Name="ProjectDetailsTbls" EntityType="test_pmModel.ProjectDetailsTbl" />
+    <EntitySet Name="ProjectInfoTbls" EntityType="test_pmModel.ProjectInfoTbl" />
+    <EntitySet Name="tbl_comment" EntityType="test_pmModel.tbl_comment" />
+    <EntitySet Name="tbl_detail" EntityType="test_pmModel.tbl_detail" />
+    <EntitySet Name="tbl_projectdetail" EntityType="test_pmModel.tbl_projectdetail" />
+    <EntitySet Name="tbl_team" EntityType="test_pmModel.tbl_team" />
+    <FunctionImport Name="tbl_projectdetail_Insert">
+      <Parameter Name="ProjectID" Mode="In" Type="String" />
+      <Parameter Name="Title" Mode="In" Type="String" />
+      <Parameter Name="Description" Mode="In" Type="String" />
+      <Parameter Name="DomainInfo" Mode="In" Type="String" />
+      <Parameter Name="TechTeamInfo" Mode="In" Type="String" />
+      <Parameter Name="ManagerInfo" Mode="In" Type="String" />
+      <Parameter Name="DetailInfo" Mode="In" Type="String" />
+      <Parameter Name="ClientInfo" Mode="In" Type="String" />
+      <Parameter Name="TeamMemberInfo" Mode="In" Type="String" />
+      <Parameter Name="CurrentReleaseName" Mode="In" Type="String" />
+      <Parameter Name="EstimatedCost" Mode="In" Type="String" />
+      <Parameter Name="ProjectHealthStatus" Mode="In" Type="String" />
+      <Parameter Name="CommentInfo" Mode="In" Type="String" />
+      <Parameter Name="ImgPath" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="tbl_moduleteam" EntityType="test_pmModel.tbl_moduleteam" />
+    <EntitySet Name="tbl_module" EntityType="test_pmModel.tbl_module" />
+    <EntitySet Name="tbl_mom" EntityType="test_pmModel.tbl_mom" />
+  </EntityContainer>
+  <EntityType Name="DesignationTbl">
+    <Key>
+      <PropertyRef Name="DesID" />
+      <PropertyRef Name="DesName" />
+    </Key>
+    <Property Name="DesID" Type="Int32" Nullable="false" />
+    <Property Name="DesName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="RoleTbl">
+    <Key>
+      <PropertyRef Name="RoleID" />
+      <PropertyRef Name="RoleName" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TeamTbl">
+    <Key>
+      <PropertyRef Name="TeamID" />
+      <PropertyRef Name="TeamName" />
+    </Key>
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserInfoTbl">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="Username" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="RoleID" />
+      <PropertyRef Name="DesignationID" />
+      <PropertyRef Name="TeamID" />
+      <PropertyRef Name="FirstName" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="DesignationID" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="LastName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="EmailID" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserProjectTbl">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Type="Int32" Name="ProjectID" Nullable="false" />
+    <Property Type="Int32" Name="UserID" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectDetailsTbl">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Type="Int32" Name="ProjectID" Nullable="false" />
+    <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ProjectImagePath" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ProjectInfoTbl">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+      <PropertyRef Name="StartDate" />
+      <PropertyRef Name="ProposalDate" />
+      <PropertyRef Name="Client" />
+      <PropertyRef Name="DomainName" />
+      <PropertyRef Name="TeamID" />
+      <PropertyRef Name="ResourceIDs" />
+    </Key>
+    <Property Type="Int32" Name="ProjectID" Nullable="false" />
+    <Property Type="String" Name="StartDate" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ProposalDate" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Client" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DomainName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TeamID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ResourceIDs" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_comment">
+    <Key>
+      <PropertyRef Name="CommentID" />
+    </Key>
+    <Property Type="String" Name="CommentID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Comment" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_detail">
+    <Key>
+      <PropertyRef Name="DetailID" />
+    </Key>
+    <Property Type="String" Name="DetailID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Detail" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_projectdetail">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+      <PropertyRef Name="ImgPath" />
+    </Key>
+    <Property Type="String" Name="ProjectID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Title" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Type="String" Name="DomainInfo" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TechTeamInfo" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ManagerInfo" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="DetailInfo" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ClientInfo" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TeamMemberInfo" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CurrentReleaseName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EstimatedCost" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ProjectHealthStatus" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CommentInfo" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ImgPath" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_team">
+    <Key>
+      <PropertyRef Name="TeamID" />
+    </Key>
+    <Property Type="String" Name="TeamID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MemberInfo" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_moduleteam">
+    <Key>
+      <PropertyRef Name="ModuleTeamID" />
+      <PropertyRef Name="MemberInfo" />
+      <PropertyRef Name="ProjectInfo" />
+    </Key>
+    <Property Type="String" Name="ModuleTeamID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MemberInfo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ProjectInfo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_module">
+    <Key>
+      <PropertyRef Name="ModuleID" />
+      <PropertyRef Name="ModuleTitle" />
+      <PropertyRef Name="ModuleWeight" />
+      <PropertyRef Name="PercentComplete" />
+      <PropertyRef Name="ModuleTeamInfo" />
+      <PropertyRef Name="ProjectInfo" />
+      <PropertyRef Name="StartDate" />
+      <PropertyRef Name="EndDate" />
+      <PropertyRef Name="ModuleDescription" />
+    </Key>
+    <Property Type="String" Name="ModuleID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ModuleTitle" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ModuleWeight" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PercentComplete" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ModuleTeamInfo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ProjectInfo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="3" />
+    <Property Type="String" Name="ModuleDescription" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_mom">
+    <Key>
+      <PropertyRef Name="MomID" />
+      <PropertyRef Name="ProjectInfo" />
+      <PropertyRef Name="TimeStamp" />
+      <PropertyRef Name="MomContent" />
+    </Key>
+    <Property Type="String" Name="MomID" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ProjectInfo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="TimeStamp" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MomContent" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

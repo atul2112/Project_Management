@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="test_pmModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="test_pmModelStoreContainer">
+    <EntitySet Name="DesignationTbl" EntityType="test_pmModel.Store.DesignationTbl" store:Type="Tables" store:Schema="dbo" store:Name="DesignationTbl">
+      <DefiningQuery>SELECT 
+      [DesignationTbl].[DesID] AS [DesID], 
+      [DesignationTbl].[DesName] AS [DesName]
+      FROM [dbo].[DesignationTbl] AS [DesignationTbl]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ProjectDetailsTbl" EntityType="test_pmModel.Store.ProjectDetailsTbl" store:Type="Tables" store:Schema="dbo" store:Name="ProjectDetailsTbl">
+      <DefiningQuery>SELECT 
+      [ProjectDetailsTbl].[ProjectID] AS [ProjectID], 
+      [ProjectDetailsTbl].[ProjectName] AS [ProjectName], 
+      [ProjectDetailsTbl].[ProjectImagePath] AS [ProjectImagePath]
+      FROM [dbo].[ProjectDetailsTbl] AS [ProjectDetailsTbl]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ProjectInfoTbl" EntityType="test_pmModel.Store.ProjectInfoTbl" store:Type="Tables" store:Schema="dbo" store:Name="ProjectInfoTbl">
+      <DefiningQuery>SELECT 
+      [ProjectInfoTbl].[ProjectID] AS [ProjectID], 
+      [ProjectInfoTbl].[StartDate] AS [StartDate], 
+      [ProjectInfoTbl].[ProposalDate] AS [ProposalDate], 
+      [ProjectInfoTbl].[Client] AS [Client], 
+      [ProjectInfoTbl].[DomainName] AS [DomainName], 
+      [ProjectInfoTbl].[TeamID] AS [TeamID], 
+      [ProjectInfoTbl].[ResourceIDs] AS [ResourceIDs]
+      FROM [dbo].[ProjectInfoTbl] AS [ProjectInfoTbl]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="RoleTbl" EntityType="test_pmModel.Store.RoleTbl" store:Type="Tables" store:Schema="dbo" store:Name="RoleTbl">
+      <DefiningQuery>SELECT 
+      [RoleTbl].[RoleID] AS [RoleID], 
+      [RoleTbl].[RoleName] AS [RoleName]
+      FROM [dbo].[RoleTbl] AS [RoleTbl]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbl_comment" EntityType="test_pmModel.Store.tbl_comment" store:Type="Tables" store:Schema="dbo" store:Name="tbl_comment">
+      <DefiningQuery>SELECT 
+      [tbl_comment].[CommentID] AS [CommentID], 
+      [tbl_comment].[Comment] AS [Comment]
+      FROM [dbo].[tbl_comment] AS [tbl_comment]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbl_detail" EntityType="test_pmModel.Store.tbl_detail" store:Type="Tables" store:Schema="dbo" store:Name="tbl_detail">
+      <DefiningQuery>SELECT 
+      [tbl_detail].[DetailID] AS [DetailID], 
+      [tbl_detail].[Detail] AS [Detail]
+      FROM [dbo].[tbl_detail] AS [tbl_detail]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbl_module" EntityType="test_pmModel.Store.tbl_module" store:Type="Tables" store:Schema="dbo" store:Name="tbl_module">
+      <DefiningQuery>SELECT 
+      [tbl_module].[ModuleID] AS [ModuleID], 
+      [tbl_module].[ModuleTitle] AS [ModuleTitle], 
+      [tbl_module].[ModuleWeight] AS [ModuleWeight], 
+      [tbl_module].[PercentComplete] AS [PercentComplete], 
+      [tbl_module].[ModuleTeamInfo] AS [ModuleTeamInfo], 
+      [tbl_module].[ProjectInfo] AS [ProjectInfo], 
+      [tbl_module].[StartDate] AS [StartDate], 
+      [tbl_module].[EndDate] AS [EndDate], 
+      [tbl_module].[ModuleDescription] AS [ModuleDescription]
+      FROM [dbo].[tbl_module] AS [tbl_module]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbl_moduleteam" EntityType="test_pmModel.Store.tbl_moduleteam" store:Type="Tables" store:Schema="dbo" store:Name="tbl_moduleteam">
+      <DefiningQuery>SELECT 
+      [tbl_moduleteam].[ModuleTeamID] AS [ModuleTeamID], 
+      [tbl_moduleteam].[MemberInfo] AS [MemberInfo], 
+      [tbl_moduleteam].[ProjectInfo] AS [ProjectInfo]
+      FROM [dbo].[tbl_moduleteam] AS [tbl_moduleteam]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbl_mom" EntityType="test_pmModel.Store.tbl_mom" store:Type="Tables" store:Schema="dbo" store:Name="tbl_mom">
+      <DefiningQuery>SELECT 
+      [tbl_mom].[MomID] AS [MomID], 
+      [tbl_mom].[ProjectInfo] AS [ProjectInfo], 
+      [tbl_mom].[TimeStamp] AS [TimeStamp], 
+      [tbl_mom].[MomContent] AS [MomContent]
+      FROM [dbo].[tbl_mom] AS [tbl_mom]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbl_projectdetail" EntityType="test_pmModel.Store.tbl_projectdetail" store:Type="Tables" store:Schema="dbo" store:Name="tbl_projectdetail">
+      <DefiningQuery>SELECT 
+      [tbl_projectdetail].[ProjectID] AS [ProjectID], 
+      [tbl_projectdetail].[Title] AS [Title], 
+      [tbl_projectdetail].[Description] AS [Description], 
+      [tbl_projectdetail].[DomainInfo] AS [DomainInfo], 
+      [tbl_projectdetail].[TechTeamInfo] AS [TechTeamInfo], 
+      [tbl_projectdetail].[ManagerInfo] AS [ManagerInfo], 
+      [tbl_projectdetail].[DetailInfo] AS [DetailInfo], 
+      [tbl_projectdetail].[ClientInfo] AS [ClientInfo], 
+      [tbl_projectdetail].[TeamMemberInfo] AS [TeamMemberInfo], 
+      [tbl_projectdetail].[CurrentReleaseName] AS [CurrentReleaseName], 
+      [tbl_projectdetail].[EstimatedCost] AS [EstimatedCost], 
+      [tbl_projectdetail].[ProjectHealthStatus] AS [ProjectHealthStatus], 
+      [tbl_projectdetail].[CommentInfo] AS [CommentInfo], 
+      [tbl_projectdetail].[ImgPath] AS [ImgPath]
+      FROM [dbo].[tbl_projectdetail] AS [tbl_projectdetail]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tbl_team" EntityType="test_pmModel.Store.tbl_team" store:Type="Tables" store:Schema="dbo" store:Name="tbl_team">
+      <DefiningQuery>SELECT 
+      [tbl_team].[TeamID] AS [TeamID], 
+      [tbl_team].[MemberInfo] AS [MemberInfo]
+      FROM [dbo].[tbl_team] AS [tbl_team]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TeamTbl" EntityType="test_pmModel.Store.TeamTbl" store:Type="Tables" store:Schema="dbo" store:Name="TeamTbl">
+      <DefiningQuery>SELECT 
+      [TeamTbl].[TeamID] AS [TeamID], 
+      [TeamTbl].[TeamName] AS [TeamName]
+      FROM [dbo].[TeamTbl] AS [TeamTbl]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UserInfoTbl" EntityType="test_pmModel.Store.UserInfoTbl" store:Type="Tables" store:Schema="dbo" store:Name="UserInfoTbl">
+      <DefiningQuery>SELECT 
+      [UserInfoTbl].[UserID] AS [UserID], 
+      [UserInfoTbl].[Username] AS [Username], 
+      [UserInfoTbl].[Password] AS [Password], 
+      [UserInfoTbl].[RoleID] AS [RoleID], 
+      [UserInfoTbl].[DesignationID] AS [DesignationID], 
+      [UserInfoTbl].[TeamID] AS [TeamID], 
+      [UserInfoTbl].[FirstName] AS [FirstName], 
+      [UserInfoTbl].[LastName] AS [LastName], 
+      [UserInfoTbl].[EmailID] AS [EmailID]
+      FROM [dbo].[UserInfoTbl] AS [UserInfoTbl]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UserProjectTbl" EntityType="test_pmModel.Store.UserProjectTbl" store:Type="Tables" store:Schema="dbo" store:Name="UserProjectTbl">
+      <DefiningQuery>SELECT 
+      [UserProjectTbl].[ProjectID] AS [ProjectID], 
+      [UserProjectTbl].[UserID] AS [UserID]
+      FROM [dbo].[UserProjectTbl] AS [UserProjectTbl]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.DesignationTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="DesignationTbl">
+    <Key>
+      <PropertyRef Name="DesID" />
+      <PropertyRef Name="DesName" />
+    </Key>
+    <Property Name="DesID" Type="int" Nullable="false" />
+    <Property Name="DesName" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.ProjectDetailsTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="ProjectDetailsTbl">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="int" Nullable="false" />
+    <Property Name="ProjectName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="ProjectImagePath" Type="varchar" Nullable="false" MaxLength="300" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.ProjectInfoTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="ProjectInfoTbl">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+      <PropertyRef Name="StartDate" />
+      <PropertyRef Name="ProposalDate" />
+      <PropertyRef Name="Client" />
+      <PropertyRef Name="DomainName" />
+      <PropertyRef Name="TeamID" />
+      <PropertyRef Name="ResourceIDs" />
+    </Key>
+    <Property Name="ProjectID" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ProposalDate" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Client" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="DomainName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="TeamID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ResourceIDs" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.RoleTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="RoleTbl">
+    <Key>
+      <PropertyRef Name="RoleID" />
+      <PropertyRef Name="RoleName" />
+    </Key>
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.tbl_comment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="tbl_comment">
+    <Key>
+      <PropertyRef Name="CommentID" />
+    </Key>
+    <Property Name="CommentID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Comment" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.tbl_detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="tbl_detail">
+    <Key>
+      <PropertyRef Name="DetailID" />
+    </Key>
+    <Property Name="DetailID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Detail" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.tbl_module' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="tbl_module">
+    <Key>
+      <PropertyRef Name="ModuleID" />
+      <PropertyRef Name="ModuleTitle" />
+      <PropertyRef Name="ModuleWeight" />
+      <PropertyRef Name="PercentComplete" />
+      <PropertyRef Name="ModuleTeamInfo" />
+      <PropertyRef Name="ProjectInfo" />
+      <PropertyRef Name="StartDate" />
+      <PropertyRef Name="EndDate" />
+      <PropertyRef Name="ModuleDescription" />
+    </Key>
+    <Property Name="ModuleID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ModuleTitle" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ModuleWeight" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="PercentComplete" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ModuleTeamInfo" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ProjectInfo" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="ModuleDescription" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.tbl_moduleteam' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="tbl_moduleteam">
+    <Key>
+      <PropertyRef Name="ModuleTeamID" />
+      <PropertyRef Name="MemberInfo" />
+      <PropertyRef Name="ProjectInfo" />
+    </Key>
+    <Property Name="ModuleTeamID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="MemberInfo" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ProjectInfo" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.tbl_mom' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="tbl_mom">
+    <Key>
+      <PropertyRef Name="MomID" />
+      <PropertyRef Name="ProjectInfo" />
+      <PropertyRef Name="TimeStamp" />
+      <PropertyRef Name="MomContent" />
+    </Key>
+    <Property Name="MomID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ProjectInfo" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="TimeStamp" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="MomContent" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.tbl_projectdetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="tbl_projectdetail">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+      <PropertyRef Name="ImgPath" />
+    </Key>
+    <Property Name="ProjectID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Title" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="DomainInfo" Type="varchar" MaxLength="50" />
+    <Property Name="TechTeamInfo" Type="varchar" MaxLength="50" />
+    <Property Name="ManagerInfo" Type="varchar" MaxLength="50" />
+    <Property Name="DetailInfo" Type="varchar" MaxLength="50" />
+    <Property Name="ClientInfo" Type="varchar" MaxLength="50" />
+    <Property Name="TeamMemberInfo" Type="varchar" MaxLength="50" />
+    <Property Name="CurrentReleaseName" Type="varchar" MaxLength="50" />
+    <Property Name="EstimatedCost" Type="varchar" MaxLength="50" />
+    <Property Name="ProjectHealthStatus" Type="varchar" MaxLength="50" />
+    <Property Name="CommentInfo" Type="varchar" MaxLength="50" />
+    <Property Name="ImgPath" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.tbl_team' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="tbl_team">
+    <Key>
+      <PropertyRef Name="TeamID" />
+    </Key>
+    <Property Name="TeamID" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="MemberInfo" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.TeamTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="TeamTbl">
+    <Key>
+      <PropertyRef Name="TeamID" />
+      <PropertyRef Name="TeamName" />
+    </Key>
+    <Property Name="TeamID" Type="int" Nullable="false" />
+    <Property Name="TeamName" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.UserInfoTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="UserInfoTbl">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="Username" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="RoleID" />
+      <PropertyRef Name="DesignationID" />
+      <PropertyRef Name="TeamID" />
+      <PropertyRef Name="FirstName" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Username" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="DesignationID" Type="int" Nullable="false" />
+    <Property Name="TeamID" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="LastName" Type="varchar" MaxLength="100" />
+    <Property Name="EmailID" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'test_pm.dbo.UserProjectTbl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="UserProjectTbl">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="ProjectID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+  </EntityType>
+  <Function Name="tbl_mom_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MomID" Type="varchar" Mode="In" />
+    <Parameter Name="ProjectInfo" Type="varchar" Mode="In" />
+    <Parameter Name="TimeStamp" Type="varchar" Mode="In" />
+    <Parameter Name="MomContent" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="tbl_projectdetail_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProjectID" Type="varchar" Mode="In" />
+    <Parameter Name="Title" Type="varchar" Mode="In" />
+    <Parameter Name="Description" Type="varchar(max)" Mode="In" />
+    <Parameter Name="DomainInfo" Type="varchar" Mode="In" />
+    <Parameter Name="TechTeamInfo" Type="varchar" Mode="In" />
+    <Parameter Name="ManagerInfo" Type="varchar" Mode="In" />
+    <Parameter Name="DetailInfo" Type="varchar" Mode="In" />
+    <Parameter Name="ClientInfo" Type="varchar" Mode="In" />
+    <Parameter Name="TeamMemberInfo" Type="varchar" Mode="In" />
+    <Parameter Name="CurrentReleaseName" Type="varchar" Mode="In" />
+    <Parameter Name="EstimatedCost" Type="varchar" Mode="In" />
+    <Parameter Name="ProjectHealthStatus" Type="varchar" Mode="In" />
+    <Parameter Name="CommentInfo" Type="varchar" Mode="In" />
+    <Parameter Name="ImgPath" Type="varchar(max)" Mode="In" />
+  </Function>
+</Schema>

@@ -1,0 +1,195 @@
+﻿@model Project_Management.tbl_module
+
+@{
+    ViewBag.Title = "Add Module";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input[type=datetime]').datepicker({
+            dateFormat: "dd/M/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0"
+        });
+    });
+</script>
+
+<style>
+    .range-quantity {
+        background-color: #006F6F !important;
+    }
+
+    #btn_submit {
+        transition:background-color 0.5s;
+    }
+
+    #btn_submit:hover {
+        background-color:#019E9E !important;
+    }
+
+    .btn-primary {
+        background-color: #006F6F;
+        border-color: #005A5A;
+        transition:background-color 0.2s;
+    }
+
+    .btn-primary:hover {
+        background-color:#019E9E !important;
+     }
+</style>
+
+
+@using (Html.BeginForm("AddModule", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    if (@ViewBag.Message != null)
+    {
+        <div style="border:1px solid black">
+            @ViewBag.Message
+        </div> 
+    }
+    <fieldset class="fieldset col-sm-8">
+        <legend class="legend">Add Module Section</legend>
+    <div class="form-group">
+    @Html.LabelFor(a => a.ModuleTitle)
+    @Html.TextBoxFor(a => a.ModuleTitle, new { @class = "form-control", @placeholder = "Module Title" })
+    @Html.ValidationMessageFor(a => a.ModuleTitle, String.Empty, new { @class = "control-label", @Style = "color:red" })
+    </div>    
+    <div class="form-group">
+    @Html.LabelFor(a => a.ModuleWeight)
+    @Html.TextBoxFor(a => a.ModuleWeight, new { @class = "form-control", @placeholder = "Weightage of Module" })
+    @Html.ValidationMessageFor(a => a.ModuleWeight, String.Empty, new { @class = "control-label", @Style = "color:red" })
+    </div>    
+    <div class="form-group">
+    @Html.LabelFor(a => a.ModuleTeamInfo)
+    <div class="panel panel-default">
+        <div class="panel-body" style="padding:0">
+            <ul id="memberList" style="padding:0; margin-top:3px; line-height:2.6; margin-left:7px">
+                <li id="pushMemberLi" style="display:inline-block"><input id="pushMember" style="outline:none !important; margin-left:6px; border:none" onkeypress="AddMember(event)" onblur="AddMemberOffFocus()" type="text" placeholder="Member List"/></li>
+            </ul>
+        </div>
+    </div>
+    @Html.ValidationMessageFor(a => a.ModuleTeamInfo, String.Empty, new { @class = "control-label", @Style = "color:red" })
+    </div>
+    <div class="form-group">
+    @Html.LabelFor(a => a.ModuleDescription)
+    @Html.TextAreaFor(a => a.ModuleDescription, new { @class = "form-control", @placeholder = "Description For Module", @Style = "resize:vertical" })
+    @Html.ValidationMessageFor(a => a.ModuleDescription, String.Empty, new { @class = "control-label", @Style = "color:red" })
+    </div>
+    <div class="form-group">
+    @Html.LabelFor(a => a.StartDate)
+    <input type="datetime" id="StartDate" data-val="true" data-val-required="Pick An Start Date" name="StartDate" class="form-control" placeholder="Pick An Start Date"/>
+    @Html.ValidationMessageFor(a => a.StartDate, String.Empty, new { @class = "control-label", @Style = "color:red" })
+    </div>
+    <div class="form-group">
+    @Html.LabelFor(a => a.EndDate)
+    <input type="datetime" id="EndDate" data-val="true" data-val-required="Pick An End Date" name="EndDate" class="form-control" placeholder="Pick An End Date"/>
+    @Html.ValidationMessageFor(a => a.EndDate, String.Empty, new { @class = "control-label", @Style = "color:red" })
+    </div>
+    <div class="form-group">
+    @Html.LabelFor(a => a.PercentComplete)
+    <div class="slider-wrapper" style="margin-top:3px">
+            <input type="text" class="js-min-max-start" />
+    </div>
+    <div id="js-display-decimal" class="display-box" style="float: right;font-weight: 600;margin-top: 5px;"></div>
+    @Html.ValidationMessageFor(a => a.PercentComplete, String.Empty, new { @class = "control-label", @Style = "color:red" })
+    </div>
+    <div class="form-group">
+        <div id="btn_submit" class="btn" style="background: #006F6F;color: floralwhite;border: 1px solid #005A5A;" onclick="saveModule()"><strong>submit</strong><span class="glyphicon glyphicon-ok" style="left:3px"></span></div>
+    </div>
+    </fieldset> 
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")  
+    @Styles.Render("~/Content/cssjqryUi")
+    @Styles.Render("~/Content/powerange.css")
+    @Scripts.Render("~/Scripts/powerange.min.js")
+
+    <script type="text/javascript">        
+        var vals = document.querySelector('.js-min-max-start');
+        var memberString = "";
+        var initVals = new Powerange(vals, { callback: displayDecimalValue, min: 1, max: 5, start: 1 });
+        function displayDecimalValue() {
+            document.getElementById('js-display-decimal').innerHTML = vals.value + " %";
+        }
+
+        function AddMember(e)
+        {
+            var textval = document.getElementById("pushMember").value;
+            if (e.keyCode == 13 && textval != "")
+            { 
+                //alert(textval);
+                if (memberString != "")
+                    memberString = memberString + "~" + textval;
+                else
+                    memberString = textval;
+                //alert(memberString);
+                $("#pushMemberLi").remove();
+                $("#memberList").append("<li class='btn btn-primary' style='margin-left:4px; display:inline-block' onclick='removeElement(this)'>" + textval + "<span style='margin-left:8px' class='glyphicon glyphicon-remove'></span></li>");
+                $("#memberList").append("<li id='pushMemberLi' style='display:inline-block'><input id='pushMember' style='outline:none !important; margin-left:6px; border:none' onkeypress='AddMember(event)' onblur='AddMemberOffFocus()' type='text'/></li>");
+                $("#pushMember").focus();
+            }
+        }
+
+        function AddMemberOffFocus ()
+        {
+            var textval = document.getElementById("pushMember").value;
+            if ( textval != "") {
+                //alert(textval);
+                if (memberString != "")
+                    memberString = memberString + "~" + textval;
+                else
+                    memberString = textval;
+                //alert(memberString);
+                $("#pushMemberLi").remove();
+                $("#memberList").append("<li class='btn btn-primary' style='margin-left:4px; display:inline-block' onclick='removeElement(this)'>" + textval + "<span style='margin-left:8px' class='glyphicon glyphicon-remove'></span></li>");
+                $("#memberList").append("<li id='pushMemberLi' style='display:inline-block'><input id='pushMember' style='outline:none !important; margin-left:6px; border:none' onkeypress='AddMember(event)' onblur='AddMemberOffFocus()' type='text'/></li>");
+            }
+        }
+
+        function removeElement(e)
+        {            
+            $(e).remove();
+            if ($("#memberList").children().length == 1)
+            {
+                $("#pushMemberLi").remove();
+                $("#memberList").append("<li id='pushMemberLi' style='display:inline-block'><input id='pushMember' style='outline:none !important; margin-left:6px; border:none' onkeypress='AddMember(event)' onblur='AddMemberOffFocus()' type='text' placeholder='Member List'/></li>");
+            }
+            $("#pushMember").focus();
+        }
+
+        function saveModule()
+        {
+            var titel = $("#ModuleTitle").val();
+            var weight = $("#ModuleWeight").val();
+            var list = memberString;
+            var description = $("#ModuleDescription").val();
+            var sdate = $("#StartDate").val();
+            var edate = $("#EndDate").val();
+            var percent = vals.value;
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: "../Home/AddModule",
+                async: false,
+                data: "{mTitle:'" + titel + "',mWeight:'" + weight + "',mList:'" + list + "',mDescription:'" + description + "',sDate:'" + sdate + "',eDate:'" + edate + "',mPercent:'" + percent + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            })
+            .success(function (data)
+            {
+                debugger
+                $.each(data, function (index, comment)
+                {
+                    window.location.href = "ModuleDashboard/?id=" + comment.ProjectInfo;
+                });
+                
+            });
+        }
+    </script>
+    }

@@ -1,0 +1,204 @@
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\Project Management.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\Project Management.pdb
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\Antlr3.Runtime.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\DotNetOpenAuth.AspNet.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\DotNetOpenAuth.Core.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\DotNetOpenAuth.OAuth.Consumer.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\DotNetOpenAuth.OAuth.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\DotNetOpenAuth.OpenId.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\EntityFramework.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\Microsoft.Web.Infrastructure.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\Microsoft.Web.WebPages.OAuth.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\Newtonsoft.Json.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Net.Http.Formatting.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.Helpers.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.Http.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.Http.WebHost.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.Mvc.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.Optimization.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.Razor.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.WebPages.Deployment.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.WebPages.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.WebPages.Razor.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\WebGrease.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\WebMatrix.Data.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\WebMatrix.WebData.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\EntityFramework.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\Newtonsoft.Json.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Net.Http.Formatting.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.Helpers.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.Http.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.Http.WebHost.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.Mvc.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.Razor.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.WebPages.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.WebPages.Deployment.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\System.Web.WebPages.Razor.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\WebMatrix.Data.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\Microsoft.Web.WebPages.OAuth.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\WebMatrix.WebData.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\DotNetOpenAuth.AspNet.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\DotNetOpenAuth.Core.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\DotNetOpenAuth.OAuth.Consumer.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\DotNetOpenAuth.OAuth.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\DotNetOpenAuth.OpenId.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\obj\Debug\Project Management.csprojResolveAssemblyReference.cache
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\obj\Debug\Project Management.dll
+c:\users\10258\documents\visual studio 2012\Projects\Project Management\Project Management\obj\Debug\Project Management.pdb
+C:\Users\10258\Documents\Visual Studio 2012\Projects\Project Management\Project Management\bin\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\10258\Documents\Visual Studio 2012\Projects\Project Management\Project Management\bin\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\10258\Documents\Visual Studio 2012\Projects\Project Management\Project Management\bin\Microsoft.Practices.ObjectBuilder2.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\Project Management.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\Project Management.pdb
+C:\Users\10210\Desktop\Project Management\Project Management\bin\Antlr3.Runtime.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\DotNetOpenAuth.Core.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\EntityFramework.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\Newtonsoft.Json.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Net.Http.Formatting.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.Helpers.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.Http.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.Http.WebHost.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.Mvc.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.Optimization.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.Razor.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.WebPages.Deployment.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.WebPages.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.WebPages.Razor.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\WebGrease.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\WebMatrix.Data.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\WebMatrix.WebData.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\Microsoft.Practices.ObjectBuilder2.dll
+C:\Users\10210\Desktop\Project Management\Project Management\bin\EntityFramework.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\Newtonsoft.Json.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Net.Http.Formatting.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.Helpers.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.Http.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.Http.WebHost.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.Mvc.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.Razor.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.WebPages.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.WebPages.Deployment.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\System.Web.WebPages.Razor.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\WebMatrix.Data.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\WebMatrix.WebData.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\DotNetOpenAuth.Core.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\10210\Desktop\Project Management\Project Management\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\10210\Desktop\Project Management\Project Management\obj\Debug\Project Management.csprojResolveAssemblyReference.cache
+C:\Users\10210\Desktop\Project Management\Project Management\obj\Debug\Project Management.dll
+C:\Users\10210\Desktop\Project Management\Project Management\obj\Debug\Project Management.pdb
+D:\Projects\ProjectManagementFromServer\Project Management\obj\Debug\Project Management.csprojResolveAssemblyReference.cache
+D:\Projects\ProjectManagementFromServer\Project Management\obj\Debug\Project Management.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\Project Management.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\Project Management.pdb
+D:\Projects\ProjectManagementFromServer\Project Management\bin\Antlr3.Runtime.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\DotNetOpenAuth.AspNet.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\DotNetOpenAuth.Core.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\DotNetOpenAuth.OAuth.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\DotNetOpenAuth.OpenId.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\EntityFramework.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\Microsoft.Web.Infrastructure.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\Microsoft.Web.WebPages.OAuth.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\Newtonsoft.Json.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Net.Http.Formatting.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.Helpers.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.Http.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.Http.WebHost.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.Mvc.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.Optimization.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.Razor.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.WebPages.Deployment.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.WebPages.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.WebPages.Razor.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\WebGrease.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\WebMatrix.Data.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\WebMatrix.WebData.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\Microsoft.Practices.ObjectBuilder2.dll
+D:\Projects\ProjectManagementFromServer\Project Management\bin\EntityFramework.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\Newtonsoft.Json.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Net.Http.Formatting.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.Helpers.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.Http.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.Http.WebHost.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.Mvc.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.Razor.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.WebPages.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.WebPages.Deployment.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\System.Web.WebPages.Razor.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\WebMatrix.Data.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\WebMatrix.WebData.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\DotNetOpenAuth.AspNet.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\DotNetOpenAuth.Core.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\DotNetOpenAuth.OAuth.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\DotNetOpenAuth.OpenId.xml
+D:\Projects\ProjectManagementFromServer\Project Management\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\Projects\ProjectManagementFromServer\Project Management\obj\Debug\Project Management.pdb
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\obj\Debug\Project Management.dll
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\Project Management.dll
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\Project Management.pdb
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\obj\Debug\Project Management.pdb
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\obj\Debug\Project Management.csprojResolveAssemblyReference.cache
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\EntityFramework.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\Newtonsoft.Json.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\System.Net.Http.Formatting.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\System.Web.Helpers.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\System.Web.Http.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\System.Web.Http.WebHost.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\System.Web.Mvc.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\System.Web.Razor.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\System.Web.WebPages.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\System.Web.WebPages.Deployment.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\System.Web.WebPages.Razor.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\WebMatrix.Data.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\WebMatrix.WebData.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\DotNetOpenAuth.Core.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\90075\Desktop\ResourceManagement - changable\Project Management\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\Projects\Project_Management\Project Management\bin\Project Management.dll
+D:\Projects\Project_Management\Project Management\bin\Project Management.pdb
+D:\Projects\Project_Management\Project Management\bin\DocumentFormat.OpenXml.dll
+D:\Projects\Project_Management\Project Management\bin\Microsoft.Practices.ObjectBuilder2.dll
+D:\Projects\Project_Management\Project Management\bin\EntityFramework.xml
+D:\Projects\Project_Management\Project Management\bin\Newtonsoft.Json.xml
+D:\Projects\Project_Management\Project Management\bin\System.Net.Http.Formatting.xml
+D:\Projects\Project_Management\Project Management\bin\System.Web.Helpers.xml
+D:\Projects\Project_Management\Project Management\bin\System.Web.Http.xml
+D:\Projects\Project_Management\Project Management\bin\System.Web.Http.WebHost.xml
+D:\Projects\Project_Management\Project Management\bin\System.Web.Mvc.xml
+D:\Projects\Project_Management\Project Management\bin\System.Web.Razor.xml
+D:\Projects\Project_Management\Project Management\bin\System.Web.WebPages.xml
+D:\Projects\Project_Management\Project Management\bin\System.Web.WebPages.Deployment.xml
+D:\Projects\Project_Management\Project Management\bin\System.Web.WebPages.Razor.xml
+D:\Projects\Project_Management\Project Management\bin\WebMatrix.Data.xml
+D:\Projects\Project_Management\Project Management\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\Projects\Project_Management\Project Management\bin\WebMatrix.WebData.xml
+D:\Projects\Project_Management\Project Management\bin\DotNetOpenAuth.AspNet.xml
+D:\Projects\Project_Management\Project Management\bin\DotNetOpenAuth.Core.xml
+D:\Projects\Project_Management\Project Management\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\Projects\Project_Management\Project Management\bin\DotNetOpenAuth.OAuth.xml
+D:\Projects\Project_Management\Project Management\bin\DotNetOpenAuth.OpenId.xml
+D:\Projects\Project_Management\Project Management\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\Projects\Project_Management\Project Management\obj\Debug\Project Management.csprojResolveAssemblyReference.cache
+D:\Projects\Project_Management\Project Management\obj\Debug\Project Management.dll
+D:\Projects\Project_Management\Project Management\obj\Debug\Project Management.pdb

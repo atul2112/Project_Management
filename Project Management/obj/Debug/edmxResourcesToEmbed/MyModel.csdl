@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyDatabaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MyDatabaseEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="DesignationTbls" EntityType="MyDatabaseModel.DesignationTbl" />
+    <EntitySet Name="RoleTbls" EntityType="MyDatabaseModel.RoleTbl" />
+    <EntitySet Name="TeamTbls" EntityType="MyDatabaseModel.TeamTbl" />
+    <EntitySet Name="UserInfoTbls" EntityType="MyDatabaseModel.UserInfoTbl" />
+  </EntityContainer>
+  <EntityType Name="DesignationTbl">
+    <Key>
+      <PropertyRef Name="DesID" />
+      <PropertyRef Name="DesName" />
+    </Key>
+    <Property Name="DesID" Type="Int32" Nullable="false" />
+    <Property Name="DesName" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="RoleTbl">
+    <Key>
+      <PropertyRef Name="RoleID" />
+      <PropertyRef Name="RoleName" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TeamTbl">
+    <Key>
+      <PropertyRef Name="TeamID" />
+      <PropertyRef Name="TeamName" />
+    </Key>
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="TeamName" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserInfoTbl">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="Username" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="RoleID" />
+      <PropertyRef Name="DesignationID" />
+      <PropertyRef Name="TeamID" />
+      <PropertyRef Name="FirstName" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="DesignationID" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="LastName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="EmailID" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+  </EntityType>
+</Schema>

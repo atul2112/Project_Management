@@ -1,0 +1,730 @@
+﻿@model Project_Management.tbl_projectdetails
+
+@{
+    ViewBag.Title = "Add Project";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Session["dialog"] == "Data already exists")
+{
+    @section dialog_section
+    {
+        <span class="glyphicon glyphicon-warning-sign" style="display: inline-block; margin-right: 1%"></span>
+        <p style="display: inline-block">@Session["dialog"]</p>
+    }
+    <script type="text/javascript">exist_dialog_down();</script>
+}
+
+@if (Session["dialog"] == "New Project added succesfully")
+{
+    @section dialog_section
+    {
+
+        <span class="glyphicon glyphicon-check" style="display: inline-block; margin-right: 1%"></span>
+        <p style="display: inline-block; font-size: 90%;">@Session["dialog"]</p>
+
+    }
+    <script type="text/javascript">saved_dialog_down();</script>
+}
+
+<style>
+    #btn_submit {
+        transition: background-color 0.5s;
+    }
+
+        #btn_submit:hover {
+            background-color: #019E9E !important;
+        }
+
+
+    #img_btn {
+        transition: all ease 0.5s;
+        opacity: 0.2;
+    }
+
+        #img_btn:hover {
+            opacity: 1;
+        }
+
+    .confirm {
+        background-color: rgba(0, 111, 111, 0.86) !important;
+    }
+
+        .confirm:hover {
+            background-color: #006F6F !important;
+        }
+
+    input:focus, textarea:focus, select:focus {
+        outline: 0 !important;
+        border-color: #006F6F !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+    }
+
+    .select2-container .select2-selection--single {
+        height:30px !important;
+    }
+    .select2-selection__arrow {
+        height:28px !important;
+    }
+
+    .select2-selection__rendered {
+        line-height:30px !important;
+    }
+    
+    .vlActive {
+        background: wheat;
+        border: solid 1px #A94545 !important;
+    }
+
+    .crrListActive {
+        background:rgba(0, 111, 111, 0.28) !important;
+    }
+
+    .form-control {
+        
+    }
+    .mb {
+        height: 30px !important;
+        margin-bottom: -10px;
+    }
+    .select2-container {
+        margin-bottom: -10px !important;
+    }
+
+    #main_container {
+        padding-top:27px !important;
+    }
+
+    @@media screen and (min-width: 768px) {
+        .jumbotron {
+            padding-bottom: 0px !important;
+        }
+    }
+
+    .jumbotron {
+            padding-bottom: 0px !important;
+            margin-bottom: 0px !important;
+        }
+
+</style>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var uname = "@(((Project_Management.CommonFunctions.Userdetails)Session["UserDetails"]).Username)"
+        $("#opt_user").css("display", "block");
+        $("#opt_user").children('a').text("Welcome- " + uname);
+
+        $("#logout_btn").css("display", "block");
+
+        $("#back_btn").css("display", "block");
+        $("#back_btn").html("<a style='font-size:15px' class='nav navbar-brand navbar-nav navbar-right' href='../Home/Home'><span class='glyphicon glyphicon-chevron-left'></span>Back</a>");
+
+        /*......Form Validation.......*/
+        $("form").find('input, textarea').on('keyup blur focus change', function (e) {
+            if (e.type === 'keyup') {
+                if ($(this).hasClass("vlActive"))
+                    $(this).removeClass("vlActive");
+            }
+            if (e.type === 'change') {
+                if ($(this).hasClass("vlActive"))
+                    $(this).removeClass("vlActive");
+            }
+        });
+
+        setTimeout(function () {
+            $(".select2-selection__rendered").on("click", function (e) {
+                if ($(this).hasClass("vlActive"))
+                    $(this).removeClass("vlActive");
+            });
+        }, 1000);
+    });
+
+    setTimeout(function () {
+        $(".crrList").on("click", function () {
+            $(".crrListActive").removeClass("crrListActive");
+            $(this).addClass("crrListActive");
+            if ($(this).hasClass("crrUsd")) {
+                $("#currType").html("<span class='fa fa-usd'></span>");
+                $("#currType").attr("data-curr", "USD");
+            }
+            if ($(this).hasClass("crrInr")) {
+                $("#currType").html("<span class='fa fa-inr'></span>");
+                $("#currType").attr("data-curr", "INR");
+            }
+            if ($(this).hasClass("crrEur")) {
+                $("#currType").html("<span class='fa fa-eur'></span>");
+                $("#currType").attr("data-curr", "EURO");
+            }
+        });
+
+        $("#TotalCost").focusin(function () {
+            $("#currType").animate({ borderColor: "#006F6F" });
+        });
+        $("#TotalCost").focusout(function () {
+            $("#currType").animate({ borderColor: "#ccc" });
+        });
+    }, 1000);
+    
+</script>
+
+
+@using (Html.BeginForm("AddProject", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    if (@ViewBag.Message != null)
+    {
+    <div style="border: 1px solid black">
+        @ViewBag.Message
+    </div> 
+    } 
+    <h2 style="margin-top:0px; border-bottom:solid 1px #016363">Add New Project <i class="fa fa-cubes" style="color:#016363"></i></h2>    
+    <fieldset class="fieldset col-sm-12">
+        @*<legend class="legend">Add New Project</legend>*@
+
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="Title">Project Name<strong style="margin-left: 3px; zoom: 125%; color: red">*</strong></label>
+                <!--<input class="form-control" id="Title" name="Title" placeholder="Project Name" type="text" value="">-->
+                @Html.TextBoxFor(a => a.Title, new { @class = "form-control mb", @placeholder = "Project Name" })
+                @Html.ValidationMessageFor(a => a.Title, String.Empty, new { @class = "control-label", @Style = "color:red" })
+            </div>            
+
+            <div class="form-group">
+                <label for="ProjectType">Project Type<strong style="margin-left: 3px; zoom: 125%; color: red">*</strong></label>
+                <select id="ProjectType" name="ProjectType" class="form-control">
+                    <option value="0">Select</option>
+                    <option value="Tech">Tech</option>
+                    <option value="Analyst">Analyst</option>
+                    <option value="Internal">Internal</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="DomainTeam">Domain Team<strong style="margin-left: 3px; zoom: 125%; color: red">*</strong></label>
+                <select id="DomainTeam" name="DomainTeam" class="form-control" onchange="GetDomainLeadList();">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="DomainLead">Domain Lead<strong style="margin-left: 3px; zoom: 125%; color: red">*</strong></label>
+                <select id="DomainLead" name="DomainLead" class="form-control" onchange="">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="TechTeam">Tech Team<strong style="margin-left: 3px; zoom: 125%; color: red">*</strong></label>
+                <select id="TechTeam" name="TechTeam" class="form-control" onchange="GetTechLeadList();">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="TechLead">Tech Lead<strong style="margin-left: 3px; zoom: 125%; color: red">*</strong></label>
+                <select id="TechLead" name="TechLead" class="form-control" onchange="">
+                </select>
+            </div> 
+            
+            <div class="form-group col-sm-4" style="padding:0px;">
+                <div style="height: 148px">
+                    <label for="profile_img">Project Image<strong style="margin-left: 3px; zoom: 125%; color: red"></strong></label>
+                    <img id="profile_img" class="img-thumbnail" style="border: 1px solid; height: 100px; width: 125px; display: inherit;" />
+                    <div id="img_btn" style="border: 1px solid; height: 100px; width: 125px; display: inherit; position: relative; top: -100px;" class="img-thumbnail">
+                        <span class="fa-stack fa-2x col-xs-2" style="cursor: pointer; float: inherit; position: relative; left: 31px; top: 18px" onclick="triggerClick()">
+                            <i class="fa fa-circle fa-stack-2x text-info" style="color: #006F6F"></i>
+                            <i class="fa fa-picture-o fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+
+                    <input id="profile_Btn" type="file" name="file" style="display: none" onchange="showProfile(this)" />
+                </div>
+            </div>
+            <div class="col-sm-6"><div class="btn btn-default" onclick="saveProject()" style="margin-top:40%; background: #006F6F; color: floralwhite; border: 1px solid #005A5A; font-weight: bold;">save project</div></div>
+            
+        </div>
+
+        <div class="col-sm-6">          
+
+            @*<div class="form-group">
+            <label for="DomainResource">Domain Resource</label>
+            <select id="DomainResource" name="DomainResource" class="form-control" multiple="multiple">
+            </select>
+        </div>*@          
+
+            <div class="form-group">
+                <label for="ClientName">Client Name<strong style="margin-left: 3px; zoom: 125%; color: red">*</strong></label>
+                <!--<textarea class="form-control" id="Description" name="Description" placeholder="Description" style="resize:vertical"></textarea>-->
+                @Html.TextBoxFor(a => a.ClientName, new { @class = "form-control mb", @placeholder = "Enter Client Name" })
+                @Html.ValidationMessageFor(a => a.ClientName, String.Empty, new { @class = "control-label", @Style = "color:red" })
+            </div>           
+
+            @*<div class="form-group">
+            <label for="TechResource">Tech Resource</label>
+            <select id="TechResource" name="TechResource" class="form-control" multiple="multiple">
+            </select>
+        </div>*@
+
+            <div class="form-group">
+                <label for="QCLead">QC Lead<strong style="margin-left: 3px; zoom: 125%; color: red">*</strong></label>
+                <select id="QCLead" name="QCLead" class="form-control">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="TotalCost">Total Cost<strong style="margin-left: 3px; zoom: 125%; color: red">*</strong></label>
+                <!--<input class="form-control" id="Title" name="Title" placeholder="Project Name" type="text" value="">-->               
+                <div class="input-group field-wrap" style="margin-bottom:-8px">
+                    <span class="input-group-addon" id="basic-addon1" style="background: #006F6F; color: white;">Currency</span>
+                    <span class="input-group-addon dropdown-toggle" style="background: rgb(204, 236, 236);" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </span>
+                    <ul class="dropdown-menu">
+                        <li><a class="crrList crrInr">INR <span class="fa fa-inr"></span></a></li>
+                        <li><a class="crrList crrUsd crrListActive">Dollar <span class="fa fa-usd"></span></a></li>
+                        <li><a class="crrList crrEur">Euro <span class="fa fa-eur"></span></a></li>
+                    </ul>
+                    @Html.TextBoxFor(a => a.TotalCost, new { @class = "form-control", @placeholder = "Give Total Cost", @Style = "z-index:0; height:30px" })
+                    @Html.ValidationMessageFor(a => a.TotalCost, String.Empty, new { @class = "control-label", @Style = "color:red" })
+                    <span class="input-group-addon" id="currType" data-curr="USD" style="background: rgba(1, 115, 115, 0.71); color: white;"><span class="fa fa-usd"></span></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="StartDate">Start Date<strong style="margin-left: 3px; zoom: 125%; color: red">*</strong></label>
+                <input id="StartDate" name="StartDate" class="form-control mb" type="datetime" placeholder="Set Start Date" />
+            </div>
+
+            <div class="form-group">
+                <label for="Description">Description<strong style="margin-left: 3px; zoom: 125%; color: red">*</strong></label>
+                <!--<textarea class="form-control" id="Description" name="Description" placeholder="Description" style="resize:vertical"></textarea>-->
+                @Html.TextAreaFor(a => a.Description, new { @class = "form-control", @placeholder = "Description For Project", @Style = "resize:vertical; height:97px" })
+                @Html.ValidationMessageFor(a => a.Description, String.Empty, new { @class = "control-label", @Style = "color:red" })
+            </div>
+            
+            
+
+
+
+            @*        <div class="form-group">
+            <label for="EstimatedCost">Define cost details<strong style="margin-left: 3px; zoom: 125%; color: red">*</strong></label>
+            <input class="form-control" data-toggle='modal' data-target='#costEstimationModal' id="EstimatedCost" name="EstimatedCost" placeholder="Estimated Cost" type="text" value="">
+        </div>
+
+        <div class="form-group">
+            <label for="Modules">New Modules with cost estimation<strong style="margin-left: 3px; zoom: 125%; color: red">*</strong></label>
+            <input class="form-control" data-toggle='modal' data-target='#moduleModal' id="Modules" name="Modules" placeholder="Modules" type="text" value="">
+        </div>*@            
+        </div>
+
+        
+        @*<div class="form-group">
+            <input id="btn_submit" type="submit" value="submit" class="btn btn-info" style="background: #006F6F; color: floralwhite; border: 1px solid #005A5A; font-weight: bold;" />
+        </div>*@
+
+        
+
+    </fieldset>
+}
+
+<!--Modules Model-->
+@*<div class="modal fade" id="moduleModal" role="dialog">
+
+    @Html.Partial("PopupModule", "AP");
+   
+</div>*@
+
+@*<!--Cost Estimation Model-->
+<div class="modal fade" id="costEstimationModal" role="dialog">
+    @Html.Partial("AddCost");
+</div>*@
+
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/select2.min.js")
+    @Styles.Render("~/Content/select2.min.css")
+
+
+
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+
+    <script type="text/javascript">
+
+        var DetailArray = new Array();
+
+        //........Loading Icon Div.........//
+
+        //.................................//
+
+        function triggerClick() {
+            $("#profile_Btn").trigger('click');
+        }
+
+        function saveProject() {
+            if ($("#Title").val() == "" || $("#Description").val() == "" || $("#TotalCost").val() == "" || $("#StartDate").val() == "") {
+                $("form").find('input, textarea').filter(function () {
+                    return !this.value;
+                }).addClass("vlActive");
+
+                if ($("#ProjectType").val() == 0 || $("#DomainTeam").val() == 0 || $("#DomainLead").val() == 0 || $("#TechTeam").val() == 0 || $("#TechLead").val() == 0 || $("#QCLead").val() == 0) {
+                    if ($("#ProjectType").val() == 0) {
+                        $("#select2-ProjectType-container").addClass("vlActive");
+                    }
+                    if ($("#DomainTeam").val() == 0) {
+                        $("#select2-DomainTeam-container").addClass("vlActive");
+                    }
+                    if ($("#DomainLead").val() == 0) {
+                        $("#select2-DomainLead-container").addClass("vlActive");
+                    }
+                    if ($("#TechTeam").val() == 0) {
+                        $("#select2-TechTeam-container").addClass("vlActive");
+                    }
+                    if ($("#TechLead").val() == 0) {
+                        $("#select2-TechLead-container").addClass("vlActive");
+                    }
+                    if ($("#QCLead").val() == 0) {
+                        $("#select2-QCLead-container").addClass("vlActive");
+                    }
+                }
+                swal({
+                    title: "Error",
+                    text: "one or more fields are empty !",
+                    type: "warning",
+                    showCancelButton: false,
+                    confirmButtonColor: "#rgba(0, 111, 111, 0.86)",
+                    cancelButtonText: "Later",
+                    confirmButtonText: "ok",
+                    closeOnConfirm: true
+                });
+
+                return;
+            }
+
+
+            var data = {
+                Title: '',
+                Description: '',
+                ProjectType: '',
+                DomainTeam: '',
+                DomainLead: '',
+                TechTeam: '',
+                TechLead: '',
+                QCLead: '',
+                StartDate: '',
+                ClientName: '',
+                TotalCost: '',
+                CurrencyType: '',
+            };
+
+            data.Title = $("#Title").val();
+            data.Description = $("#Description").val();
+            data.ProjectType = $("#ProjectType").val();
+            data.DomainTeam = $("#DomainTeam").val();
+            data.DomainLead = $("#DomainLead").val();
+            data.TechTeam = $("#TechTeam").val();
+            data.TechLead = $("#TechLead").val();
+            data.QCLead = $("#QCLead").val();
+            data.StartDate = $("#StartDate").val();
+            data.ClientName = $("#ClientName").val();
+            data.TotalCost = $("#TotalCost").val();
+            data.CurrencyType = $("#currType").attr("data-curr");
+
+            DetailArray.push(data);
+            $("#load").show();
+            setTimeout(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "../Home/SaveProject",
+                    async: false,
+                    data: "{projectDetails:'" + JSON.stringify(DetailArray) + "'}",//"{title:'" + Title + "',description:'" + Description + "',type:'" + ProjectType + "',domainteam:'" + DomainTeam + "',domainlead:'" + DomainLead + "',techteam:'" + TechTeam + "',techlead:'" + TechLead + "',qclead:'" + QCLead + "',startdate:'" + StartDate + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        swal({
+                            title: "Successfully Added",
+                            text: "Do you want to fill the details/modules ?",
+                            type: "success",
+                            showCancelButton: true,
+                            confirmButtonColor: "#rgba(0, 111, 111, 0.86)",
+                            cancelButtonText: "Later",
+                            confirmButtonText: "Yes",
+                            closeOnConfirm: false
+                        },
+                        function (isConfirm) {
+                            debugger
+                            if (isConfirm) {
+                                window.location.href = "../Home/AddView/" + data;
+                            }
+                            else {
+                                window.location.href = "../Home/Home";
+                            }
+                        });
+
+                    }
+                });
+            }, 200);
+
+        }
+
+        //........Preview Logo.....//
+        function showProfile(input) {
+
+            debugger;
+            if (window.FormData !== undefined) {
+                debugger
+                var fileUpload = $("#profile_Btn").get(0);
+                var files = fileUpload.files;
+                var fileData = new FormData();
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+                }
+                $.ajax({
+                    url: '../Home/SaveProjectProfile',
+                    type: "POST",
+                    contentType: false, // Not to set any content header  
+                    processData: false, // Not to process data  
+                    data: fileData,
+                    success: function (data) {
+                        if (input.files && input.files[0]) {
+                            var filerdr = new FileReader();
+                            filerdr.onload = function (e) {
+                                $('#profile_img').attr('src', e.target.result);
+                            }
+                            filerdr.readAsDataURL(input.files[0]);
+                        }
+                        $("#img_btn").css("display", "none");
+                    }
+                });
+            } else {
+                alert("FormData is not supported.");
+            }
+
+
+        }
+
+
+        //........................Get Data on Load......................//
+        $(document).ready(function () {
+            $('input[type=datetime]').datepicker({
+                dateFormat: "dd/M/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+            });
+
+            $("#DomainTeam").select2({
+                placeholder: "Select a Domain Team",
+                allowClear: true
+            });
+
+            $("#TechTeam").select2({
+                placeholder: "Select a Tech Team",
+                allowClear: true
+            });
+
+            $("#DomainLead").select2({
+                placeholder: "Select a Domain Lead",
+                allowClear: true
+            });
+
+            $("#TechLead").select2({
+                placeholder: "Select a Tech Lead",
+                allowClear: true
+            });
+
+            $("#QCLead").select2({
+                placeholder: "Select a Tech Lead",
+                allowClear: true
+            });
+
+            $("#ProjectType").select2({
+                placeholder: "Select a Project Type",
+                allowClear: true
+            });
+
+            //$("#TechResource").select2({
+            //    placeholder: "Select a Tech Resource",
+            //    allowClear: true
+            //});
+
+            //$("#DomainResource").select2({
+            //    placeholder: "Select a Domain Resource",
+            //    allowClear: true
+            //});
+
+            GetDomainTeamList();
+            GetTechTeamList();
+            GetDomainLeadList();
+            GetTechLeadList();
+            GetQCLeadList();
+            //alert("selected values, " + $("#DomainTeam").val() + "," + $("#DomainLead").val() + "," + $("#DomainResource").val() + $("#TechTeam").val() + "," + $("#TechLead").val() + "," + $("#TechResource").val());
+        });
+
+        function GetDomainTeamList() {
+            $.ajax({
+                type: "POST",
+                url: "../Home/GetDomainTeam",
+                async: false,
+                data: "{optional:'1'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            })
+            .success(function (data) {
+
+                $("#DomainTeam").append("<option value='0'>Select</option>");
+                $.each(data, function (index, comment) {
+                    $("#DomainTeam").append("<option value=" + comment.TeamID + ">" + comment.TeamName + "</option>");
+                });
+            });
+        }
+
+        function GetTechTeamList() {
+            $.ajax({
+                type: "POST",
+                url: "../Home/GetTechTeam",
+                async: false,
+                data: "{optional:'1'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            })
+            .success(function (data) {
+
+                $("#TechTeam").append("<option value='0'>Select</option>");
+                $.each(data, function (index, comment) {
+                    $("#TechTeam").append("<option value=" + comment.TeamID + ">" + comment.TeamName + "</option>");
+                });
+            });
+        }
+
+        function GetDomainLeadList() {
+            var domainID = $("#DomainTeam").val();
+            $.ajax({
+                type: "POST",
+                url: "../Home/GetDomainLead",
+                async: false,
+                data: "{optional:'" + domainID + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            })
+            .success(function (data) {
+                $("#DomainLead").html('');
+                $("#DomainLead").append("<option value='0'>Select</option>");
+
+                $.each(data, function (index, comment) {
+                    $("#DomainLead").append("<option value=" + comment.UserID + ">" + comment.Username + "</option>");
+                });
+            });
+
+            if (domainID == 0) {
+                $("#select2-DomainTeam-container").html("<span class='select2-selection__placeholder'>Select a Domain Team</span>");
+                $("#select2-DomainLead-container").html("<span class='select2-selection__placeholder'>Select a Domain Lead</span>");
+            }
+        }
+
+        function GetTechLeadList() {
+            var techID = $("#TechTeam").val();
+            $.ajax({
+                type: "POST",
+                url: "../Home/GetTechLead",
+                async: false,
+                data: "{optional:'" + techID + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            })
+            .success(function (data) {
+                $("#TechLead").html('');
+                $("#TechLead").append("<option value='0'>Select</option>");
+
+                $.each(data, function (index, comment) {
+                    $("#TechLead").append("<option value=" + comment.UserID + ">" + comment.Username + "</option>");
+                });
+            });
+            if (techID == 0) {
+                $("#select2-TechTeam-container").html("<span class='select2-selection__placeholder'>Select a Tech Team</span>");
+                $("#select2-TechLead-container").html("<span class='select2-selection__placeholder'>Select a Tech Lead</span>");
+            }
+        }
+
+        //function GetDomainResourceList() {
+        //    var domianID = $("#DomainTeam").val();
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "../Home/GetDomainResource",
+        //        async: false,
+        //        data: "{optional:'" + domianID + "'}",
+        //        contentType: "application/json; charset=utf-8",
+        //        dataType: "json"
+        //    })
+        //    .success(function (data) {
+        //        $("#DomainResource").html('');
+
+        //        $.each(data, function (index, comment) {
+        //            $("#DomainResource").append("<option value=" + comment.UserID + ">" + comment.Username + "</option>");
+        //        });
+        //    });
+        //    if ($("#DomainLead").val() == 0) {
+        //        $("#select2-DomainLead-container").html("<span class='select2-selection__placeholder'>Select a Domain Lead</span>");
+        //    }
+        //}
+
+        //function GetTechResourceList() {
+        //    var techID = $("#TechTeam").val();
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "../Home/GetTechResource",
+        //        async: false,
+        //        data: "{optional:'" + techID + "'}",
+        //        contentType: "application/json; charset=utf-8",
+        //        dataType: "json"
+        //    })
+        //    .success(function (data) {
+        //        $("#TechResource").html('');
+
+        //        $.each(data, function (index, comment) {
+        //            $("#TechResource").append("<option value=" + comment.UserID + ">" + comment.Username + "</option>");
+        //        });
+        //    });
+        //    if ($("#TechLead").val() == 0) {
+        //        $("#select2-TechLead-container").html("<span class='select2-selection__placeholder'>Select a Tech Lead</span>");
+        //    }
+        //}
+
+        function GetQCLeadList() {
+            $.ajax({
+                type: "POST",
+                url: "../Home/GetQCLead",
+                async: false,
+                data: "{optional:'1'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            })
+            .success(function (data) {
+                $("#QCLead").html('');
+                $("#QCLead").append("<option value='0'>Select</option>");
+
+                $.each(data, function (index, comment) {
+                    $("#QCLead").append("<option value=" + comment.UserID + ">" + comment.Username + "</option>");
+                });
+            });
+        }
+        //...................End of Get Data on Load.....................//
+
+
+
+
+
+
+
+        //function showVal() {
+        //    alert("selected values, " + $("#DomainTeam").val() + "," + $("#DomainLead").val() + "," + $("#DomainResource").val());
+        //}
+
+
+    </script>
+}
