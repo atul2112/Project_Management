@@ -60,8 +60,7 @@ namespace Project_Management.Controllers
 
                     }
                     else
-                    {
-                       
+                    {                       
                         TempData["Message"] = "Wrong Credentials, Check Login Details";
                         return RedirectToAction("Login");
                         
@@ -73,7 +72,7 @@ namespace Project_Management.Controllers
 
         public void blankFunction()
         {
-
+            //asdfghjkl
         }
 
         public ActionResult LandingPage()
