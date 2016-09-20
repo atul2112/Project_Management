@@ -202,3 +202,31 @@ D:\Projects\Project_Management\Project Management\bin\DotNetOpenAuth.OpenId.Rely
 D:\Projects\Project_Management\Project Management\obj\Debug\Project Management.csprojResolveAssemblyReference.cache
 D:\Projects\Project_Management\Project Management\obj\Debug\Project Management.dll
 D:\Projects\Project_Management\Project Management\obj\Debug\Project Management.pdb
+D:\Git\Project Management\bin\Project Management.dll.config
+D:\Git\Project Management\bin\Project Management.dll
+D:\Git\Project Management\bin\Project Management.pdb
+D:\Git\Project Management\bin\DocumentFormat.OpenXml.dll
+D:\Git\Project Management\bin\Microsoft.Practices.ObjectBuilder2.dll
+D:\Git\Project Management\bin\EntityFramework.xml
+D:\Git\Project Management\bin\Newtonsoft.Json.xml
+D:\Git\Project Management\bin\System.Net.Http.Formatting.xml
+D:\Git\Project Management\bin\System.Web.Helpers.xml
+D:\Git\Project Management\bin\System.Web.Http.xml
+D:\Git\Project Management\bin\System.Web.Http.WebHost.xml
+D:\Git\Project Management\bin\System.Web.Mvc.xml
+D:\Git\Project Management\bin\System.Web.Razor.xml
+D:\Git\Project Management\bin\System.Web.WebPages.xml
+D:\Git\Project Management\bin\System.Web.WebPages.Deployment.xml
+D:\Git\Project Management\bin\System.Web.WebPages.Razor.xml
+D:\Git\Project Management\bin\WebMatrix.Data.xml
+D:\Git\Project Management\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\Git\Project Management\bin\WebMatrix.WebData.xml
+D:\Git\Project Management\bin\DotNetOpenAuth.AspNet.xml
+D:\Git\Project Management\bin\DotNetOpenAuth.Core.xml
+D:\Git\Project Management\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\Git\Project Management\bin\DotNetOpenAuth.OAuth.xml
+D:\Git\Project Management\bin\DotNetOpenAuth.OpenId.xml
+D:\Git\Project Management\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\Git\Project Management\obj\Debug\Project Management.csprojResolveAssemblyReference.cache
+D:\Git\Project Management\obj\Debug\Project Management.dll
+D:\Git\Project Management\obj\Debug\Project Management.pdb
